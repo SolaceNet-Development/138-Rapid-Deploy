@@ -6,6 +6,9 @@
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@ethersproject/bignumber": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
+    "@ethersproject/units": "^5.7.0",
     "@tatumio/tatum": "^4.1.15",
     "@thirdweb-dev/chains": "^0.1.60",
     "@thirdweb-dev/react": "^4.0.10",
@@ -54,6 +57,8 @@
     "test": "hardhat test",
     "test:coverage": "hardhat coverage",
     "test:watch": "hardhat test --watch",
-    "gas-report": "REPORT_GAS=true hardhat test"
+    "gas-report": "REPORT_GAS=true hardhat test",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix"
   }
 }

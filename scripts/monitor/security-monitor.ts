@@ -51,7 +51,7 @@ interface SecurityConfig {
 }
 
 class SecurityMonitor {
-    private provider: providers.JsonRpcProvider;
+    private provider: providers.Provider;
     private metrics: SecurityMetrics;
     private config: SecurityConfig;
     private contracts: {
@@ -373,9 +373,9 @@ class SecurityMonitor {
         type: 'withdrawal' | 'deposit'
     ): Promise<void> {
         // Check for suspicious treasury movements
-        const balance = await this.provider.getBalance(this.config.contracts.treasury);
+        const balance = await (this.provider as any).getBalance(this.config.contracts.treasury);
         const percentage = amount.mul(BigNumber.from(100)).div(balance);
-        if (percentage.gte(BigNumber.from(20))) { // >= 20% of treasury
+        if (percentage.toString() >= BigNumber.from(20).toString()) { // >= 20% of treasury
             await this.sendAlert('Large Treasury Movement', {
                 type,
                 recipient,
@@ -400,7 +400,8 @@ class SecurityMonitor {
 
         // Check transaction size
         const averageVolume = await this.getAverageTransactionVolume();
-        if (value.gte(averageVolume.mul(BigNumber.from(this.config.thresholds.suspiciousVolumeMultiplier)))) {
+        const threshold = averageVolume.mul(BigNumber.from(this.config.thresholds.suspiciousVolumeMultiplier));
+        if (value.toString() >= threshold.toString()) {
             risk += 30;
         }
 
@@ -565,4 +566,4 @@ class SecurityMonitor {
     }
 }
 
-export { SecurityMonitor, SecurityMetrics, SecurityConfig };                                  
+export { SecurityMonitor, SecurityMetrics, SecurityConfig };                                                                            

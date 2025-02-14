@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { ethers } from 'ethers';
+import { providers, Contract, BigNumber, utils } from 'ethers';
 import { promisify } from 'util';
 const sleep = promisify(setTimeout);
 
@@ -18,7 +18,7 @@ interface BridgeMetrics {
     completedTransfers: number;
     failedTransfers: number;
     averageCompletionTime: number;
-    tvl: ethers.BigNumber;
+    tvl: BigNumber;
     successRate: number;
     recentTransactions: {
         hash: string;
@@ -39,8 +39,8 @@ interface CrossChainConfig {
 }
 
 class CrossChainMonitor {
-    private providers: Map<number, ethers.providers.Provider>;
-    private bridges: Map<number, ethers.Contract>;
+    private providers: Map<number, providers.Provider>;
+    private bridges: Map<number, Contract>;
     private metrics: Map<number, BridgeMetrics>;
     private config: CrossChainConfig;
 
@@ -55,11 +55,11 @@ class CrossChainMonitor {
         // Initialize providers and contracts for each chain
         for (const chain of this.config.chains) {
             // Set up provider
-            const provider = new ethers.providers.JsonRpcProvider(chain.rpcUrl);
+            const provider = new providers.JsonRpcProvider(chain.rpcUrl);
             this.providers.set(chain.chainId, provider);
 
             // Set up bridge contract
-            const bridge = new ethers.Contract(
+            const bridge = new Contract(
                 chain.bridgeAddress,
                 [
                     'function getMessageFee() view returns (uint256)',
@@ -82,7 +82,7 @@ class CrossChainMonitor {
                 completedTransfers: 0,
                 failedTransfers: 0,
                 averageCompletionTime: 0,
-                tvl: ethers.BigNumber.from(0),
+                tvl: BigNumber.from(0),
                 successRate: 100,
                 recentTransactions: []
             });
@@ -97,7 +97,7 @@ class CrossChainMonitor {
         if (!bridge) return;
 
         // Listen for new bridge transfers
-        bridge.on('TokensBridged', async (token, amount, recipient, messageId) => {
+        bridge.on('TokensBridged', async (token: string, amount: BigNumber, recipient: string, messageId: string) => {
             const metrics = this.metrics.get(chainId);
             if (metrics) {
                 metrics.totalTransfers++;
@@ -114,7 +114,7 @@ class CrossChainMonitor {
         });
 
         // Listen for completed transfers
-        bridge.on('TokensClaimed', async (messageId, success) => {
+        bridge.on('TokensClaimed', async (messageId: string, success: boolean) => {
             const metrics = this.metrics.get(chainId);
             if (metrics) {
                 metrics.activeTransfers--;
@@ -131,7 +131,7 @@ class CrossChainMonitor {
         });
 
         // Listen for failed transfers
-        bridge.on('MessageFailed', async (messageId, reason) => {
+        bridge.on('MessageFailed', async (messageId: string, reason: string) => {
             const metrics = this.metrics.get(chainId);
             if (metrics) {
                 metrics.activeTransfers--;
@@ -192,19 +192,21 @@ class CrossChainMonitor {
         }
     }
 
-    private async calculateTVL(chainId: number): Promise<ethers.BigNumber> {
+    private async calculateTVL(chainId: number): Promise<BigNumber> {
         const chain = this.config.chains.find(c => c.chainId === chainId);
-        if (!chain) return ethers.BigNumber.from(0);
+        if (!chain) return BigNumber.from(0);
 
-        let tvl = ethers.BigNumber.from(0);
+        let tvl = BigNumber.from(0);
         for (const token of chain.tokenList) {
             try {
-                const tokenContract = new ethers.Contract(
+                const provider = this.providers.get(chainId);
+                if (!provider) continue;
+                const tokenContract = new Contract(
                     token,
                     ['function balanceOf(address) view returns (uint256)'],
-                    this.providers.get(chainId)
+                    provider
                 );
-                const balance = await tokenContract.balanceOf(chain.bridgeAddress);
+                const balance = await (tokenContract as any).balanceOf(chain.bridgeAddress);
                 tvl = tvl.add(balance);
             } catch (error) {
                 console.error(`Error getting balance for token ${token}:`, error);
@@ -222,16 +224,16 @@ class CrossChainMonitor {
         metrics.averageCompletionTime = (oldAvg * (count - 1) + completionTime) / count;
     }
 
-    private async checkLargeTransfer(chainId: number, amount: ethers.BigNumber, recipient: string): Promise<void> {
+    private async checkLargeTransfer(chainId: number, amount: BigNumber, recipient: string): Promise<void> {
         const chain = this.config.chains.find(c => c.chainId === chainId);
         if (!chain) return;
 
         // Alert for large transfers (e.g., > 1% of TVL)
         const metrics = this.metrics.get(chainId);
-        if (metrics && amount.mul(100).gt(metrics.tvl)) {
+        if (metrics && amount.mul(BigNumber.from(100)).toString() >= metrics.tvl.toString()) {
             await this.sendAlert('Large Transfer Detected', {
                 chain: chain.name,
-                amount: ethers.utils.formatEther(amount),
+                amount: utils.formatEther(amount),
                 recipient,
                 timestamp: new Date().toISOString()
             });
@@ -305,11 +307,11 @@ class CrossChainMonitor {
             }
 
             // Check TVL
-            const minTVL = ethers.utils.parseEther(this.config.thresholds.minTVL);
-            if (metrics.tvl.lt(minTVL)) {
+            const minTVL = utils.parseEther(this.config.thresholds.minTVL);
+            if (metrics.tvl.toString() < minTVL.toString()) {
                 await this.sendAlert('Low TVL', {
                     chain: chain.name,
-                    current: ethers.utils.formatEther(metrics.tvl),
+                    current: utils.formatEther(metrics.tvl),
                     threshold: this.config.thresholds.minTVL,
                     timestamp: new Date().toISOString()
                 });
@@ -355,7 +357,7 @@ class CrossChainMonitor {
                 completedTransfers: metrics.completedTransfers,
                 failedTransfers: metrics.failedTransfers,
                 averageCompletionTime: metrics.averageCompletionTime.toFixed(2),
-                tvl: ethers.utils.formatEther(metrics.tvl),
+                tvl: utils.formatEther(metrics.tvl),
                 successRate: metrics.successRate.toFixed(2)
             });
         }
@@ -385,7 +387,7 @@ class CrossChainMonitor {
         }
 
         try {
-            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY, {
+            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY || '', {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain' },
                 body: metrics.join('\n')
@@ -396,4 +398,4 @@ class CrossChainMonitor {
     }
 }
 
-export { CrossChainMonitor, ChainConfig, BridgeMetrics, CrossChainConfig }; 
+export { CrossChainMonitor, ChainConfig, BridgeMetrics, CrossChainConfig };                  

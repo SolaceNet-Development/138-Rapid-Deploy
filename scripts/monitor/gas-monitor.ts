@@ -1,14 +1,18 @@
 #!/usr/bin/env node
 
-import { ethers } from 'ethers';
+import { Contract, Signer } from 'ethers';
+import { formatUnits, parseUnits } from '@ethersproject/units';
+import { JsonRpcProvider, Provider } from '@ethersproject/providers';
+import { BigNumber } from '@ethersproject/bignumber';
 import { promisify } from 'util';
+import fetch from 'node-fetch';
 const sleep = promisify(setTimeout);
 
 interface GasMetrics {
-    currentPrice: ethers.BigNumber;
+    currentPrice: BigNumber;
     historicalPrices: {
         timestamp: number;
-        price: ethers.BigNumber;
+        price: BigNumber;
         blockNumber: number;
     }[];
     movingAverages: {
@@ -20,8 +24,8 @@ interface GasMetrics {
         volatility: number;
         trend: 'increasing' | 'decreasing' | 'stable';
         percentile95: number;
-        minPrice24h: ethers.BigNumber;
-        maxPrice24h: ethers.BigNumber;
+        minPrice24h: BigNumber;
+        maxPrice24h: BigNumber;
         medianPrice: number;
     };
     predictions: {
@@ -30,8 +34,8 @@ interface GasMetrics {
         confidence: number;
     };
     optimizationMetrics: {
-        recommendedBaseFee: ethers.BigNumber;
-        recommendedPriorityFee: ethers.BigNumber;
+        recommendedBaseFee: BigNumber;
+        recommendedPriorityFee: BigNumber;
         estimatedSavings: number;
         optimalSubmissionTime: number;
     };
@@ -54,20 +58,20 @@ interface GasConfig {
 }
 
 class GasMonitor {
-    private provider: ethers.providers.Provider;
+    private provider: Provider;
     private metrics: GasMetrics;
     private config: GasConfig;
     private priceFeeds: {
-        ethGas: ethers.Contract;
-        fastGas: ethers.Contract;
+        ethGas: Contract;
+        fastGas: Contract;
     };
     private lastUpdate: number;
-    private historicalData: Map<number, ethers.BigNumber>;
+    private historicalData: Map<number, BigNumber>;
     private movingAverageWindows: number[];
 
     constructor(config: GasConfig) {
         this.config = config;
-        this.provider = new ethers.providers.JsonRpcProvider(config.rpcUrl);
+        this.provider = new JsonRpcProvider(config.rpcUrl) as unknown as Provider;
         this.metrics = this.initializeMetrics();
         this.priceFeeds = this.initializePriceFeeds();
         this.lastUpdate = 0;
@@ -77,7 +81,7 @@ class GasMonitor {
 
     private initializeMetrics(): GasMetrics {
         return {
-            currentPrice: ethers.BigNumber.from(0),
+            currentPrice: BigNumber.from(0),
             historicalPrices: [],
             movingAverages: {
                 short: 0,
@@ -88,8 +92,8 @@ class GasMonitor {
                 volatility: 0,
                 trend: 'stable',
                 percentile95: 0,
-                minPrice24h: ethers.BigNumber.from(0),
-                maxPrice24h: ethers.BigNumber.from(0),
+                minPrice24h: BigNumber.from(0),
+                maxPrice24h: BigNumber.from(0),
                 medianPrice: 0
             },
             predictions: {
@@ -98,8 +102,8 @@ class GasMonitor {
                 confidence: 0
             },
             optimizationMetrics: {
-                recommendedBaseFee: ethers.BigNumber.from(0),
-                recommendedPriorityFee: ethers.BigNumber.from(0),
+                recommendedBaseFee: BigNumber.from(0),
+                recommendedPriorityFee: BigNumber.from(0),
                 estimatedSavings: 0,
                 optimalSubmissionTime: 0
             }
@@ -114,8 +118,8 @@ class GasMonitor {
         ];
 
         return {
-            ethGas: new ethers.Contract(this.config.priceFeeds.ethGas, feedABI, this.provider),
-            fastGas: new ethers.Contract(this.config.priceFeeds.fastGas, feedABI, this.provider)
+            ethGas: new Contract(this.config.priceFeeds.ethGas, feedABI, this.provider as any),
+            fastGas: new Contract(this.config.priceFeeds.fastGas, feedABI, this.provider as any)
         };
     }
 
@@ -127,7 +131,7 @@ class GasMonitor {
         await this.updateGasMetrics();
         
         // Set up block listeners
-        this.provider.on('block', async (blockNumber) => {
+        this.provider.on('block', async (blockNumber: number) => {
             const now = Date.now();
             if (now - this.lastUpdate >= this.config.updateInterval) {
                 await this.updateGasMetrics();
@@ -146,11 +150,12 @@ class GasMonitor {
         for (const blockNumber of historicalBlocks) {
             try {
                 const block = await this.provider.getBlock(blockNumber);
-                if (block && block.baseFeePerGas) {
-                    this.historicalData.set(blockNumber, block.baseFeePerGas);
+                const blockWithGas = block as any;
+                if (blockWithGas && blockWithGas.baseFeePerGas) {
+                    this.historicalData.set(blockNumber, blockWithGas.baseFeePerGas);
                     this.metrics.historicalPrices.push({
                         timestamp: block.timestamp,
-                        price: block.baseFeePerGas,
+                        price: blockWithGas.baseFeePerGas,
                         blockNumber
                     });
                 }
@@ -187,7 +192,7 @@ class GasMonitor {
 
         // Update historical data
         const currentBlock = await this.provider.getBlockNumber();
-        const block = await this.provider.getBlock(currentBlock);
+        const block = await this.provider.getBlock(currentBlock) as any;
         if (block && block.baseFeePerGas) {
             this.historicalData.set(currentBlock, block.baseFeePerGas);
             this.metrics.historicalPrices.push({
@@ -213,7 +218,7 @@ class GasMonitor {
         await this.updateOptimizationMetrics();
     }
 
-    private async getCurrentGasPrice(): Promise<ethers.BigNumber> {
+    private async getCurrentGasPrice(): Promise<BigNumber> {
         try {
             // Try getting from price feeds first
             const [ethGasPrice, fastGasPrice] = await Promise.all([
@@ -223,7 +228,7 @@ class GasMonitor {
 
             if (ethGasPrice && fastGasPrice) {
                 // Use the average of both feeds
-                return ethGasPrice.add(fastGasPrice).div(2);
+                return ethGasPrice.add(fastGasPrice).div(BigNumber.from(2));
             }
         } catch (error) {
             console.error('Error getting gas price from feeds:', error);
@@ -233,11 +238,12 @@ class GasMonitor {
         return await this.provider.getGasPrice();
     }
 
-    private async getGasPriceFromFeed(feed: ethers.Contract): Promise<ethers.BigNumber | null> {
+    private async getGasPriceFromFeed(feed: Contract): Promise<BigNumber | null> {
+        const feedWithMethods = feed as Contract & { latestRoundData(): Promise<{ answer: string }> };
         try {
-            const roundData = await feed.latestRoundData();
+            const roundData = await feedWithMethods.latestRoundData();
             if (roundData && roundData.answer) {
-                return ethers.BigNumber.from(roundData.answer);
+                return BigNumber.from(roundData.answer);
             }
         } catch (error) {
             console.error('Error getting price from feed:', error);
@@ -245,30 +251,30 @@ class GasMonitor {
         return null;
     }
 
-    private updateMovingAverages(currentPrice: ethers.BigNumber): void {
+    private updateMovingAverages(currentPrice: BigNumber): void {
         const now = Date.now();
         const prices = this.metrics.historicalPrices;
 
         // Calculate moving averages for different windows
         this.metrics.movingAverages.short = this.calculateAverage(
             prices.filter(p => p.timestamp * 1000 > now - 5 * 60 * 1000)
-                .map(p => parseFloat(ethers.utils.formatUnits(p.price, 'gwei')))
+                .map(p => parseFloat(formatUnits(p.price.toString(), 'gwei')))
         );
 
         this.metrics.movingAverages.medium = this.calculateAverage(
             prices.filter(p => p.timestamp * 1000 > now - 60 * 60 * 1000)
-                .map(p => parseFloat(ethers.utils.formatUnits(p.price, 'gwei')))
+                .map(p => parseFloat(formatUnits(p.price.toString(), 'gwei')))
         );
 
         this.metrics.movingAverages.long = this.calculateAverage(
             prices.filter(p => p.timestamp * 1000 > now - 24 * 60 * 60 * 1000)
-                .map(p => parseFloat(ethers.utils.formatUnits(p.price, 'gwei')))
+                .map(p => parseFloat(formatUnits(p.price.toString(), 'gwei')))
         );
     }
 
     private updateStatistics(): void {
         const prices = this.metrics.historicalPrices.map(p => 
-            parseFloat(ethers.utils.formatUnits(p.price, 'gwei'))
+            parseFloat(formatUnits(p.price.toString(), 'gwei'))
         );
 
         // Calculate volatility (standard deviation)
@@ -299,11 +305,11 @@ class GasMonitor {
             p => p.timestamp * 1000 > Date.now() - 24 * 60 * 60 * 1000
         );
         this.metrics.statistics.minPrice24h = last24hPrices.reduce(
-            (min, p) => p.price.lt(min) ? p.price : min,
+            (min, p) => p.price.toString() < min.toString() ? p.price : min,
             last24hPrices[0].price
         );
         this.metrics.statistics.maxPrice24h = last24hPrices.reduce(
-            (max, p) => p.price.gt(max) ? p.price : max,
+            (max, p) => p.price.toString() > max.toString() ? p.price : max,
             last24hPrices[0].price
         );
 
@@ -313,7 +319,7 @@ class GasMonitor {
 
     private calculateVolatility(): number {
         const prices = this.metrics.historicalPrices.map(p => 
-            parseFloat(ethers.utils.formatUnits(p.price, 'gwei'))
+            parseFloat(formatUnits(p.price.toString(), 'gwei'))
         );
         const returns = prices.slice(1).map((p, i) => (p - prices[i]) / prices[i]);
         const meanReturn = this.calculateAverage(returns);
@@ -323,7 +329,7 @@ class GasMonitor {
 
     private async predictGasPrices(): Promise<void> {
         // Simple prediction based on trend and volatility
-        const currentPrice = parseFloat(ethers.utils.formatUnits(this.metrics.currentPrice, 'gwei'));
+        const currentPrice = parseFloat(formatUnits(this.metrics.currentPrice.toString(), 'gwei'));
         const volatility = this.calculateVolatility();
         const trend = this.metrics.statistics.trend;
 
@@ -358,7 +364,7 @@ class GasMonitor {
     }
 
     async checkGasAlerts(): Promise<void> {
-        const currentGwei = parseFloat(ethers.utils.formatUnits(this.metrics.currentPrice, 'gwei'));
+        const currentGwei = parseFloat(formatUnits(this.metrics.currentPrice.toString(), 'gwei'));
 
         // Check for high gas prices
         if (currentGwei > this.config.thresholds.extremeGasPrice) {
@@ -429,18 +435,18 @@ class GasMonitor {
     async reportMetrics(): Promise<void> {
         // Output current metrics
         console.log('Gas Metrics:', {
-            currentPrice: ethers.utils.formatUnits(this.metrics.currentPrice, 'gwei'),
+            currentPrice: formatUnits(this.metrics.currentPrice.toString(), 'gwei'),
             movingAverages: this.metrics.movingAverages,
             statistics: {
                 ...this.metrics.statistics,
-                minPrice24h: ethers.utils.formatUnits(this.metrics.statistics.minPrice24h, 'gwei'),
-                maxPrice24h: ethers.utils.formatUnits(this.metrics.statistics.maxPrice24h, 'gwei')
+                minPrice24h: formatUnits(this.metrics.statistics.minPrice24h, 'gwei'),
+                maxPrice24h: formatUnits(this.metrics.statistics.maxPrice24h, 'gwei')
             },
             predictions: this.metrics.predictions,
             optimizationMetrics: {
                 ...this.metrics.optimizationMetrics,
-                recommendedBaseFee: ethers.utils.formatUnits(this.metrics.optimizationMetrics.recommendedBaseFee, 'gwei'),
-                recommendedPriorityFee: ethers.utils.formatUnits(this.metrics.optimizationMetrics.recommendedPriorityFee, 'gwei')
+                recommendedBaseFee: formatUnits(this.metrics.optimizationMetrics.recommendedBaseFee, 'gwei'),
+                recommendedPriorityFee: formatUnits(this.metrics.optimizationMetrics.recommendedPriorityFee, 'gwei')
             }
         });
 
@@ -455,14 +461,14 @@ class GasMonitor {
 
         // Gas price metrics
         metrics.push(
-            `gas_price_gwei ${ethers.utils.formatUnits(this.metrics.currentPrice, 'gwei')}`,
+            `gas_price_gwei ${formatUnits(this.metrics.currentPrice.toString(), 'gwei')}`,
             `gas_price_moving_average_short ${this.metrics.movingAverages.short}`,
             `gas_price_moving_average_medium ${this.metrics.movingAverages.medium}`,
             `gas_price_moving_average_long ${this.metrics.movingAverages.long}`,
             `gas_price_volatility ${this.metrics.statistics.volatility}`,
             `gas_price_percentile95 ${this.metrics.statistics.percentile95}`,
-            `gas_price_min_24h ${ethers.utils.formatUnits(this.metrics.statistics.minPrice24h, 'gwei')}`,
-            `gas_price_max_24h ${ethers.utils.formatUnits(this.metrics.statistics.maxPrice24h, 'gwei')}`,
+            `gas_price_min_24h ${formatUnits(this.metrics.statistics.minPrice24h, 'gwei')}`,
+            `gas_price_max_24h ${formatUnits(this.metrics.statistics.maxPrice24h, 'gwei')}`,
             `gas_price_median ${this.metrics.statistics.medianPrice}`
         );
 
@@ -475,13 +481,13 @@ class GasMonitor {
 
         // Optimization metrics
         metrics.push(
-            `gas_price_recommended_base_fee ${ethers.utils.formatUnits(this.metrics.optimizationMetrics.recommendedBaseFee, 'gwei')}`,
-            `gas_price_recommended_priority_fee ${ethers.utils.formatUnits(this.metrics.optimizationMetrics.recommendedPriorityFee, 'gwei')}`,
+            `gas_price_recommended_base_fee ${formatUnits(this.metrics.optimizationMetrics.recommendedBaseFee, 'gwei')}`,
+            `gas_price_recommended_priority_fee ${formatUnits(this.metrics.optimizationMetrics.recommendedPriorityFee, 'gwei')}`,
             `gas_price_estimated_savings ${this.metrics.optimizationMetrics.estimatedSavings}`
         );
 
         try {
-            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY, {
+            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY || '', {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain' },
                 body: metrics.join('\n')
@@ -495,7 +501,7 @@ class GasMonitor {
         // Calculate optimal base fee based on recent blocks
         const recentPrices = this.metrics.historicalPrices
             .slice(-50)
-            .map(p => parseFloat(ethers.utils.formatUnits(p.price, 'gwei')));
+            .map(p => parseFloat(formatUnits(p.price.toString(), 'gwei')));
         
         const medianPrice = recentPrices.sort((a, b) => a - b)[Math.floor(recentPrices.length / 2)];
         const volatility = this.calculateVolatility();
@@ -512,12 +518,12 @@ class GasMonitor {
         const priorityFee = Math.max(1.5, volatility * 5); // Minimum 1.5 gwei
 
         this.metrics.optimizationMetrics = {
-            recommendedBaseFee: ethers.utils.parseUnits(baseFee.toFixed(2), 'gwei'),
-            recommendedPriorityFee: ethers.utils.parseUnits(priorityFee.toFixed(2), 'gwei'),
-            estimatedSavings: (parseFloat(ethers.utils.formatUnits(this.metrics.currentPrice, 'gwei')) - (baseFee + priorityFee)) / parseFloat(ethers.utils.formatUnits(this.metrics.currentPrice, 'gwei')) * 100,
+            recommendedBaseFee: parseUnits(baseFee.toFixed(2), 'gwei'),
+            recommendedPriorityFee: parseUnits(priorityFee.toFixed(2), 'gwei'),
+            estimatedSavings: (parseFloat(formatUnits(this.metrics.currentPrice.toString(), 'gwei')) - (baseFee + priorityFee)) / parseFloat(formatUnits(this.metrics.currentPrice, 'gwei')) * 100,
             optimalSubmissionTime: this.metrics.statistics.trend === 'decreasing' ? Date.now() + 300000 : Date.now() // Wait 5 minutes if decreasing
         };
     }
 }
 
-export { GasMonitor, GasMetrics, GasConfig }; 
+export { GasMonitor, GasMetrics, GasConfig };                                                              
