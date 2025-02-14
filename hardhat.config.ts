@@ -12,11 +12,29 @@ interface HardhatGasReporterConfig extends HardhatUserConfig {
     excludeContracts?: string[];
     src?: string;
   };
+  coverage?: {
+    exclude?: string[];
+    watermarks?: {
+      statements: [number, number];
+      branches: [number, number];
+      functions: [number, number];
+      lines: [number, number];
+    };
+  };
 }
 
 dotenv.config();
 
 const config: HardhatGasReporterConfig = {
+  coverage: {
+    exclude: ["contracts/mocks", "contracts/test"],
+    watermarks: {
+      statements: [80, 90],
+      branches: [80, 90],
+      functions: [80, 90],
+      lines: [80, 90]
+    }
+  },
   solidity: {
     version: "0.8.19",
     settings: {
@@ -66,4 +84,4 @@ const config: HardhatGasReporterConfig = {
   }
 };
 
-export default config;  
+export default config;    
