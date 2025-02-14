@@ -118,4 +118,45 @@ groups:
           severity: warning
         annotations:
           summary: "Transaction pool near capacity"
-          description: "Transaction pool has more than 15,000 pending transactions" 
+          description: "Transaction pool has more than 15,000 pending transactions"
+
+      # Performance Monitoring
+      - alert: HighTransactionLatency
+        expr: avg_transaction_confirmation_time > 30
+        for: 5m
+        labels:
+          severity: warning
+          type: performance
+        annotations:
+          summary: "High transaction latency"
+          description: "Average transaction confirmation time is above 30 seconds"
+
+      - alert: PerformanceRegression
+        expr: avg_transaction_time > historical_avg * 1.5
+        for: 5m
+        labels:
+          severity: warning
+          type: performance
+        annotations:
+          summary: "Performance regression detected"
+          description: "Transaction processing time is 50% above historical average"
+
+      - alert: ResourceUtilizationSpike
+        expr: (rate(process_cpu_seconds_total[5m]) > 0.8) and (process_resident_memory_bytes / node_memory_MemTotal_bytes > 0.8)
+        for: 5m
+        labels:
+          severity: warning
+          type: performance
+        annotations:
+          summary: "Resource utilization spike"
+          description: "Both CPU and memory usage are above 80%"
+
+      - alert: NetworkLatencyIncrease
+        expr: network_latency_milliseconds > 1000
+        for: 5m
+        labels:
+          severity: warning
+          type: performance
+        annotations:
+          summary: "Network latency increase"
+          description: "Network latency is above 1 second" 

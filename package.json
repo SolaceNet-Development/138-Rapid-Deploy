@@ -39,10 +39,11 @@
     "@vitejs/plugin-react": "^4.0.0",
     "chai": "^4.3.7",
     "dotenv": "^16.0.3",
-    "eslint": "^9.20.1",
+    "eslint": "^8.57.0",
     "ethereum-waffle": "^4.0.10",
     "hardhat": "^2.22.18",
     "hardhat-gas-reporter": "^1.0.9",
+    "husky": "^9.1.7",
     "mocha": "^10.2.0",
     "solidity-coverage": "^0.8.4",
     "ts-node": "^10.9.1",
@@ -58,7 +59,7 @@
     "test:coverage": "hardhat coverage",
     "test:watch": "hardhat test --watch",
     "gas-report": "REPORT_GAS=true hardhat test",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix"
+    "lint": "eslint \"**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix"
   }
 }

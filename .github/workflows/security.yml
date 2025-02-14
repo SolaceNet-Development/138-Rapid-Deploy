@@ -40,7 +40,7 @@ jobs:
         sarif_file: results.sarif
 
     - name: Run MythX Deep Scan
-      uses: MythX/mythx-action@v1
+      uses: consensys/mythx-github-action@v1
       with:
         api-key: ${{ secrets.MYTHX_API_KEY }}
         contracts: ./contracts
@@ -74,4 +74,4 @@ jobs:
     - name: Run License Compliance Check
       uses: fossas/fossa-action@v1
       with:
-        api-key: ${{ secrets.FOSSA_API_KEY }} 
+        api-key: ${{ secrets.FOSSA_API_KEY }}  
