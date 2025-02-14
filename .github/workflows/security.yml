@@ -1,0 +1,77 @@
+name: Security Analysis
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily
+  push:
+    branches: [ main ]
+    paths:
+      - 'contracts/**'
+      - 'test/**'
+  pull_request:
+    paths:
+      - 'contracts/**'
+      - 'test/**'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        languages: javascript, typescript, solidity
+        queries: security-extended, security-and-quality
+
+    - name: Run Slither Static Analysis
+      uses: crytic/slither-action@v0.3.0
+      with:
+        target: 'contracts/'
+        slither-args: '--exclude-dependencies --detect reentrancy-eth,reentrancy-no-eth,uninitialized-state,uninitialized-storage,arbitrary-send,suicidal,controlled-delegatecall,controlled-array-length,timestamp'
+        sarif: results.sarif
+        
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: results.sarif
+
+    - name: Run MythX Deep Scan
+      uses: MythX/mythx-action@v1
+      with:
+        api-key: ${{ secrets.MYTHX_API_KEY }}
+        contracts: ./contracts
+        mode: deep
+        create-group: true
+        group-name: ${{ github.sha }}
+        group-status: true
+
+    - name: Run Echidna
+      uses: crytic/echidna-action@v2
+      with:
+        files: ./contracts/
+        contract: Chain138
+        corpus-dir: echidna-corpus
+        test-mode: assertion
+        test-limit: 50000
+        seq-len: 100
+        
+    - name: Run Manticore
+      uses: trailofbits/manticore-action@v1
+      with:
+        target: contracts/
+        contract: Chain138
+        solc: 0.8.19
+
+    - name: Run Dependencies Audit
+      run: |
+        npm audit
+        npm run audit:dependencies
+
+    - name: Run License Compliance Check
+      uses: fossas/fossa-action@v1
+      with:
+        api-key: ${{ secrets.FOSSA_API_KEY }} 

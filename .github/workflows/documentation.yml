@@ -1,0 +1,98 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '**/*.md'
+      - 'contracts/**/*.sol'
+      - 'src/**/*.ts'
+      - 'src/**/*.tsx'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - '**/*.md'
+      - 'contracts/**/*.sol'
+      - 'src/**/*.ts'
+      - 'src/**/*.tsx'
+  workflow_dispatch:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Check markdown links
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        use-quiet-mode: 'yes'
+        config-file: '.github/markdown-link-check.json'
+
+    - name: Generate TypeDoc documentation
+      run: npm run docs:typedoc
+
+    - name: Generate Solidity documentation
+      run: npm run docs:solidity
+
+    - name: Build documentation site
+      run: |
+        cd docs
+        npm install
+        npm run build
+
+    - name: Check documentation coverage
+      run: |
+        npm run docs:coverage
+        if [ $? -ne 0 ]; then
+          echo "Documentation coverage below threshold"
+          exit 1
+        fi
+
+    - name: Deploy to GitHub Pages
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/build
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: 'docs: update documentation [skip ci]'
+
+  api-docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Generate OpenAPI documentation
+      run: npm run docs:api
+
+    - name: Deploy API documentation
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/api
+        destination_dir: api
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: 'docs: update API documentation [skip ci]' 

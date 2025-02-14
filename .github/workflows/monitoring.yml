@@ -1,0 +1,90 @@
+name: Monitoring
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # Every 15 minutes
+  workflow_dispatch:
+
+jobs:
+  monitor-network:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Check network health
+      id: health
+      run: |
+        node scripts/monitor/check-network-health.js
+      env:
+        INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+        ALERT_THRESHOLD: 5
+
+    - name: Monitor gas prices
+      id: gas
+      run: |
+        node scripts/monitor/monitor-gas-prices.js
+      env:
+        INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+        GAS_PRICE_THRESHOLD: 100
+
+    - name: Check contract events
+      id: events
+      run: |
+        node scripts/monitor/check-contract-events.js
+      env:
+        INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+        CONTRACT_ADDRESS: ${{ secrets.BRIDGE_CONTRACT_ADDRESS }}
+
+    - name: Send alerts
+      if: ${{ failure() }}
+      uses: slackapi/slack-github-action@v1.24.0
+      with:
+        channel-id: ${{ secrets.SLACK_ALERTS_CHANNEL }}
+        slack-message: |
+          🚨 Alert: Chain 138 Network Issues Detected
+          
+          Network Health: ${{ steps.health.outputs.status }}
+          Gas Prices: ${{ steps.gas.outputs.current_gas_price }} gwei
+          Contract Events: ${{ steps.events.outputs.status }}
+          
+          Check the monitoring dashboard for more details:
+          ${{ secrets.MONITORING_DASHBOARD_URL }}
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+  monitor-metrics:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Collect metrics
+      run: |
+        node scripts/monitor/collect-metrics.js
+      env:
+        INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+        PROMETHEUS_PUSH_GATEWAY: ${{ secrets.PROMETHEUS_PUSH_GATEWAY }}
+
+    - name: Update dashboard
+      run: |
+        node scripts/monitor/update-dashboard.js
+      env:
+        GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
+        DASHBOARD_ID: ${{ secrets.GRAFANA_DASHBOARD_ID }} 

@@ -1,0 +1,393 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 4,
+  "links": [],
+  "panels": [
+    {
+      "title": "ML Security Overview",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Overall Security Score",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(ml_security_score{confidence>0.8})",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 70 },
+                  { "color": "green", "value": 90 }
+                ]
+              },
+              "max": 100,
+              "unit": "percent"
+            }
+          }
+        },
+        {
+          "title": "Active Anomalies",
+          "type": "stat",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "count(ml_anomaly_score > 0.8)",
+              "refId": "A"
+            }
+          ],
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 5 },
+                  { "color": "red", "value": 10 }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Transaction Anomalies",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Transaction Anomaly Score",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_anomaly_score{model='transaction_anomaly'}",
+              "legendFormat": "Score",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 0.7 },
+                  { "color": "red", "value": 0.9 }
+                ]
+              },
+              "max": 1
+            }
+          }
+        },
+        {
+          "title": "Transaction Pattern Distribution",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_transaction_pattern_bucket",
+              "format": "heatmap",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Price Manipulation",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Price Manipulation Score",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_anomaly_score{model='price_manipulation'}",
+              "legendFormat": "Score",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 0.7 },
+                  { "color": "red", "value": 0.9 }
+                ]
+              },
+              "max": 1
+            }
+          }
+        },
+        {
+          "title": "Price Pattern Distribution",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_price_pattern_bucket",
+              "format": "heatmap",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Risk Assessment",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Risk Assessment Score",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_anomaly_score{model='risk_assessment'}",
+              "legendFormat": "Score",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 0.7 },
+                  { "color": "red", "value": 0.9 }
+                ]
+              },
+              "max": 1
+            }
+          }
+        },
+        {
+          "title": "Risk Pattern Distribution",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_risk_pattern_bucket",
+              "format": "heatmap",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Model Performance",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Model Confidence",
+          "type": "bargauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_model_confidence{model='transaction_anomaly'}",
+              "legendFormat": "Transaction",
+              "refId": "A"
+            },
+            {
+              "expr": "ml_model_confidence{model='price_manipulation'}",
+              "legendFormat": "Price",
+              "refId": "B"
+            },
+            {
+              "expr": "ml_model_confidence{model='risk_assessment'}",
+              "legendFormat": "Risk",
+              "refId": "C"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 0.7 },
+                  { "color": "green", "value": 0.9 }
+                ]
+              },
+              "max": 1
+            }
+          }
+        },
+        {
+          "title": "Model Latency",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(ml_model_latency_seconds_sum[5m]) / rate(ml_model_latency_seconds_count[5m])",
+              "legendFormat": "{{model}}",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "s"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Anomaly Detection",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Recent Anomalies",
+          "type": "table",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_detected_anomalies",
+              "format": "table",
+              "instant": true,
+              "refId": "A"
+            }
+          ],
+          "transformations": [
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "Time": true
+                },
+                "indexByName": {},
+                "renameByName": {
+                  "model": "Model",
+                  "score": "Score",
+                  "confidence": "Confidence",
+                  "timestamp": "Time"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "title": "Anomaly Distribution",
+          "type": "piechart",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(ml_detected_anomalies) by (model)",
+              "legendFormat": "{{model}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "System Health",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Model Memory Usage",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_model_memory_bytes",
+              "legendFormat": "{{model}}",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "bytes"
+            }
+          }
+        },
+        {
+          "title": "Feature Processing Time",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(ml_feature_processing_seconds_sum[5m]) / rate(ml_feature_processing_seconds_count[5m])",
+              "legendFormat": "{{processor}}",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "s"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": ["chain138", "security", "ml", "monitoring"],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Chain 138 ML Security Monitoring",
+  "uid": "chain138-ml-security",
+  "version": 1
+} 

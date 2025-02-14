@@ -1,0 +1,430 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "title": "Network Overview",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Block Height",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ethereum_blockchain_height",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 1000 },
+                  { "color": "green", "value": 10000 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "title": "Network Health",
+          "type": "stat",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "up",
+              "refId": "A"
+            }
+          ],
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": ["lastNotNull"],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "mappings": [
+                {
+                  "type": "value",
+                  "options": {
+                    "0": { "text": "Down", "color": "red" },
+                    "1": { "text": "Up", "color": "green" }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Gas Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Gas Price Trends",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_safe",
+              "legendFormat": "Safe",
+              "refId": "A"
+            },
+            {
+              "expr": "gas_price_standard",
+              "legendFormat": "Standard",
+              "refId": "B"
+            },
+            {
+              "expr": "gas_price_fast",
+              "legendFormat": "Fast",
+              "refId": "C"
+            },
+            {
+              "expr": "gas_price_rapid",
+              "legendFormat": "Rapid",
+              "refId": "D"
+            }
+          ],
+          "options": {
+            "legend": {
+              "show": true,
+              "values": true,
+              "min": true,
+              "max": true,
+              "current": true,
+              "total": false,
+              "avg": true
+            }
+          }
+        },
+        {
+          "title": "Gas Price Predictions",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_prediction_hour",
+              "legendFormat": "Next Hour",
+              "refId": "A"
+            },
+            {
+              "expr": "gas_price_prediction_day",
+              "legendFormat": "Next Day",
+              "refId": "B"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Transaction Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Transaction Volume",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(transactions_hourly_total[5m])",
+              "legendFormat": "Transactions/Hour",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Failed Transactions",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(transactions_hourly_failed[5m])",
+              "legendFormat": "Failed/Hour",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Mempool Status",
+          "type": "stat",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "mempool_size",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Security Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Security Score",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "security_score",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 70 },
+                  { "color": "green", "value": 90 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "title": "Vulnerabilities by Severity",
+          "type": "piechart",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "vulnerabilities_critical",
+              "legendFormat": "Critical",
+              "refId": "A"
+            },
+            {
+              "expr": "vulnerabilities_high",
+              "legendFormat": "High",
+              "refId": "B"
+            },
+            {
+              "expr": "vulnerabilities_medium",
+              "legendFormat": "Medium",
+              "refId": "C"
+            },
+            {
+              "expr": "vulnerabilities_low",
+              "legendFormat": "Low",
+              "refId": "D"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Resource Usage",
+      "type": "row",
+      "panels": [
+        {
+          "title": "CPU Usage",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "cpu_usage",
+              "legendFormat": "CPU %",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "max": 100
+            }
+          }
+        },
+        {
+          "title": "Memory Usage",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "memory_used_bytes / memory_total_bytes * 100",
+              "legendFormat": "Memory %",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "max": 100
+            }
+          }
+        },
+        {
+          "title": "Disk Usage",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "disk_used_bytes / (disk_used_bytes + disk_free_bytes) * 100",
+              "legendFormat": "Disk %",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "max": 100
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "API Performance",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Response Times",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(api_response_time_sum[5m]) / rate(api_response_time_count[5m])",
+              "legendFormat": "{{endpoint}}",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "ms"
+            }
+          }
+        },
+        {
+          "title": "Error Rates",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(api_error_rate[5m])",
+              "legendFormat": "{{endpoint}}",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "max": 100
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Validator Performance",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Active Validators",
+          "type": "stat",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "validator_count",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Validator Performance",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "validator_performance",
+              "legendFormat": "{{validator}}",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "max": 100
+            }
+          }
+        },
+        {
+          "title": "Missed Blocks",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(validator_missed_blocks[5m])",
+              "legendFormat": "{{validator}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": ["chain138", "monitoring"],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Chain 138 Overview",
+  "uid": "chain138-overview",
+  "version": 1
+} 

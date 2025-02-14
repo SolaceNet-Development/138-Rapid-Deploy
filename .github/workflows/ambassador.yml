@@ -1,0 +1,119 @@
+name: Chain 138 Ambassador Program
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  track-contributions:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Get Weekly Contributors
+      id: contributors
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const { data: contributors } = await github.rest.repos.getContributorsStats({
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          });
+          return contributors.filter(c => c.weeks[c.weeks.length - 1].c > 0);
+
+    - name: Calculate Points
+      id: points
+      run: |
+        python3 .github/scripts/calculate_points.py \
+          --contributors '${{ steps.contributors.outputs.result }}' \
+          --weights '{
+            "code": 10,
+            "review": 5,
+            "documentation": 3,
+            "community": 2
+          }'
+
+    - name: Update Ambassador Leaderboard
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const points = ${{ steps.points.outputs.points }};
+          await github.rest.issues.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: 1,  // Pinned leaderboard issue
+            body: `# Chain 138 Ambassador Leaderboard\n\n${
+              Object.entries(points)
+                .sort(([,a], [,b]) => b - a)
+                .map(([user, points]) => `- @${user}: ${points} points`)
+                .join('\n')
+            }`
+          });
+
+  distribute-rewards:
+    needs: track-contributions
+    runs-on: ubuntu-latest
+    environment: mainnet
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Distribute Rewards
+      run: |
+        node .github/scripts/distribute_rewards.js \
+          --points '${{ needs.track-contributions.outputs.points }}' \
+          --token-address '${{ secrets.REWARD_TOKEN_ADDRESS }}' \
+          --reward-per-point '${{ secrets.REWARD_PER_POINT }}'
+      env:
+        PRIVATE_KEY: ${{ secrets.REWARD_WALLET_KEY }}
+        INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+
+    - name: Send Notifications
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const rewards = ${{ steps.distribute-rewards.outputs.rewards }};
+          for (const [user, amount] of Object.entries(rewards)) {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: 1,
+              body: `🎉 @${user} has earned ${amount} C138 tokens this week! Thank you for your contributions!`
+            });
+          }
+
+  update-ranks:
+    needs: track-contributions
+    runs-on: ubuntu-latest
+    steps:
+    - name: Update Ambassador Ranks
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const points = ${{ needs.track-contributions.outputs.points }};
+          const ranks = {
+            'Diamond': 10000,
+            'Platinum': 5000,
+            'Gold': 2500,
+            'Silver': 1000,
+            'Bronze': 500
+          };
+          
+          for (const [user, points] of Object.entries(points)) {
+            const rank = Object.entries(ranks)
+              .find(([, threshold]) => points >= threshold)?.[0] || 'Member';
+            
+            await github.rest.teams.addOrUpdateMembershipForUserInOrg({
+              org: context.repo.owner,
+              team_slug: `ambassadors-${rank.toLowerCase()}`,
+              username: user
+            });
+          } 

@@ -1,0 +1,367 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "panels": [
+    {
+      "title": "Bridge Overview",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Total Value Locked (TVL)",
+          "type": "stat",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_tvl",
+              "refId": "A"
+            }
+          ],
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": ["lastNotNull"],
+              "fields": "",
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null }
+                ]
+              },
+              "unit": "currencyUSD"
+            }
+          }
+        },
+        {
+          "title": "Success Rate",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_success_rate * 100",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 95 },
+                  { "color": "green", "value": 99 }
+                ]
+              },
+              "unit": "percent",
+              "max": 100
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Transfer Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Active Transfers",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_active_transfers",
+              "legendFormat": "Active",
+              "refId": "A"
+            }
+          ],
+          "options": {
+            "legend": {
+              "show": true,
+              "values": true,
+              "min": true,
+              "max": true,
+              "current": true
+            }
+          }
+        },
+        {
+          "title": "Transfer Status",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(bridge_completed_transfers[5m])",
+              "legendFormat": "Completed/min",
+              "refId": "A"
+            },
+            {
+              "expr": "rate(bridge_failed_transfers[5m])",
+              "legendFormat": "Failed/min",
+              "refId": "B"
+            }
+          ]
+        },
+        {
+          "title": "Average Completion Time",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_average_completion_time",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 300 },
+                  { "color": "red", "value": 600 }
+                ]
+              },
+              "unit": "s"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Transfer Distribution",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Transfer Size Distribution",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_transfer_size_bucket",
+              "format": "heatmap",
+              "refId": "A"
+            }
+          ],
+          "options": {
+            "calculate": false,
+            "calculation": "sum"
+          }
+        },
+        {
+          "title": "Transfer Time Distribution",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_transfer_time_bucket",
+              "format": "heatmap",
+              "refId": "A"
+            }
+          ],
+          "options": {
+            "calculate": false,
+            "calculation": "sum"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Error Analysis",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Failed Transfers by Reason",
+          "type": "piechart",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_failed_transfers_by_reason",
+              "legendFormat": "{{reason}}",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Error Rate Trend",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(bridge_failed_transfers[5m]) / rate(bridge_total_transfers[5m])",
+              "legendFormat": "Error Rate",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percentunit",
+              "max": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Performance Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Message Fee Trend",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_message_fee",
+              "legendFormat": "Fee (GWEI)",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "gwei"
+            }
+          }
+        },
+        {
+          "title": "Bridge Load",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(bridge_total_transfers[5m])",
+              "legendFormat": "Transfers/min",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Security Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Large Transfers",
+          "type": "table",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_large_transfers",
+              "format": "table",
+              "instant": true,
+              "refId": "A"
+            }
+          ],
+          "transformations": [
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "Time": true
+                },
+                "indexByName": {},
+                "renameByName": {
+                  "amount": "Amount",
+                  "recipient": "Recipient",
+                  "timestamp": "Time"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "title": "Stuck Transfers",
+          "type": "table",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_stuck_transfers",
+              "format": "table",
+              "instant": true,
+              "refId": "A"
+            }
+          ],
+          "transformations": [
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "Time": true
+                },
+                "indexByName": {},
+                "renameByName": {
+                  "duration": "Duration (s)",
+                  "messageId": "Message ID",
+                  "timestamp": "Time"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": ["chain138", "bridge", "monitoring"],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Chain 138 Bridge Monitoring",
+  "uid": "chain138-bridge",
+  "version": 1
+} 

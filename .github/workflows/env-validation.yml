@@ -1,0 +1,64 @@
+name: Environment Validation
+
+on:
+  push:
+    paths:
+      - '.env.example'
+      - 'scripts/validate-env.js'
+      - 'deployment/config/**'
+  pull_request:
+    paths:
+      - '.env.example'
+      - 'scripts/validate-env.js'
+      - 'deployment/config/**'
+  workflow_dispatch:
+
+jobs:
+  validate-env:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Validate environment configuration
+      run: node scripts/validate-env.js
+      env:
+        CI: true
+
+    - name: Check environment completeness
+      run: |
+        missing_vars=$(node scripts/check-env-completeness.js)
+        if [ ! -z "$missing_vars" ]; then
+          echo "Missing required environment variables:"
+          echo "$missing_vars"
+          exit 1
+        fi
+
+    - name: Validate environment values
+      run: |
+        node scripts/validate-env-values.js
+        if [ $? -ne 0 ]; then
+          echo "Environment validation failed"
+          exit 1
+        fi
+
+    - name: Generate environment documentation
+      run: node scripts/generate-env-docs.js
+
+    - name: Update environment templates
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        node scripts/update-env-templates.js
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .env.example deployment/config/templates/*
+        git diff --quiet && git diff --staged --quiet || git commit -m "chore: update environment templates [skip ci]"
+        git push 

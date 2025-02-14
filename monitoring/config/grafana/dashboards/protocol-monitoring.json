@@ -1,0 +1,284 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 7,
+  "links": [],
+  "panels": [
+    {
+      "title": "Protocol Overview",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Total Value Locked",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(protocol_tvl)",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "currencyUSD",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 1000000 },
+                  { "color": "green", "value": 5000000 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "title": "Active Users (24h)",
+          "type": "stat",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(protocol_active_users_24h)",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Protocol Health Score",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(protocol_health_score)",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "max": 100,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 70 },
+                  { "color": "green", "value": 90 }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Error Monitoring",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Error Rate",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(protocol_errors_total[5m])",
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Lending Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Supply Volume by Token",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(lending_supply_volume) by (token)",
+              "legendFormat": "{{token}}",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Borrow Volume by Token",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(lending_borrow_volume) by (token)",
+              "legendFormat": "{{token}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Trading Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Trading Volume by DEX",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(dex_trading_volume_usd) by (dex)",
+              "legendFormat": "{{dex}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Risk Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Liquidation Risk",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "lending_liquidation_risk_ratio",
+              "format": "heatmap",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Collateralization Ratio",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(lending_collateralization_ratio)",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 200,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 150 },
+                  { "color": "green", "value": 180 }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "ML Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Anomaly Detection",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ml_anomaly_score",
+              "legendFormat": "{{model}}",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Model Confidence",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(ml_model_confidence)",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "max": 100,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 80 },
+                  { "color": "green", "value": 95 }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Performance Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Transaction Latency",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(protocol_transaction_latency) by (protocol)",
+              "legendFormat": "{{protocol}}",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Resource Usage",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(protocol_resource_usage) by (resource)",
+              "legendFormat": "{{resource}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": ["chain138", "protocol", "monitoring"],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Chain 138 Protocol Monitoring",
+  "uid": "chain138-protocol-monitoring",
+  "version": 1
+} 

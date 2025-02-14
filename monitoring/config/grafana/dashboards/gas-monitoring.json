@@ -1,0 +1,305 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 10,
+  "links": [],
+  "panels": [
+    {
+      "title": "Gas Price Overview",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Current Gas Price",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_gwei",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "gwei",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 50 },
+                  { "color": "red", "value": 100 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "title": "Gas Price Trend",
+          "type": "stat",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_trend",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "mappings": [
+                { "value": "0", "text": "Stable" },
+                { "value": "1", "text": "Increasing" },
+                { "value": "-1", "text": "Decreasing" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Historical Analysis",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Gas Price History",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_gwei",
+              "legendFormat": "Gas Price",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Moving Averages",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_moving_average_short",
+              "legendFormat": "5m MA",
+              "refId": "A"
+            },
+            {
+              "expr": "gas_price_moving_average_medium",
+              "legendFormat": "1h MA",
+              "refId": "B"
+            },
+            {
+              "expr": "gas_price_moving_average_long",
+              "legendFormat": "24h MA",
+              "refId": "C"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Statistical Analysis",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Gas Price Distribution",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_gwei",
+              "format": "heatmap",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Volatility",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_volatility",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "max": 1,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 0.3 },
+                  { "color": "red", "value": 0.6 }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Price Ranges",
+      "type": "row",
+      "panels": [
+        {
+          "title": "24h Price Range",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_min_24h",
+              "legendFormat": "Min",
+              "refId": "A"
+            },
+            {
+              "expr": "gas_price_max_24h",
+              "legendFormat": "Max",
+              "refId": "B"
+            },
+            {
+              "expr": "gas_price_median",
+              "legendFormat": "Median",
+              "refId": "C"
+            }
+          ]
+        },
+        {
+          "title": "95th Percentile",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_percentile95",
+              "legendFormat": "95th Percentile",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Predictions",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Gas Price Predictions",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_prediction_next_hour",
+              "legendFormat": "Next Hour",
+              "refId": "A"
+            },
+            {
+              "expr": "gas_price_prediction_next_day",
+              "legendFormat": "Next Day",
+              "refId": "B"
+            }
+          ]
+        },
+        {
+          "title": "Prediction Confidence",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_prediction_confidence",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "max": 1,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 0.5 },
+                  { "color": "green", "value": 0.8 }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Optimization",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Recommended Fees",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_recommended_base_fee",
+              "legendFormat": "Base Fee",
+              "refId": "A"
+            },
+            {
+              "expr": "gas_price_recommended_priority_fee",
+              "legendFormat": "Priority Fee",
+              "refId": "B"
+            }
+          ]
+        },
+        {
+          "title": "Estimated Savings",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "gas_price_estimated_savings",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "max": 100,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 10 },
+                  { "color": "green", "value": 20 }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": ["chain138", "gas", "monitoring"],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Chain 138 Gas Monitoring",
+  "uid": "chain138-gas-monitoring",
+  "version": 1
+} 

@@ -1,0 +1,324 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 9,
+  "links": [],
+  "panels": [
+    {
+      "title": "Security Overview",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Security Risk Score",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "security_risk_score",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "max": 100,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 50 },
+                  { "color": "red", "value": 75 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "title": "Active Threats",
+          "type": "stat",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "security_active_threats",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 3 },
+                  { "color": "red", "value": 5 }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Attack Patterns",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Pattern Detections",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(security_pattern_detections) by (pattern)",
+              "legendFormat": "{{pattern}}",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Detection Distribution",
+          "type": "piechart",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(security_pattern_detections) by (pattern)",
+              "legendFormat": "{{pattern}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Flash Loan Monitoring",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Flash Loan Volume",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(flash_loan_volume_usd)",
+              "legendFormat": "Volume (USD)",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Flash Loan Risk",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "flash_loan_risk_score",
+              "format": "heatmap",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Smart Contract Security",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Contract Exploits",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(contract_exploit_attempts) by (type)",
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Vulnerability Risk",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(contract_vulnerability_score)",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "max": 100,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "yellow", "value": 30 },
+                  { "color": "red", "value": 60 }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Transaction Analysis",
+      "type": "row",
+      "panels": [
+        {
+          "title": "High Risk Transactions",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "security_high_risk_transactions",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Transaction Risk Distribution",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "transaction_risk_score",
+              "format": "heatmap",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Market Security",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Price Manipulation",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(price_manipulation_score) by (token)",
+              "legendFormat": "{{token}}",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Wash Trading",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(wash_trading_volume) by (pair)",
+              "legendFormat": "{{pair}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Governance Security",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Suspicious Proposals",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(suspicious_proposals)",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Voting Anomalies",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(voting_anomalies) by (type)",
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ML Model Performance",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Model Confidence",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(ml_model_confidence) by (model)",
+              "legendFormat": "{{model}}",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "max": 100,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "yellow", "value": 80 },
+                  { "color": "green", "value": 95 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "title": "False Positives",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(ml_false_positives) by (model)",
+              "legendFormat": "{{model}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": ["chain138", "security", "monitoring"],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Chain 138 Security Monitoring",
+  "uid": "chain138-security-monitoring",
+  "version": 1
+} 
