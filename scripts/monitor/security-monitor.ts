@@ -443,8 +443,16 @@ class SecurityMonitor {
         pattern: SecurityPattern,
         detection: { confidence: number; data: Record<string, unknown> }
     ): Promise<void>{
-        // Implementation for handling critical threats
-        console.log(`Handling critical threat: ${pattern.name}`);
+        await this.sendAlert(
+            `Critical Threat: ${pattern.name}`,
+            {
+                ...detection,
+                pattern: pattern.name,
+                description: pattern.description,
+                timestamp: new Date().toISOString()
+            },
+            'critical'
+        );
     }
 
     private async updateRiskScore(): Promise<void> {
@@ -485,14 +493,23 @@ class SecurityMonitor {
         }
     }
 
-    async sendAlert(type: string, data: unknown): Promise<void> {
+    async sendAlert(type: string, data: unknown, severity: 'critical' | 'high' | 'medium' | 'low' = 'medium'): Promise<void> {
+        // Route alerts based on severity
+        const alertChannels = {
+            critical: '#security-critical',
+            high: '#security-high',
+            medium: '#security-medium',
+            low: '#security-low'
+        };
+
         // Send to configured alert channels
         if (process.env.SLACK_WEBHOOK_URL) {
             await fetch(process.env.SLACK_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    text: `🚨 *Security Alert: ${type}*\n\`\`\`${JSON.stringify(data, null, 2)}\`\`\``
+                    text: `🚨 *Security Alert [${severity.toUpperCase()}]: ${type}*\n\`\`\`${JSON.stringify(data, null, 2)}\`\`\``,
+                    channel: alertChannels[severity]
                 })
             });
         }
@@ -502,13 +519,31 @@ class SecurityMonitor {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    content: `🚨 **Security Alert: ${type}**\n\`\`\`json\n${JSON.stringify(data, null, 2)}\n\`\`\``
+                    content: `🚨 **Security Alert [${severity.toUpperCase()}]: ${type}**\n\`\`\`json\n${JSON.stringify(data, null, 2)}\n\`\`\``,
+                    thread_name: `security-${severity}`
                 })
             });
         }
 
-        // Log alert
-        console.log(`[SECURITY ALERT] ${type}:`, data);
+        // Push critical and high severity alerts to Prometheus
+        if (['critical', 'high'].includes(severity)) {
+            const metrics = [
+                `security_alert{type="${type}",severity="${severity}"} 1`
+            ];
+            try {
+                const options: RequestInit = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: metrics.join('\n')
+                };
+                await fetch(process.env.PROMETHEUS_PUSH_GATEWAY || '', options);
+            } catch (error) {
+                console.error('Error pushing alert to Prometheus:', error);
+            }
+        }
+
+        // Log alert with severity
+        console.log(`[SECURITY ALERT][${severity.toUpperCase()}] ${type}:`, data);
     }
 
     async reportMetrics(): Promise<void> {
@@ -566,4 +601,4 @@ class SecurityMonitor {
     }
 }
 
-export { SecurityMonitor, SecurityMetrics, SecurityConfig };                                                                            
+export { SecurityMonitor, SecurityMetrics, SecurityConfig };                                                                                
