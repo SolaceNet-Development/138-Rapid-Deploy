@@ -5,9 +5,18 @@ import "hardhat-gas-reporter";
 import "solidity-coverage";
 import * as dotenv from "dotenv";
 
+interface HardhatGasReporterConfig extends HardhatUserConfig {
+  gasReporter?: {
+    enabled?: boolean;
+    currency?: string;
+    excludeContracts?: string[];
+    src?: string;
+  };
+}
+
 dotenv.config();
 
-const config: HardhatUserConfig = {
+const config: HardhatGasReporterConfig = {
   solidity: {
     version: "0.8.19",
     settings: {
@@ -57,4 +66,4 @@ const config: HardhatUserConfig = {
   }
 };
 
-export default config; 
+export default config;  
