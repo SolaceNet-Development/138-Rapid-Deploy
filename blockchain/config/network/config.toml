@@ -1,0 +1,75 @@
+# Network Configuration
+data-path="data/chain138/database"
+node-private-key-file="data/chain138/key"
+
+# JSON-RPC Configuration
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=8545
+rpc-http-api=["ETH","NET","IBFT","WEB3","ADMIN","TXPOOL","DEBUG","TRACE","PERM"]
+rpc-http-cors-origins=["*"]
+
+# WebSocket Configuration
+rpc-ws-enabled=true
+rpc-ws-host="0.0.0.0"
+rpc-ws-port=8546
+rpc-ws-api=["ETH","NET","IBFT","WEB3","ADMIN","TXPOOL","DEBUG","TRACE","PERM"]
+
+# P2P Configuration
+p2p-enabled=true
+p2p-host="0.0.0.0"
+p2p-port=30303
+discovery-enabled=true
+
+# Metrics Configuration
+metrics-enabled=true
+metrics-host="0.0.0.0"
+metrics-port=9545
+
+# Permissions
+permissions-nodes-enabled=true
+permissions-accounts-enabled=true
+permissions-nodes-contract-enabled=true
+permissions-accounts-contract-enabled=true
+
+# Privacy Features
+privacy-enabled=true
+privacy-url="http://127.0.0.1:8888"
+privacy-public-key-file="data/chain138/privacy.pub"
+
+# Performance & Debug
+min-gas-price=0
+miner-enabled=true
+miner-coinbase="0x0000000000000000000000000000000000000000"
+revert-reason-enabled=true
+
+# Mainnet Fork Configuration
+fork-block-number="latest"
+fork-chain-id=1
+fork-enabled=true
+fork-sync-mode="fast"
+
+# Remote Node Configuration for Forking
+remote-connections-limit-enabled=true
+remote-connections-max-percentage=50
+remote-connections-preferred-nodes=["https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"]
+
+# Cache Configuration
+cache-maximum-blocks=1000
+cache-maximum-size=4096
+
+# Transaction Pool
+tx-pool-retention-hours=999
+tx-pool-max-size=20000
+
+# Advanced Features
+static-nodes-file="data/chain138/static-nodes.json"
+fast-sync-min-peers=1
+host-whitelist=["*"]
+
+# Contract Size Limit (for compatibility)
+contract-size-limit=2147483647
+
+# Additional APIs
+rpc-http-api+=["TRACE","MINER","PRIV"]
+rpc-ws-api+=["TRACE","MINER","PRIV"] 

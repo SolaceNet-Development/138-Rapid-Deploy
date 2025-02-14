@@ -1,0 +1,71 @@
+[general]
+query = "127.0.0.1:8000"
+ethereum = "chain138:http://besu-node:8545"
+ipfs = "ipfs:5001"
+
+[store]
+[store.primary]
+connection = "postgresql://admin:${DB_PASSWORD}@postgres:5432/chain138"
+pool_size = 10
+
+[chains]
+ingestor = "index_node_0"
+[chains.chain138]
+shard = "primary"
+provider = [
+  { label = "chain138", url = "http://besu-node:8545", features = ["archive", "traces"] }
+]
+
+[deployment]
+[[deployment.rule]]
+indexer = "index_node_0"
+shard = "primary"
+
+[logging]
+level = "info"
+format = "standard"
+
+# Protocol tracking
+[protocols]
+[protocols.ethereum]
+contract_addresses = [
+  # Core contracts
+  { name = "multicall3", address = "${MULTICALL3_ADDRESS}" },
+  { name = "weth9", address = "${WETH9_ADDRESS}" },
+  
+  # DeFi protocols
+  { name = "uniswap_factory", address = "${UNISWAP_FACTORY_ADDRESS}" },
+  { name = "uniswap_router", address = "${UNISWAP_ROUTER_ADDRESS}" },
+  { name = "aave_lending_pool", address = "${AAVE_LENDING_POOL}" },
+  { name = "maker_cdp", address = "${MAKER_CDP_MANAGER}" },
+  { name = "lido_staking", address = "${LIDO_STAKING}" },
+  
+  # Bridge contracts
+  { name = "ccip_router", address = "${CCIP_ROUTER_ADDRESS}" },
+  { name = "lock_vault", address = "${LOCK_VAULT_ADDRESS}" },
+  { name = "token_factory", address = "${TOKEN_FACTORY_ADDRESS}" }
+]
+
+# Metrics configuration
+[metrics]
+enabled = true
+host = "0.0.0.0"
+port = 8040
+
+# IPFS configuration
+[ipfs]
+timeout = 30
+request_retries = 3
+request_retry_interval = 1000
+
+# Ethereum node configuration
+[ethereum]
+timeout = 120
+request_retries = 3
+request_retry_interval = 1000
+trace_stream_step_size = 50
+
+# Subgraph configuration
+[subgraph]
+max_data_sources = 1000
+max_spec_version = "0.0.5" 

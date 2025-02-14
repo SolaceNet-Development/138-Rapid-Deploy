@@ -1,0 +1,31 @@
+{
+  "name": "Chain 138",
+  "chain": "C138",
+  "icon": "chain138",
+  "rpc": [
+    "https://rpc.chain138.com",
+    "wss://ws.chain138.com"
+  ],
+  "faucets": [
+    "https://faucet.chain138.com"
+  ],
+  "nativeCurrency": {
+    "name": "Chain 138",
+    "symbol": "C138",
+    "decimals": 18
+  },
+  "infoURL": "https://chain138.com",
+  "shortName": "c138",
+  "chainId": 138,
+  "networkId": 138,
+  "slip44": 138,
+  "explorers": [
+    {
+      "name": "Chain 138 Explorer",
+      "url": "https://explorer.chain138.com",
+      "standard": "EIP3091"
+    }
+  ],
+  "testnet": false,
+  "slug": "chain-138"
+} 

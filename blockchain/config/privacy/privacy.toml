@@ -1,0 +1,38 @@
+# Privacy Group Configuration
+privacy-enabled=true
+privacy-multi-tenancy-enabled=true
+privacy-marker-transaction-signing-key-file="data/chain138/privacy/signing-key"
+privacy-enable-database-migration=true
+privacy-onchain-groups-enabled=true
+
+# Privacy Public Key
+privacy-public-key-file="data/chain138/privacy/public-key"
+privacy-precompiled-address="0x000000000000000000000000000000000000007c"
+
+# Tessera Configuration
+privacy-url="http://127.0.0.1:9102"
+privacy-tls-enabled=false
+privacy-flexible-groups-enabled=true
+privacy-markers-enabled=true
+
+# Private State Validation
+private-state-validation-enabled=true
+private-state-root-verification-enabled=true
+
+# Privacy Metrics
+privacy-metrics-enabled=true
+privacy-metrics-host="0.0.0.0"
+privacy-metrics-port=9546
+
+# Privacy Storage
+privacy-storage-format="v1"
+privacy-storage-root="data/chain138/privacy/storage"
+
+# Privacy Transaction Pool
+privacy-tx-pool-max-size=1000
+privacy-tx-pool-retention-hours=72
+
+# Privacy Logging
+privacy-logging-enabled=true
+privacy-log-level="INFO"
+privacy-log-file="data/chain138/privacy/privacy.log" 

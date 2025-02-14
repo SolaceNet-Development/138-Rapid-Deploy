@@ -1,0 +1,121 @@
+groups:
+  - name: chain138_alerts
+    rules:
+      # Node Health
+      - alert: NodeDown
+        expr: up == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Node {{ $labels.instance }} down"
+          description: "Node has been down for more than 5 minutes"
+
+      # Consensus Issues
+      - alert: ConsensusIssue
+        expr: besu_consensus_failures > 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Consensus issues on {{ $labels.instance }}"
+          description: "Node is experiencing consensus failures"
+
+      # Block Production
+      - alert: BlockProductionStopped
+        expr: increase(ethereum_blockchain_height[15m]) == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Block production stopped on {{ $labels.instance }}"
+          description: "No new blocks have been produced in the last 15 minutes"
+
+      # Network Issues
+      - alert: PeerCountLow
+        expr: ethereum_peer_count < 3
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low peer count on {{ $labels.instance }}"
+          description: "Node has less than 3 peers"
+
+      # Privacy Issues
+      - alert: PrivacyServiceDown
+        expr: privacy_service_up == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Privacy service down on {{ $labels.instance }}"
+          description: "Privacy service has been down for more than 5 minutes"
+
+      # Bridge Monitoring
+      - alert: BridgeIssue
+        expr: bridge_transaction_failures > 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Bridge issues on {{ $labels.instance }}"
+          description: "Bridge is experiencing transaction failures"
+
+      # DeFi Protocol Monitoring
+      - alert: ProtocolTVLDrop
+        expr: defi_protocol_tvl_change_24h < -0.2
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "TVL drop in protocol {{ $labels.protocol }}"
+          description: "Protocol TVL has dropped more than 20% in 24 hours"
+
+      # Oracle Issues
+      - alert: OracleDelayedUpdate
+        expr: time() - oracle_last_update_timestamp > 3600
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Oracle delayed update for {{ $labels.feed }}"
+          description: "Oracle hasn't been updated in more than 1 hour"
+
+      # Resource Usage
+      - alert: HighCPUUsage
+        expr: rate(process_cpu_seconds_total[5m]) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage on {{ $labels.instance }}"
+          description: "CPU usage is above 80%"
+
+      - alert: HighMemoryUsage
+        expr: process_resident_memory_bytes / node_memory_MemTotal_bytes > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage on {{ $labels.instance }}"
+          description: "Memory usage is above 80%"
+
+      # Gas Price Monitoring
+      - alert: HighGasPrice
+        expr: ethereum_gas_price > 100000000000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High gas price"
+          description: "Gas price is above 100 Gwei"
+
+      # Transaction Pool
+      - alert: TransactionPoolNearCapacity
+        expr: besu_transaction_pool_transactions > 15000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Transaction pool near capacity"
+          description: "Transaction pool has more than 15,000 pending transactions" 

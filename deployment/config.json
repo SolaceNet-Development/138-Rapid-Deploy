@@ -1,0 +1,405 @@
+{
+    "environments": {
+        "development": {
+            "rpc": "http://localhost:8545",
+            "chainId": 138,
+            "contracts": {
+                "perpetualMarket": "",
+                "marginPool": "",
+                "strategyFactory": "",
+                "priceOracle": ""
+            },
+            "monitoring": {
+                "enabled": true,
+                "grafanaUrl": "http://localhost:3000",
+                "prometheusUrl": "http://localhost:9090"
+            },
+            "features": {
+                "perpetualTrading": true,
+                "marginTrading": true,
+                "automatedStrategies": true,
+                "flashLoans": true,
+                "yieldFarming": true
+            },
+            "security": {
+                "maxGasPrice": "50000000000",
+                "maxPositionSize": "100000000000000000000",
+                "maxLeverage": 5,
+                "emergencyShutdown": {
+                    "enabled": true,
+                    "multisigThreshold": 2,
+                    "timelock": 3600
+                }
+            },
+            "performance": {
+                "caching": {
+                    "enabled": true,
+                    "duration": 300
+                },
+                "rpcBatchSize": 50,
+                "maxConcurrentRequests": 25
+            }
+        },
+        "staging": {
+            "rpc": "https://staging.chain138.com",
+            "chainId": 138,
+            "contracts": {
+                "perpetualMarket": "",
+                "marginPool": "",
+                "strategyFactory": "",
+                "priceOracle": ""
+            },
+            "monitoring": {
+                "enabled": true,
+                "grafanaUrl": "https://grafana.staging.chain138.com",
+                "prometheusUrl": "https://prometheus.staging.chain138.com"
+            },
+            "features": {
+                "perpetualTrading": true,
+                "marginTrading": true,
+                "automatedStrategies": true,
+                "flashLoans": true,
+                "yieldFarming": true
+            },
+            "security": {
+                "maxGasPrice": "100000000000",
+                "maxPositionSize": "500000000000000000000",
+                "maxLeverage": 7,
+                "emergencyShutdown": {
+                    "enabled": true,
+                    "multisigThreshold": 2,
+                    "timelock": 7200
+                }
+            },
+            "performance": {
+                "caching": {
+                    "enabled": true,
+                    "duration": 300
+                },
+                "rpcBatchSize": 75,
+                "maxConcurrentRequests": 35
+            }
+        },
+        "testing": {
+            "rpc": "https://testing.chain138.com",
+            "chainId": 13800,
+            "contracts": {
+                "perpetualMarket": "",
+                "marginPool": "",
+                "strategyFactory": "",
+                "priceOracle": ""
+            },
+            "monitoring": {
+                "enabled": true,
+                "grafanaUrl": "https://grafana.testing.chain138.com",
+                "prometheusUrl": "https://prometheus.testing.chain138.com",
+                "alerting": {
+                    "enabled": true,
+                    "slackWebhook": "",
+                    "discordWebhook": "",
+                    "emailNotifications": ""
+                }
+            },
+            "features": {
+                "perpetualTrading": true,
+                "marginTrading": true,
+                "automatedStrategies": true,
+                "flashLoans": true,
+                "yieldFarming": true
+            },
+            "security": {
+                "maxGasPrice": "50000000000",
+                "maxPositionSize": "100000000000000000000",
+                "maxLeverage": 3,
+                "emergencyShutdown": {
+                    "enabled": true,
+                    "multisigThreshold": 2,
+                    "timelock": 1800
+                }
+            }
+        },
+        "production": {
+            "rpc": "https://rpc.chain138.com",
+            "chainId": 138,
+            "contracts": {
+                "perpetualMarket": "",
+                "marginPool": "",
+                "strategyFactory": "",
+                "priceOracle": ""
+            },
+            "monitoring": {
+                "enabled": true,
+                "grafanaUrl": "https://grafana.chain138.com",
+                "prometheusUrl": "https://prometheus.chain138.com",
+                "alerting": {
+                    "enabled": true,
+                    "slackWebhook": "",
+                    "discordWebhook": "",
+                    "emailNotifications": ""
+                }
+            },
+            "features": {
+                "perpetualTrading": true,
+                "marginTrading": true,
+                "automatedStrategies": true,
+                "flashLoans": true,
+                "yieldFarming": true
+            },
+            "security": {
+                "maxGasPrice": "500000000000",
+                "maxPositionSize": "1000000000000000000000",
+                "maxLeverage": 10,
+                "emergencyShutdown": {
+                    "enabled": true,
+                    "multisigThreshold": 3,
+                    "timelock": 86400
+                },
+                "validators": {
+                    "transaction": true,
+                    "position": true,
+                    "risk": true,
+                    "slippage": true,
+                    "frontrunning": true
+                },
+                "circuitBreakers": {
+                    "priceDeviation": 0.1,
+                    "volumeSpike": 0.5,
+                    "failedTransactions": 100,
+                    "liquidationCascade": 0.2,
+                    "flashloanVolume": 0.3
+                },
+                "rateLimit": {
+                    "enabled": true,
+                    "maxRequestsPerSecond": 100,
+                    "maxRequestsPerMinute": 1000
+                },
+                "accessControl": {
+                    "whitelistEnabled": true,
+                    "blacklistEnabled": true,
+                    "adminMultisig": true,
+                    "adminTimelock": 172800
+                },
+                "antiMEV": {
+                    "enabled": true,
+                    "maxGasPrice": "1000000000000",
+                    "minBlockDelay": 1,
+                    "flashbotProtection": true
+                },
+                "monitoring": {
+                    "anomalyDetection": true,
+                    "fraudPrevention": true,
+                    "realTimeAlerts": true
+                },
+                "multiSig": {
+                    "enabled": true,
+                    "threshold": 4,
+                    "owners": [],
+                    "delayPeriod": 172800,
+                    "executionDelay": 86400,
+                    "guardians": []
+                },
+                "mlSecurity": {
+                    "enabled": true,
+                    "modelEndpoint": "https://ml.chain138.com",
+                    "updateInterval": 300,
+                    "minConfidence": 0.95,
+                    "features": [
+                        "transaction_patterns",
+                        "price_manipulation",
+                        "wash_trading",
+                        "flash_loan_attacks"
+                    ]
+                },
+                "zkProofs": {
+                    "enabled": true,
+                    "proofSystem": "groth16",
+                    "verificationKey": "",
+                    "circuits": ["trade", "liquidation", "withdrawal"]
+                }
+            },
+            "performance": {
+                "caching": {
+                    "enabled": true,
+                    "duration": 300
+                },
+                "rpcBatchSize": 100,
+                "maxConcurrentRequests": 50,
+                "optimizations": {
+                    "batchTransactions": true,
+                    "useCallStatic": true,
+                    "multicall": true
+                }
+            },
+            "monitoring": {
+                "mlMonitoring": {
+                    "enabled": true,
+                    "modelEndpoint": "https://ml.chain138.com",
+                    "updateInterval": 300,
+                    "features": [
+                        "price",
+                        "volume",
+                        "positions",
+                        "liquidations",
+                        "flash_loans",
+                        "governance"
+                    ],
+                    "anomalyDetection": {
+                        "enabled": true,
+                        "sensitivity": 0.95,
+                        "retrainingInterval": 86400
+                    },
+                    "predictionModels": {
+                        "enabled": true,
+                        "types": [
+                            "price_movement",
+                            "liquidation_risk",
+                            "market_manipulation"
+                        ]
+                    }
+                }
+            }
+        },
+        "canary": {
+            "rpc": "https://canary.chain138.com",
+            "chainId": 13801,
+            "contracts": {
+                "perpetualMarket": "",
+                "marginPool": "",
+                "strategyFactory": "",
+                "priceOracle": ""
+            },
+            "monitoring": {
+                "enabled": true,
+                "grafanaUrl": "https://grafana.canary.chain138.com",
+                "prometheusUrl": "https://prometheus.canary.chain138.com",
+                "mlMonitoring": {
+                    "enabled": true,
+                    "modelEndpoint": "https://ml.canary.chain138.com",
+                    "updateInterval": 300,
+                    "features": ["price", "volume", "positions", "liquidations"]
+                },
+                "alerting": {
+                    "enabled": true,
+                    "slackWebhook": "",
+                    "discordWebhook": "",
+                    "emailNotifications": "",
+                    "pagerDuty": ""
+                }
+            },
+            "features": {
+                "perpetualTrading": true,
+                "marginTrading": true,
+                "automatedStrategies": true,
+                "flashLoans": true,
+                "yieldFarming": true
+            },
+            "security": {
+                "maxGasPrice": "75000000000",
+                "maxPositionSize": "250000000000000000000",
+                "maxLeverage": 5,
+                "emergencyShutdown": {
+                    "enabled": true,
+                    "multisigThreshold": 2,
+                    "timelock": 3600
+                },
+                "multiSig": {
+                    "enabled": true,
+                    "threshold": 3,
+                    "owners": [],
+                    "delayPeriod": 86400
+                }
+            }
+        },
+        "sandbox": {
+            "rpc": "https://sandbox.chain138.com",
+            "chainId": 13802,
+            "contracts": {
+                "perpetualMarket": "",
+                "marginPool": "",
+                "strategyFactory": "",
+                "priceOracle": ""
+            },
+            "monitoring": {
+                "enabled": true,
+                "grafanaUrl": "https://grafana.sandbox.chain138.com",
+                "prometheusUrl": "https://prometheus.sandbox.chain138.com",
+                "mlMonitoring": {
+                    "enabled": true,
+                    "modelEndpoint": "https://ml.sandbox.chain138.com",
+                    "updateInterval": 300,
+                    "features": ["price", "volume", "positions", "liquidations"]
+                }
+            },
+            "features": {
+                "perpetualTrading": true,
+                "marginTrading": true,
+                "automatedStrategies": true,
+                "flashLoans": true,
+                "yieldFarming": true
+            },
+            "security": {
+                "maxGasPrice": "50000000000",
+                "maxPositionSize": "100000000000000000000",
+                "maxLeverage": 3,
+                "multiSig": {
+                    "enabled": true,
+                    "threshold": 2,
+                    "owners": [],
+                    "delayPeriod": 3600
+                }
+            }
+        }
+    },
+    "deployment": {
+        "scripts": {
+            "perpetualMarket": "scripts/deploy-perpetual.ts",
+            "marginPool": "scripts/deploy-margin.ts",
+            "strategyFactory": "scripts/deploy-strategies.ts",
+            "priceOracle": "scripts/deploy-oracle.ts",
+            "monitoring": "scripts/deploy-monitoring.ts",
+            "security": "scripts/deploy-security.ts",
+            "accessControl": "scripts/deploy-access-control.ts",
+            "antiMEV": "scripts/deploy-anti-mev.ts",
+            "rateLimit": "scripts/deploy-rate-limit.ts",
+            "fraudPrevention": "scripts/deploy-fraud-prevention.ts",
+            "multiSig": "scripts/deploy-multisig.ts",
+            "mlSecurity": "scripts/deploy-ml-security.ts",
+            "zkProofs": "scripts/deploy-zk-proofs.ts",
+            "mlMonitoring": "scripts/deploy-ml-monitoring.ts"
+        },
+        "order": [
+            "security",
+            "multiSig",
+            "accessControl",
+            "antiMEV",
+            "rateLimit",
+            "zkProofs",
+            "mlSecurity",
+            "priceOracle",
+            "perpetualMarket",
+            "marginPool",
+            "strategyFactory",
+            "monitoring",
+            "mlMonitoring",
+            "fraudPrevention"
+        ],
+        "verification": {
+            "enabled": true,
+            "apiKey": "",
+            "optimizerSettings": {
+                "enabled": true,
+                "runs": 200
+            },
+            "compilerSettings": {
+                "version": "0.8.17",
+                "evmVersion": "london"
+            }
+        },
+        "testing": {
+            "coverage": true,
+            "gas": true,
+            "solhint": true,
+            "slither": true
+        }
+    }
+} 

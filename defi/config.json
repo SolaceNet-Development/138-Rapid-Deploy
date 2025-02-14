@@ -1,0 +1,81 @@
+{
+  "aave": {
+    "enabled": true,
+    "version": "v3",
+    "config": {
+      "lendingPool": "",
+      "addressProvider": "",
+      "dataProvider": "",
+      "supportedAssets": [],
+      "interestRateStrategy": "defaultVariableRate"
+    }
+  },
+  "dodoex": {
+    "enabled": true,
+    "config": {
+      "factory": "",
+      "router": "",
+      "registry": "",
+      "initialPools": []
+    }
+  },
+  "lido": {
+    "enabled": true,
+    "config": {
+      "stakingPool": "",
+      "oracle": "",
+      "treasury": "",
+      "validators": []
+    }
+  },
+  "maker": {
+    "enabled": true,
+    "config": {
+      "cdpManager": "",
+      "vat": "",
+      "jug": "",
+      "spot": "",
+      "supportedCollaterals": []
+    }
+  },
+  "meth": {
+    "enabled": true,
+    "config": {
+      "wrapper": "",
+      "validator": "",
+      "treasury": "",
+      "minimumStake": "32000000000000000000"
+    }
+  },
+  "tatum": {
+    "enabled": true,
+    "config": {
+      "apiKey": "",
+      "endpoints": {
+        "mainnet": "",
+        "testnet": ""
+      },
+      "services": [
+        "custody",
+        "virtualAccounts",
+        "marketData"
+      ]
+    }
+  },
+  "general": {
+    "deployment": {
+      "timelock": 86400,
+      "multisigThreshold": 3,
+      "emergencyAdmin": "",
+      "treasury": "",
+      "feeCollector": ""
+    },
+    "governance": {
+      "enabled": true,
+      "votingDelay": 1,
+      "votingPeriod": 45818,
+      "proposalThreshold": "100000000000000000000000",
+      "quorumNumerator": 4
+    }
+  }
+} 

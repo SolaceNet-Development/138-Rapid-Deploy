@@ -1,0 +1,148 @@
+version: '3.8'
+
+services:
+  besu-node:
+    image: hyperledger/besu:latest
+    container_name: chain138-besu
+    volumes:
+      - ./data/chain138:/opt/besu/data
+      - ./blockchain/config:/config
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+      - "30303:30303"
+    command: >
+      --config-file=/config/network/config.toml
+      --genesis-file=/config/genesis.json
+    environment:
+      - BESU_OPTS=-Xmx4g
+    networks:
+      - chain138
+
+  tessera:
+    image: quorumengineering/tessera:latest
+    container_name: chain138-tessera
+    volumes:
+      - ./data/chain138/privacy:/data
+      - ./blockchain/config/privacy:/config
+    ports:
+      - "9102:9102"
+    depends_on:
+      - besu-node
+    networks:
+      - chain138
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: chain138-prometheus
+    volumes:
+      - ./monitoring/config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/data/prometheus:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - chain138
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: chain138-grafana
+    volumes:
+      - ./monitoring/data/grafana:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - chain138
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: chain138-node-exporter
+    ports:
+      - "9100:9100"
+    networks:
+      - chain138
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: chain138-alertmanager
+    volumes:
+      - ./monitoring/config/alertmanager:/etc/alertmanager
+    ports:
+      - "9093:9093"
+    networks:
+      - chain138
+
+  postgres:
+    image: postgres:13
+    container_name: chain138-postgres
+    environment:
+      POSTGRES_DB: chain138
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - chain138
+
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    container_name: chain138-ipfs
+    volumes:
+      - ./data/ipfs:/data/ipfs
+    ports:
+      - "4001:4001"
+      - "8080:8080"
+      - "5001:5001"
+    networks:
+      - chain138
+
+  graph-node:
+    image: graphprotocol/graph-node:latest
+    container_name: chain138-graph-node
+    depends_on:
+      - ipfs
+      - postgres
+    environment:
+      postgres_host: postgres
+      postgres_user: admin
+      postgres_pass: ${DB_PASSWORD}
+      postgres_db: chain138
+      ipfs: ipfs:5001
+      ethereum: chain138:http://besu-node:8545
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8020:8020"
+    networks:
+      - chain138
+
+  bridge-monitor:
+    build: 
+      context: ./bridge
+      dockerfile: Dockerfile
+    container_name: chain138-bridge-monitor
+    depends_on:
+      - besu-node
+    ports:
+      - "9547:9547"
+    networks:
+      - chain138
+
+  defi-monitor:
+    build:
+      context: ./defi
+      dockerfile: Dockerfile
+    container_name: chain138-defi-monitor
+    depends_on:
+      - besu-node
+    ports:
+      - "9548:9548"
+    networks:
+      - chain138
+
+networks:
+  chain138:
+    driver: bridge 

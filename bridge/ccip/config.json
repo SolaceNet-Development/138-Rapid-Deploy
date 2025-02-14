@@ -1,0 +1,52 @@
+{
+  "chain138": {
+    "router": {
+      "address": "",
+      "confirmations": 3,
+      "gasLimit": 2000000,
+      "supportedTokens": []
+    },
+    "lockAndMint": {
+      "enabled": true,
+      "lockVault": "",
+      "tokenFactory": "",
+      "supportedTokens": []
+    },
+    "amb": {
+      "enabled": true,
+      "address": "",
+      "relayers": [],
+      "requiredConfirmations": 2,
+      "gasLimit": 1000000
+    },
+    "oracle": {
+      "address": "",
+      "operators": [],
+      "minConfirmations": 3,
+      "updateInterval": 3600
+    }
+  },
+  "fees": {
+    "baseFee": "0.001",
+    "tokenTransferFee": "0.1%",
+    "messageFee": "0.0005"
+  },
+  "security": {
+    "pausable": true,
+    "upgradeableContracts": true,
+    "emergencyWithdraw": true,
+    "rateLimit": {
+      "enabled": true,
+      "maxTransfersPerDay": 1000,
+      "maxValuePerDay": "1000000"
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "alertThresholds": {
+      "pendingTransfers": 100,
+      "failedTransfers": 10,
+      "oracleDelay": 3600
+    }
+  }
+} 

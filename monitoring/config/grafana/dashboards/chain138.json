@@ -1,0 +1,206 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "title": "Blockchain Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Block Height",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ethereum_blockchain_height",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Transaction Count",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(ethereum_transaction_count[5m])",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Network Health",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Peer Count",
+          "type": "stat",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "ethereum_peer_count",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Network Latency",
+          "type": "heatmap",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(ethereum_network_latency_seconds[5m])",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Privacy Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Private Transactions",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(privacy_transaction_count[5m])",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Privacy Groups",
+          "type": "table",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "privacy_group_count",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DeFi Protocols",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Total Value Locked",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(defi_protocol_tvl) by (protocol)",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Protocol Activity",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(defi_protocol_transactions[5m])",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Bridge Metrics",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Bridge Transactions",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(bridge_transaction_count[5m])",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Bridge TVL",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "bridge_total_value_locked",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "System Resources",
+      "type": "row",
+      "panels": [
+        {
+          "title": "CPU Usage",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(process_cpu_seconds_total[5m])",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "title": "Memory Usage",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "process_resident_memory_bytes",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Chain 138 Dashboard",
+  "uid": "chain138",
+  "version": 1
+} 

@@ -1,0 +1,71 @@
+{
+    "perpetualMarkets": {
+        "maxLeverage": 10,
+        "minCollateral": "1000000000000000000",
+        "liquidationThreshold": 0.8,
+        "maintenanceMargin": 0.05,
+        "feeStructure": {
+            "makerFee": 0.001,
+            "takerFee": 0.002,
+            "liquidationFee": 0.01
+        }
+    },
+    "marginPools": {
+        "supportedCollateral": [
+            {
+                "token": "0x...",
+                "name": "USDC",
+                "maxLTV": 0.8,
+                "liquidationThreshold": 0.85
+            },
+            {
+                "token": "0x...",
+                "name": "ETH",
+                "maxLTV": 0.75,
+                "liquidationThreshold": 0.8
+            }
+        ],
+        "interestRateModel": {
+            "baseRate": 0.02,
+            "multiplier": 0.1,
+            "jumpMultiplier": 0.2,
+            "optimal": 0.8
+        }
+    },
+    "tradingStrategies": {
+        "gridTrading": {
+            "maxGrids": 100,
+            "minGridSpacing": 0.001,
+            "maxPriceRange": 0.5
+        },
+        "meanReversion": {
+            "lookbackPeriods": [24, 48, 168],
+            "deviationThresholds": [0.02, 0.05, 0.1]
+        },
+        "trendFollowing": {
+            "movingAverages": [7, 25, 99],
+            "minimumTrend": 0.01
+        }
+    },
+    "riskManagement": {
+        "maxPositionSize": "1000000000000000000000",
+        "maxTotalLeverage": 20,
+        "emergencyTimelock": 86400,
+        "circuitBreakers": {
+            "priceChange": 0.1,
+            "volumeSpike": 3,
+            "liquidationCascade": 0.2
+        }
+    },
+    "monitoring": {
+        "metrics": {
+            "updateInterval": 300,
+            "retentionPeriod": 2592000
+        },
+        "alerts": {
+            "liquidationWarning": 0.9,
+            "highUtilization": 0.8,
+            "largePositions": 0.1
+        }
+    }
+} 

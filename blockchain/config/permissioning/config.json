@@ -1,0 +1,33 @@
+{
+  "nodes": {
+    "permissioningMode": "hybrid",
+    "allowlist": [],
+    "validators": []
+  },
+  "accounts": {
+    "permissioningMode": "hybrid",
+    "allowlist": [],
+    "adminAccounts": []
+  },
+  "roles": {
+    "validator": {
+      "permissions": ["PROPOSE_BLOCK", "VALIDATE_BLOCK"]
+    },
+    "participant": {
+      "permissions": ["SUBMIT_TX"]
+    },
+    "admin": {
+      "permissions": ["MANAGE_VALIDATORS", "MANAGE_PARTICIPANTS"]
+    }
+  },
+  "contracts": {
+    "permissioningContract": "",
+    "nodePermissioningContract": "",
+    "accountPermissioningContract": ""
+  },
+  "privacyEnhancements": {
+    "privateTransactions": true,
+    "privateStateValidation": true,
+    "privateContractValidation": true
+  }
+} 
