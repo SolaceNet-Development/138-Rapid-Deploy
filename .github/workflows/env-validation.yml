@@ -19,14 +19,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2.2.4
+      with:
+        version: 8.15.4
+        
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18.x'
-        cache: 'npm'
+        node-version: '18.12.1'
+        cache: 'pnpm'
 
     - name: Install dependencies
-      run: npm ci
+      run: pnpm install --frozen-lockfile
 
     - name: Validate environment configuration
       run: node scripts/validate-env.js
@@ -61,4 +66,4 @@ jobs:
         git config --local user.name "GitHub Action"
         git add .env.example deployment/config/templates/*
         git diff --quiet && git diff --staged --quiet || git commit -m "chore: update environment templates [skip ci]"
-        git push 
+        git push  
