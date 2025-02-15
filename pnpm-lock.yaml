@@ -10,19 +10,19 @@ importers:
     dependencies:
       '@chakra-ui/react':
         specifier: ^2.8.0
-        version: 2.10.5(@emotion/react@11.14.0)(@emotion/styled@11.14.0)(@types/react@18.3.18)(framer-motion@10.18.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 2.10.5(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@emotion/styled':
         specifier: ^11.11.0
-        version: 11.14.0(@emotion/react@11.14.0)(@types/react@18.3.18)(react@18.3.1)
+        version: 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@ethersproject/bignumber':
         specifier: ^5.7.0
         version: 5.7.0
       '@ethersproject/providers':
         specifier: ^5.7.2
-        version: 5.7.2
+        version: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@ethersproject/units':
         specifier: ^5.7.0
         version: 5.7.0
@@ -34,16 +34,16 @@ importers:
         version: 0.1.120
       '@thirdweb-dev/react':
         specifier: ^4.0.10
-        version: 4.9.4(@babel/core@7.26.9)(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@thirdweb-dev/sdk@4.0.99)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
+        version: 4.9.4(@babel/core@7.26.9)(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
       '@thirdweb-dev/sdk':
         specifier: ^4.0.10
-        version: 4.0.99(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
+        version: 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
       '@types/node-fetch':
         specifier: ^2.6.12
         version: 2.6.12
       '@web3-react/core':
         specifier: ^8.2.0
-        version: 8.2.3(@types/react@18.3.18)(react@18.3.1)
+        version: 8.2.3(@types/react@18.3.18)(bufferutil@4.0.9)(react@18.3.1)(utf-8-validate@5.0.10)
       '@web3-react/injected-connector':
         specifier: ^6.0.7
         version: 6.0.7
@@ -52,10 +52,10 @@ importers:
         version: 1.7.9
       ethers:
         specifier: ^5.7.2
-        version: 5.7.2
+        version: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       framer-motion:
         specifier: ^10.12.16
-        version: 10.18.0(react-dom@18.3.1)(react@18.3.1)
+        version: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
@@ -70,17 +70,17 @@ importers:
         version: 4.12.0(react@18.3.1)
       react-router-dom:
         specifier: ^6.11.2
-        version: 6.29.0(react-dom@18.3.1)(react@18.3.1)
+        version: 6.29.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       recharts:
         specifier: ^2.6.2
-        version: 2.15.1(react-dom@18.3.1)(react@18.3.1)
+        version: 2.15.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@nomiclabs/hardhat-ethers':
         specifier: ^2.2.3
-        version: 2.2.3(ethers@5.7.2)(hardhat@2.22.18)
+        version: 2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))
       '@nomiclabs/hardhat-waffle':
         specifier: ^2.0.6
-        version: 2.0.6(@nomiclabs/hardhat-ethers@2.2.3)(@types/sinon-chai@3.2.12)(ethereum-waffle@4.0.10)(ethers@5.7.2)(hardhat@2.22.18)
+        version: 2.0.6(@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)))(@types/sinon-chai@3.2.12)(ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))
       '@types/chai':
         specifier: ^4.3.20
         version: 4.3.20
@@ -98,13 +98,13 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.62.0
-        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.57.1)(typescript@4.9.5)
+        version: 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@4.9.5))(eslint@8.57.1)(typescript@4.9.5)
       '@typescript-eslint/parser':
         specifier: ^5.62.0
         version: 5.62.0(eslint@8.57.1)(typescript@4.9.5)
       '@vitejs/plugin-react':
         specifier: ^4.0.0
-        version: 4.3.4(vite@4.5.9)
+        version: 4.3.4(vite@4.5.9(@types/node@18.19.76))
       chai:
         specifier: ^4.3.7
         version: 4.5.0
@@ -116,25 +116,34 @@ importers:
         version: 8.57.1
       ethereum-waffle:
         specifier: ^4.0.10
-        version: 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2)(ethers@5.7.2)(typescript@4.9.5)
+        version: 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5)
       hardhat:
         specifier: ^2.22.18
-        version: 2.22.18(ts-node@10.9.2)(typescript@4.9.5)
+        version: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
       hardhat-gas-reporter:
         specifier: ^1.0.9
-        version: 1.0.10(hardhat@2.22.18)
+        version: 1.0.10(bufferutil@4.0.9)(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       husky:
         specifier: ^9.1.7
         version: 9.1.7
+      istanbul:
+        specifier: ^0.4.5
+        version: 0.4.5
       mocha:
         specifier: ^10.2.0
         version: 10.8.2
       solidity-coverage:
         specifier: ^0.8.4
-        version: 0.8.14(hardhat@2.22.18)
+        version: 0.8.14(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))
+      solidity-docgen:
+        specifier: ^0.6.0-beta.36
+        version: 0.6.0-beta.36(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))
       ts-node:
         specifier: ^10.9.1
         version: 10.9.2(@types/node@18.19.76)(typescript@4.9.5)
+      typedoc:
+        specifier: ^0.25.12
+        version: 0.25.13(typescript@4.9.5)
       typescript:
         specifier: ^4.9.5
         version: 4.9.5
@@ -2532,6 +2541,9 @@ packages:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
 
+  ansi-sequence-parser@1.1.3:
+    resolution: {integrity: sha512-+fksAx9eG3Ab6LDnLs3ZqZa8KVJ/jYnX+D4Qe1azX+LFGFAXqynCQLOdLpNYN/l9e7l6hMWwZbrnctqr6eSQSw==}
+
   ansi-styles@3.2.1:
     resolution: {integrity: sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==}
     engines: {node: '>=4'}
@@ -4185,6 +4197,14 @@ packages:
   isstream@0.1.2:
     resolution: {integrity: sha512-Yljz7ffyPbrLpLngrMtZ7NduUgVvi6wG9RJ9IUcyCd59YQ911PBJphODUcbOVbqYfxe1wuYf/LJ8PauMRwsM/g==}
 
+  istanbul@0.4.5:
+    resolution: {integrity: sha512-nMtdn4hvK0HjUlzr1DrKSUY8ychprt8dzHOgY2KXsIhHu5PuQQEOTM27gV9Xblyon7aUH/TSFIjRHEODF/FRPg==}
+    deprecated: |-
+      This module is no longer maintained, try this instead:
+        npm i nyc
+      Visit https://istanbul.js.org/integrations for other alternatives.
+    hasBin: true
+
   js-sha3@0.5.7:
     resolution: {integrity: sha512-GII20kjaPX0zJ8wzkTbNDYMY7msuZcTWk8S5UOh6806Jq/wz1J8/bnr8uGU0DAUmYDjj2Mr4X1cW8v/GLYnR+g==}
 
@@ -4255,6 +4275,9 @@ packages:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
     hasBin: true
+
+  jsonc-parser@3.3.1:
+    resolution: {integrity: sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==}
 
   jsonfile@2.4.0:
     resolution: {integrity: sha512-PKllAqbgLgxHaj8TElYymKCAgrASebJrWpTnEkOaTowt23VKXXN0sUeriJ+eh7y6ufb/CC5ap11pz71/cM0hUw==}
@@ -4431,6 +4454,9 @@ packages:
   ltgt@2.2.1:
     resolution: {integrity: sha512-AI2r85+4MquTw9ZYqabu4nMwy9Oftlfa/e/52t9IjtfG+mGBbTNdAoZ3RQKLHR6r0wQnwZnPIEh/Ya6XTWAKNA==}
 
+  lunr@2.3.9:
+    resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
+
   magic-sdk@13.6.2:
     resolution: {integrity: sha512-ZjIZM2gqaxxOR+ZAyKVw50akjfdyo0q5hZzrCMiqyCqh4BXulU7yqHgUa/5/nJ+0/4xBgUejoOcDEm+UdmzLjA==}
 
@@ -4439,6 +4465,11 @@ packages:
 
   markdown-table@1.1.3:
     resolution: {integrity: sha512-1RUZVgQlpJSPWYbFSpmudq5nHY1doEIv89gBtF0s4gW1GF2XorxcA/70M5vq7rLv0a6mhOUccRsqkwhwLCIQ2Q==}
+
+  marked@4.3.0:
+    resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
+    engines: {node: '>= 12'}
+    hasBin: true
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -4514,6 +4545,10 @@ packages:
   minimatch@5.1.6:
     resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
     engines: {node: '>=10'}
+
+  minimatch@9.0.5:
+    resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
+    engines: {node: '>=16 || 14 >=14.17'}
 
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
@@ -5363,6 +5398,9 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
+  shiki@0.14.7:
+    resolution: {integrity: sha512-dNPAPrxSc87ua2sKJ3H5dQ/6ZaY8RNnaAqK+t0eG7p0Soi2ydiqbGOTaZCqaYvA/uZYfS1LJnemt3Q+mSfcPCg==}
+
   side-channel-list@1.0.0:
     resolution: {integrity: sha512-FCLHtRD/gnpCiCHEiJLOwdmFP+wzCmDEkc9y7NsYxeF4u7Btsn1ZuwgwJGxImImHicJArLP4R0yX4c2KCrMrTA==}
     engines: {node: '>= 0.4'}
@@ -5406,11 +5444,19 @@ packages:
     engines: {node: '>=10.0.0'}
     hasBin: true
 
+  solidity-ast@0.4.59:
+    resolution: {integrity: sha512-I+CX0wrYUN9jDfYtcgWSe+OAowaXy8/1YQy7NS4ni5IBDmIYBq7ZzaP/7QqouLjzZapmQtvGLqCaYgoUWqBo5g==}
+
   solidity-coverage@0.8.14:
     resolution: {integrity: sha512-ItAAObe5GaEOp20kXC2BZRnph+9P7Rtoqg2mQc2SXGEHgSDF2wWd1Wxz3ntzQWXkbCtIIGdJT918HG00cObwbA==}
     hasBin: true
     peerDependencies:
       hardhat: ^2.11.0
+
+  solidity-docgen@0.6.0-beta.36:
+    resolution: {integrity: sha512-f/I5G2iJgU1h0XrrjRD0hHMr7C10u276vYvm//rw1TzFcYQ4xTOyAoi9oNAHRU0JU4mY9eTuxdVc2zahdMuhaQ==}
+    peerDependencies:
+      hardhat: ^2.8.0
 
   sonic-boom@2.8.0:
     resolution: {integrity: sha512-kuonw1YOYYNOve5iHdSahXPOK49GqwA+LZhI6Wz/l0rP57iKyXXIHaRagOBHAPmGwJC6od2Z9zgvZ5loSgMlVg==}
@@ -5801,6 +5847,13 @@ packages:
   typedi@0.10.0:
     resolution: {integrity: sha512-v3UJF8xm68BBj6AF4oQML3ikrfK2c9EmZUyLOfShpJuItAqVBHWP/KtpGinkSsIiP6EZyyb6Z3NXyW9dgS9X1w==}
 
+  typedoc@0.25.13:
+    resolution: {integrity: sha512-pQqiwiJ+Z4pigfOnnysObszLiU3mVLWAExSPf+Mu06G/qsc3wzbuM56SZQvONhHLncLUhYzOVkjFFpFfL5AzhQ==}
+    engines: {node: '>= 16'}
+    hasBin: true
+    peerDependencies:
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x
+
   typescript@4.9.5:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
@@ -6069,6 +6122,12 @@ packages:
 
   vm-browserify@1.1.2:
     resolution: {integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==}
+
+  vscode-oniguruma@1.7.0:
+    resolution: {integrity: sha512-L9WMGRfrjOhgHSdOYgCt/yRMsXzLDJSL7BPrOZt73gU0iWO4mpqzqQzOz5srxqTvMBaR0XZTSrVWo4j55Rc6cA==}
+
+  vscode-textmate@8.0.0:
+    resolution: {integrity: sha512-AFbieoL7a5LMqcnOF04ji+rpXadgOXnZsxQr//r83kLPr7biP7am3g9zbaZIaBGwBRWeSvoMD4mgPdX3e4NWBg==}
 
   web-streams-polyfill@3.3.3:
     resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==}
@@ -6515,10 +6574,10 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@blocto/sdk@0.10.2':
+  '@blocto/sdk@0.10.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       buffer: 6.0.3
-      eip1193-provider: 1.0.1
+      eip1193-provider: 1.0.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       js-sha3: 0.8.0
     transitivePeerDependencies:
       - bufferutil
@@ -6535,18 +6594,18 @@ snapshots:
       framesync: 6.1.2
       react: 18.3.1
 
-  '@chakra-ui/react@2.10.5(@emotion/react@11.14.0)(@emotion/styled@11.14.0)(@types/react@18.3.18)(framer-motion@10.18.0)(react-dom@18.3.1)(react@18.3.1)':
+  '@chakra-ui/react@2.10.5(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@chakra-ui/hooks': 2.4.3(react@18.3.1)
       '@chakra-ui/styled-system': 2.12.1(react@18.3.1)
-      '@chakra-ui/theme': 3.4.7(@chakra-ui/styled-system@2.12.1)(react@18.3.1)
+      '@chakra-ui/theme': 3.4.7(@chakra-ui/styled-system@2.12.1(react@18.3.1))(react@18.3.1)
       '@chakra-ui/utils': 2.2.3(react@18.3.1)
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
-      '@emotion/styled': 11.14.0(@emotion/react@11.14.0)(@types/react@18.3.18)(react@18.3.1)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@popperjs/core': 2.11.8
       '@zag-js/focus-visible': 0.31.1
       aria-hidden: 1.2.4
-      framer-motion: 10.18.0(react-dom@18.3.1)(react@18.3.1)
+      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-fast-compare: 3.2.2
@@ -6562,7 +6621,7 @@ snapshots:
     transitivePeerDependencies:
       - react
 
-  '@chakra-ui/theme-tools@2.2.7(@chakra-ui/styled-system@2.12.1)(react@18.3.1)':
+  '@chakra-ui/theme-tools@2.2.7(@chakra-ui/styled-system@2.12.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@chakra-ui/anatomy': 2.3.5
       '@chakra-ui/styled-system': 2.12.1(react@18.3.1)
@@ -6571,11 +6630,11 @@ snapshots:
     transitivePeerDependencies:
       - react
 
-  '@chakra-ui/theme@3.4.7(@chakra-ui/styled-system@2.12.1)(react@18.3.1)':
+  '@chakra-ui/theme@3.4.7(@chakra-ui/styled-system@2.12.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@chakra-ui/anatomy': 2.3.5
       '@chakra-ui/styled-system': 2.12.1(react@18.3.1)
-      '@chakra-ui/theme-tools': 2.2.7(@chakra-ui/styled-system@2.12.1)(react@18.3.1)
+      '@chakra-ui/theme-tools': 2.2.7(@chakra-ui/styled-system@2.12.1(react@18.3.1))(react@18.3.1)
       '@chakra-ui/utils': 2.2.3(react@18.3.1)
     transitivePeerDependencies:
       - react
@@ -6639,12 +6698,13 @@ snapshots:
 
   '@emotion/css@11.10.5(@babel/core@7.26.9)':
     dependencies:
-      '@babel/core': 7.26.9
       '@emotion/babel-plugin': 11.13.5
       '@emotion/cache': 11.14.0
       '@emotion/serialize': 1.3.3
       '@emotion/sheet': 1.4.0
       '@emotion/utils': 1.4.2
+    optionalDependencies:
+      '@babel/core': 7.26.9
     transitivePeerDependencies:
       - supports-color
 
@@ -6673,9 +6733,10 @@ snapshots:
       '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@18.3.1)
       '@emotion/utils': 1.4.2
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.3.18
       hoist-non-react-statics: 3.3.2
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
     transitivePeerDependencies:
       - supports-color
 
@@ -6688,9 +6749,10 @@ snapshots:
       '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@18.3.1)
       '@emotion/utils': 1.4.2
       '@emotion/weak-memoize': 0.4.0
-      '@types/react': 18.3.18
       hoist-non-react-statics: 3.3.2
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
     transitivePeerDependencies:
       - supports-color
 
@@ -6704,7 +6766,7 @@ snapshots:
 
   '@emotion/sheet@1.4.0': {}
 
-  '@emotion/styled@11.11.0(@emotion/react@11.11.4)(@types/react@18.3.18)(react@18.3.1)':
+  '@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@emotion/babel-plugin': 11.13.5
@@ -6713,12 +6775,13 @@ snapshots:
       '@emotion/serialize': 1.3.3
       '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@18.3.1)
       '@emotion/utils': 1.4.2
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
     transitivePeerDependencies:
       - supports-color
 
-  '@emotion/styled@11.11.0(@emotion/react@11.14.0)(@types/react@18.3.18)(react@18.3.1)':
+  '@emotion/styled@11.11.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@emotion/babel-plugin': 11.13.5
@@ -6727,12 +6790,13 @@ snapshots:
       '@emotion/serialize': 1.3.3
       '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@18.3.1)
       '@emotion/utils': 1.4.2
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
     transitivePeerDependencies:
       - supports-color
 
-  '@emotion/styled@11.14.0(@emotion/react@11.14.0)(@types/react@18.3.18)(react@18.3.1)':
+  '@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@emotion/babel-plugin': 11.13.5
@@ -6741,8 +6805,9 @@ snapshots:
       '@emotion/serialize': 1.3.3
       '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@18.3.1)
       '@emotion/utils': 1.4.2
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
     transitivePeerDependencies:
       - supports-color
 
@@ -6857,17 +6922,17 @@ snapshots:
 
   '@eslint/js@8.57.1': {}
 
-  '@eth-optimism/contracts@0.6.0(ethers@5.7.2)':
+  '@eth-optimism/contracts@0.6.0(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)':
     dependencies:
-      '@eth-optimism/core-utils': 0.12.0
+      '@eth-optimism/core-utils': 0.12.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@ethersproject/abstract-provider': 5.7.0
       '@ethersproject/abstract-signer': 5.7.0
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@eth-optimism/core-utils@0.12.0':
+  '@eth-optimism/core-utils@0.12.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@ethersproject/abstract-provider': 5.7.0
@@ -6879,7 +6944,7 @@ snapshots:
       '@ethersproject/hash': 5.7.0
       '@ethersproject/keccak256': 5.7.0
       '@ethersproject/properties': 5.7.0
-      '@ethersproject/providers': 5.7.2
+      '@ethersproject/providers': 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@ethersproject/rlp': 5.7.0
       '@ethersproject/transactions': 5.7.0
       '@ethersproject/web': 5.7.1
@@ -6889,7 +6954,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@eth-optimism/core-utils@0.13.2':
+  '@eth-optimism/core-utils@0.13.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@ethersproject/abstract-provider': 5.7.0
@@ -6903,18 +6968,18 @@ snapshots:
       '@ethersproject/rlp': 5.7.0
       '@ethersproject/web': 5.7.1
       chai: 4.5.0
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       node-fetch: 2.7.0
     transitivePeerDependencies:
       - bufferutil
       - encoding
       - utf-8-validate
 
-  '@eth-optimism/sdk@3.3.2(ethers@5.7.2)':
+  '@eth-optimism/sdk@3.3.2(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)':
     dependencies:
-      '@eth-optimism/contracts': 0.6.0(ethers@5.7.2)
-      '@eth-optimism/core-utils': 0.13.2
-      ethers: 5.7.2
+      '@eth-optimism/contracts': 0.6.0(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
+      '@eth-optimism/core-utils': 0.13.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       lodash: 4.17.21
       merkletreejs: 0.3.11
       rlp: 2.2.7
@@ -6924,25 +6989,25 @@ snapshots:
       - encoding
       - utf-8-validate
 
-  '@ethereum-waffle/chai@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2)':
+  '@ethereum-waffle/chai@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))':
     dependencies:
-      '@ethereum-waffle/provider': 4.0.5(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2)
+      '@ethereum-waffle/provider': 4.0.5(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       debug: 4.4.0(supports-color@8.1.1)
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       json-bigint: 1.0.0
     transitivePeerDependencies:
       - '@ensdomains/ens'
       - '@ensdomains/resolver'
       - supports-color
 
-  '@ethereum-waffle/compiler@4.0.3(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2)(ethers@5.7.2)(solc@0.8.15)(typechain@8.3.2)(typescript@4.9.5)':
+  '@ethereum-waffle/compiler@4.0.3(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(solc@0.8.15)(typechain@8.3.2(typescript@4.9.5))(typescript@4.9.5)':
     dependencies:
       '@resolver-engine/imports': 0.3.3
       '@resolver-engine/imports-fs': 0.3.3
-      '@typechain/ethers-v5': 10.2.1(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2)(ethers@5.7.2)(typechain@8.3.2)(typescript@4.9.5)
+      '@typechain/ethers-v5': 10.2.1(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typechain@8.3.2(typescript@4.9.5))(typescript@4.9.5)
       '@types/mkdirp': 0.5.2
       '@types/node-fetch': 2.6.12
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       mkdirp: 0.5.6
       node-fetch: 2.7.0
       solc: 0.8.15
@@ -6954,22 +7019,22 @@ snapshots:
       - supports-color
       - typescript
 
-  '@ethereum-waffle/ens@4.0.3(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2)':
+  '@ethereum-waffle/ens@4.0.3(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))':
     dependencies:
       '@ensdomains/ens': 0.4.5
       '@ensdomains/resolver': 0.2.4
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
 
-  '@ethereum-waffle/mock-contract@4.0.4(ethers@5.7.2)':
+  '@ethereum-waffle/mock-contract@4.0.4(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))':
     dependencies:
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
 
-  '@ethereum-waffle/provider@4.0.5(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2)':
+  '@ethereum-waffle/provider@4.0.5(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))':
     dependencies:
-      '@ethereum-waffle/ens': 4.0.3(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2)
+      '@ethereum-waffle/ens': 4.0.3(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       '@ganache/ethereum-options': 0.1.4
       debug: 4.4.0(supports-color@8.1.1)
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       ganache: 7.4.3
     transitivePeerDependencies:
       - '@ensdomains/ens'
@@ -7198,7 +7263,7 @@ snapshots:
     dependencies:
       '@ethersproject/logger': 5.7.0
 
-  '@ethersproject/providers@5.7.2':
+  '@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@ethersproject/abstract-provider': 5.7.0
       '@ethersproject/abstract-signer': 5.7.0
@@ -7219,7 +7284,7 @@ snapshots:
       '@ethersproject/transactions': 5.7.0
       '@ethersproject/web': 5.7.1
       bech32: 1.1.4
-      ws: 7.4.6
+      ws: 7.4.6(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -7348,7 +7413,7 @@ snapshots:
       '@floating-ui/core': 1.6.9
       '@floating-ui/utils': 0.2.9
 
-  '@floating-ui/react-dom@2.1.2(react-dom@18.3.1)(react@18.3.1)':
+  '@floating-ui/react-dom@2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/dom': 1.6.13
       react: 18.3.1
@@ -7428,9 +7493,9 @@ snapshots:
       protobufjs: 7.4.0
       yargs: 17.7.2
 
-  '@headlessui/react@1.7.18(react-dom@18.3.1)(react@18.3.1)':
+  '@headlessui/react@1.7.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tanstack/react-virtual': 3.13.0(react-dom@18.3.1)(react@18.3.1)
+      '@tanstack/react-virtual': 3.13.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       client-only: 0.0.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -7471,12 +7536,12 @@ snapshots:
 
   '@js-sdsl/ordered-map@4.4.2': {}
 
-  '@json-rpc-tools/provider@1.7.6':
+  '@json-rpc-tools/provider@1.7.6(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@json-rpc-tools/utils': 1.7.6
       axios: 0.21.4
       safe-json-utils: 1.1.1
-      ws: 7.5.10
+      ws: 7.5.10(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -7503,7 +7568,7 @@ snapshots:
     dependencies:
       '@magic-sdk/types': 11.6.2
 
-  '@magic-sdk/commons@9.6.2(@magic-sdk/provider@13.6.2)(@magic-sdk/types@11.6.2)':
+  '@magic-sdk/commons@9.6.2(@magic-sdk/provider@13.6.2(localforage@1.10.0))(@magic-sdk/types@11.6.2)':
     dependencies:
       '@magic-sdk/provider': 13.6.2(localforage@1.10.0)
       '@magic-sdk/types': 11.6.2
@@ -7762,29 +7827,29 @@ snapshots:
       '@nomicfoundation/solidity-analyzer-linux-x64-musl': 0.1.2
       '@nomicfoundation/solidity-analyzer-win32-x64-msvc': 0.1.2
 
-  '@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2)(hardhat@2.22.18)':
+  '@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))':
     dependencies:
-      ethers: 5.7.2
-      hardhat: 2.22.18(ts-node@10.9.2)(typescript@4.9.5)
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
 
-  '@nomiclabs/hardhat-waffle@2.0.6(@nomiclabs/hardhat-ethers@2.2.3)(@types/sinon-chai@3.2.12)(ethereum-waffle@4.0.10)(ethers@5.7.2)(hardhat@2.22.18)':
+  '@nomiclabs/hardhat-waffle@2.0.6(@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)))(@types/sinon-chai@3.2.12)(ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))':
     dependencies:
-      '@nomiclabs/hardhat-ethers': 2.2.3(ethers@5.7.2)(hardhat@2.22.18)
+      '@nomiclabs/hardhat-ethers': 2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))
       '@types/sinon-chai': 3.2.12
-      ethereum-waffle: 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2)(ethers@5.7.2)(typescript@4.9.5)
-      ethers: 5.7.2
-      hardhat: 2.22.18(ts-node@10.9.2)(typescript@4.9.5)
+      ethereum-waffle: 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5)
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
 
   '@openzeppelin/contracts-upgradeable@4.9.6': {}
 
   '@openzeppelin/contracts@4.9.6': {}
 
-  '@paperxyz/embedded-wallet-service-sdk@1.2.5':
+  '@paperxyz/embedded-wallet-service-sdk@1.2.5(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@ethersproject/abstract-signer': 5.7.0
       '@ethersproject/bytes': 5.7.0
       '@ethersproject/properties': 5.7.0
-      '@ethersproject/providers': 5.7.2
+      '@ethersproject/providers': 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@paperxyz/sdk-common-utilities': 0.1.1
     transitivePeerDependencies:
       - bufferutil
@@ -7829,160 +7894,176 @@ snapshots:
 
   '@radix-ui/primitive@1.1.1': {}
 
-  '@radix-ui/react-arrow@1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-arrow@1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-arrow@1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-arrow@1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-collection@1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-collection@1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-context': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-slot': 1.1.2(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
   '@radix-ui/react-compose-refs@1.0.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-compose-refs@1.1.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-context@1.0.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-context@1.1.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
-  '@radix-ui/react-dialog@1.0.5(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-dialog@1.0.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-context': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-dismissable-layer': 1.0.5(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-dismissable-layer': 1.0.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-focus-guards': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-focus-scope': 1.0.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-focus-scope': 1.0.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-id': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-portal': 1.0.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-presence': 1.0.1(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-portal': 1.0.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-presence': 1.0.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-slot': 1.0.2(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-controllable-state': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       aria-hidden: 1.2.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-remove-scroll: 2.5.5(@types/react@18.3.18)(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-dialog@1.1.6(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-dialog@1.1.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/primitive': 1.1.1
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-context': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-dismissable-layer': 1.1.5(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-dismissable-layer': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-focus-guards': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-focus-scope': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-focus-scope': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-id': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-portal': 1.1.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-presence': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-portal': 1.1.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-presence': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-slot': 1.1.2(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-controllable-state': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       aria-hidden: 1.2.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-remove-scroll: 2.6.3(@types/react@18.3.18)(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
   '@radix-ui/react-direction@1.1.0(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
-  '@radix-ui/react-dismissable-layer@1.0.5(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-dismissable-layer@1.0.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-escape-keydown': 1.0.3(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-dismissable-layer@1.1.5(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-dismissable-layer@1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/primitive': 1.1.1
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-callback-ref': 1.1.0(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-escape-keydown': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
   '@radix-ui/react-focus-guards@1.0.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-focus-guards@1.1.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
-  '@radix-ui/react-focus-scope@1.0.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-focus-scope@1.0.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-focus-scope@1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-focus-scope@1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-callback-ref': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
   '@radix-ui/react-icons@1.3.0(react@18.3.1)':
     dependencies:
@@ -7996,299 +8077,330 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-id@1.1.0(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@radix-ui/react-use-layout-effect': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
-  '@radix-ui/react-popover@1.1.6(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-popover@1.1.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/primitive': 1.1.1
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-context': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-dismissable-layer': 1.1.5(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-dismissable-layer': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-focus-guards': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-focus-scope': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-focus-scope': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-id': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-popper': 1.2.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-portal': 1.1.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-presence': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-popper': 1.2.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-portal': 1.1.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-presence': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-slot': 1.1.2(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-controllable-state': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       aria-hidden: 1.2.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-remove-scroll: 2.6.3(@types/react@18.3.18)(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-popper@1.1.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-popper@1.1.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-arrow': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-arrow': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-context': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-rect': 1.0.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-size': 1.0.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/rect': 1.0.1
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-popper@1.2.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-popper@1.2.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-arrow': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-arrow': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-context': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-callback-ref': 1.1.0(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-layout-effect': 1.1.0(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-rect': 1.1.0(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-size': 1.1.0(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/rect': 1.1.0
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-portal@1.0.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-portal@1.0.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-portal@1.1.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-portal@1.1.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-layout-effect': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-presence@1.0.1(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-presence@1.0.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-presence@1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-presence@1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-layout-effect': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-primitive@1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-primitive@1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/react-slot': 1.0.2(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-primitive@2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-primitive@2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-slot': 1.1.2(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-roving-focus@1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-roving-focus@1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/primitive': 1.1.1
-      '@radix-ui/react-collection': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-collection': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-context': 1.1.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-direction': 1.1.0(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-id': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-callback-ref': 1.1.0(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-controllable-state': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
   '@radix-ui/react-slot@1.0.2(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-slot@1.1.2(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
-  '@radix-ui/react-tabs@1.1.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-tabs@1.1.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/primitive': 1.1.1
       '@radix-ui/react-context': 1.1.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-direction': 1.1.0(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-id': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-presence': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-roving-focus': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-presence': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-roving-focus': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-controllable-state': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-tooltip@1.0.7(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-tooltip@1.0.7(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-context': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-dismissable-layer': 1.0.5(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-dismissable-layer': 1.0.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-id': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-popper': 1.1.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-portal': 1.0.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-presence': 1.0.1(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-popper': 1.1.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-portal': 1.0.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-presence': 1.0.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-slot': 1.0.2(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-controllable-state': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-visually-hidden': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
+      '@radix-ui/react-visually-hidden': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-tooltip@1.1.8(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-tooltip@1.1.8(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/primitive': 1.1.1
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-context': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-dismissable-layer': 1.1.5(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-dismissable-layer': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-id': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-popper': 1.2.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-portal': 1.1.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-presence': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-popper': 1.2.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-portal': 1.1.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-presence': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-slot': 1.1.2(@types/react@18.3.18)(react@18.3.1)
       '@radix-ui/react-use-controllable-state': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-visually-hidden': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
+      '@radix-ui/react-visually-hidden': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
   '@radix-ui/react-use-callback-ref@1.0.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-callback-ref@1.1.0(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-controllable-state@1.0.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-controllable-state@1.1.0(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@radix-ui/react-use-callback-ref': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-escape-keydown@1.0.3(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-escape-keydown@1.1.0(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@radix-ui/react-use-callback-ref': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-layout-effect@1.0.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-layout-effect@1.1.0(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-rect@1.0.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/rect': 1.0.1
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-rect@1.1.0(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@radix-ui/rect': 1.1.0
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-size@1.0.1(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   '@radix-ui/react-use-size@1.1.0(@types/react@18.3.18)(react@18.3.1)':
     dependencies:
       '@radix-ui/react-use-layout-effect': 1.1.0(@types/react@18.3.18)(react@18.3.1)
-      '@types/react': 18.3.18
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
-  '@radix-ui/react-visually-hidden@1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-visually-hidden@1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
-  '@radix-ui/react-visually-hidden@1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)':
+  '@radix-ui/react-visually-hidden@1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@types/react': 18.3.18
-      '@types/react-dom': 18.3.5(@types/react@18.3.18)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
 
   '@radix-ui/rect@1.0.1':
     dependencies:
@@ -8351,7 +8463,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@safe-global/safe-core-sdk@3.3.5(ethers@5.7.2)':
+  '@safe-global/safe-core-sdk@3.3.5(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))':
     dependencies:
       '@ethersproject/solidity': 5.7.0
       '@safe-global/safe-core-sdk-types': 1.10.1
@@ -8360,7 +8472,7 @@ snapshots:
       ethereumjs-util: 7.1.5
       semver: 7.7.1
       web3-utils: 1.10.4
-      zksync-web3: 0.14.4(ethers@5.7.2)
+      zksync-web3: 0.14.4(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
     transitivePeerDependencies:
       - encoding
       - ethers
@@ -8370,13 +8482,13 @@ snapshots:
     dependencies:
       semver: 7.7.1
 
-  '@safe-global/safe-ethers-adapters@0.1.0-alpha.19(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(ethers@5.7.2)':
+  '@safe-global/safe-ethers-adapters@0.1.0-alpha.19(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))':
     dependencies:
       '@ethersproject/abstract-provider': 5.7.0
       '@ethersproject/abstract-signer': 5.7.0
       '@ethersproject/bignumber': 5.7.0
       '@ethersproject/properties': 5.7.0
-      '@safe-global/safe-core-sdk': 3.3.5(ethers@5.7.2)
+      '@safe-global/safe-core-sdk': 3.3.5(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       '@safe-global/safe-core-sdk-types': 1.10.1
       '@safe-global/safe-deployments': 1.37.29
       axios: 0.27.2
@@ -8386,11 +8498,11 @@ snapshots:
       - ethers
       - supports-color
 
-  '@safe-global/safe-ethers-lib@1.9.4':
+  '@safe-global/safe-ethers-lib@1.9.4(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@safe-global/safe-core-sdk-types': 1.10.1
       '@safe-global/safe-core-sdk-utils': 1.7.4
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -8573,19 +8685,20 @@ snapshots:
 
   '@tanstack/query-core@5.29.0': {}
 
-  '@tanstack/react-query@4.36.1(react-dom@18.3.1)(react@18.3.1)':
+  '@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/query-core': 4.36.1
       react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
       use-sync-external-store: 1.4.0(react@18.3.1)
+    optionalDependencies:
+      react-dom: 18.3.1(react@18.3.1)
 
   '@tanstack/react-query@5.29.2(react@18.3.1)':
     dependencies:
       '@tanstack/query-core': 5.29.0
       react: 18.3.1
 
-  '@tanstack/react-virtual@3.13.0(react-dom@18.3.1)(react@18.3.1)':
+  '@tanstack/react-virtual@3.13.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/virtual-core': 3.13.0
       react: 18.3.1
@@ -8600,16 +8713,17 @@ snapshots:
       reflect-metadata: 0.1.14
       typedi: 0.10.0
 
-  '@thirdweb-dev/auth@4.1.97(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)':
+  '@thirdweb-dev/auth@4.1.97(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)':
     dependencies:
       '@fastify/cookie': 9.4.0
-      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
+      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
       cookie: 0.6.0
-      ethers: 5.7.2
-      fastify: 4.29.0
       fastify-type-provider-zod: 1.2.0(fastify@4.29.0)(zod@3.24.2)
       uuid: 9.0.1
       zod: 3.24.2
+    optionalDependencies:
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      fastify: 4.29.0
     transitivePeerDependencies:
       - '@aws-sdk/client-lambda'
       - '@aws-sdk/client-secrets-manager'
@@ -8662,10 +8776,10 @@ snapshots:
 
   '@thirdweb-dev/chains@0.1.120': {}
 
-  '@thirdweb-dev/contracts-js@1.3.23(ethers@5.7.2)':
+  '@thirdweb-dev/contracts-js@1.3.23(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))':
     dependencies:
       '@thirdweb-dev/contracts': 3.15.0
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
 
   '@thirdweb-dev/contracts@3.15.0':
     dependencies:
@@ -8690,23 +8804,23 @@ snapshots:
       buffer-reverse: 1.0.1
       treeify: 1.1.0
 
-  '@thirdweb-dev/payments@1.0.5':
+  '@thirdweb-dev/payments@1.0.5(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@thirdweb-dev/react-core@4.9.4(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)':
+  '@thirdweb-dev/react-core@4.9.4(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)':
     dependencies:
-      '@tanstack/react-query': 4.36.1(react-dom@18.3.1)(react@18.3.1)
-      '@thirdweb-dev/auth': 4.1.97(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
+      '@tanstack/react-query': 4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@thirdweb-dev/auth': 4.1.97(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
       '@thirdweb-dev/chains': 0.1.120
       '@thirdweb-dev/generated-abis': 0.0.2
-      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
+      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
       '@thirdweb-dev/storage': 2.0.15
-      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
-      ethers: 5.7.2
+      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       mime: 3.0.0
       react: 18.3.1
       tiny-invariant: 1.3.3
@@ -8764,32 +8878,32 @@ snapshots:
       - utf-8-validate
       - zksync-ethers
 
-  '@thirdweb-dev/react@4.9.4(@babel/core@7.26.9)(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@thirdweb-dev/sdk@4.0.99)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)':
+  '@thirdweb-dev/react@4.9.4(@babel/core@7.26.9)(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)':
     dependencies:
       '@emotion/css': 11.10.5(@babel/core@7.26.9)
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
-      '@emotion/styled': 11.11.0(@emotion/react@11.14.0)(@types/react@18.3.18)(react@18.3.1)
+      '@emotion/styled': 11.11.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@google/model-viewer': 2.1.1
-      '@headlessui/react': 1.7.18(react-dom@18.3.1)(react@18.3.1)
+      '@headlessui/react': 1.7.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/colors': 0.1.9
-      '@radix-ui/react-dialog': 1.1.6(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-focus-scope': 1.1.2(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-dialog': 1.1.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-focus-scope': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-icons': 1.3.2(react@18.3.1)
-      '@radix-ui/react-popover': 1.1.6(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-tabs': 1.1.3(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-tooltip': 1.1.8(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@tanstack/react-query': 4.36.1(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-popover': 1.1.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-tabs': 1.1.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-tooltip': 1.1.8(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/react-query': 4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@thirdweb-dev/chains': 0.1.120
-      '@thirdweb-dev/payments': 1.0.5
-      '@thirdweb-dev/react-core': 4.9.4(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
-      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
-      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
+      '@thirdweb-dev/payments': 1.0.5(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/react-core': 4.9.4(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
       buffer: 6.0.3
       copy-to-clipboard: 3.3.3
       detect-browser: 5.3.0
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       fuse.js: 7.1.0
-      input-otp: 1.4.2(react-dom@18.3.1)(react@18.3.1)
+      input-otp: 1.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       qrcode: 1.5.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -8848,11 +8962,11 @@ snapshots:
       - utf-8-validate
       - zksync-ethers
 
-  '@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)':
+  '@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)':
     dependencies:
-      '@eth-optimism/sdk': 3.3.2(ethers@5.7.2)
+      '@eth-optimism/sdk': 3.3.2(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       '@thirdweb-dev/chains': 0.1.120
-      '@thirdweb-dev/contracts-js': 1.3.23(ethers@5.7.2)
+      '@thirdweb-dev/contracts-js': 1.3.23(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       '@thirdweb-dev/crypto': 0.2.6
       '@thirdweb-dev/generated-abis': 0.0.2
       '@thirdweb-dev/merkletree': 0.2.6
@@ -8861,10 +8975,10 @@ snapshots:
       bn.js: 5.2.1
       bs58: 5.0.0
       buffer: 6.0.3
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       eventemitter3: 5.0.1
       fast-deep-equal: 3.1.3
-      thirdweb: 5.29.6(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)(zod@3.24.2)
+      thirdweb: 5.29.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.24.2)
       tiny-invariant: 1.3.3
       tweetnacl: 1.0.3
       uuid: 9.0.1
@@ -8915,42 +9029,45 @@ snapshots:
       form-data: 4.0.2
       uuid: 9.0.1
 
-  '@thirdweb-dev/wallets@2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(localforage@1.10.0)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)':
+  '@thirdweb-dev/wallets@2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)':
     dependencies:
       '@account-abstraction/contracts': 0.5.0
-      '@blocto/sdk': 0.10.2
+      '@blocto/sdk': 0.10.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@coinbase/wallet-sdk': 3.9.3
       '@google-cloud/kms': 4.5.0
       '@magic-ext/connect': 6.7.2
       '@magic-ext/oauth': 7.6.2
       '@magic-sdk/provider': 13.6.2(localforage@1.10.0)
       '@metamask/eth-sig-util': 4.0.1
-      '@paperxyz/embedded-wallet-service-sdk': 1.2.5
+      '@paperxyz/embedded-wallet-service-sdk': 1.2.5(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@paperxyz/sdk-common-utilities': 0.1.1
-      '@safe-global/safe-core-sdk': 3.3.5(ethers@5.7.2)
-      '@safe-global/safe-ethers-adapters': 0.1.0-alpha.19(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(ethers@5.7.2)
-      '@safe-global/safe-ethers-lib': 1.9.4
+      '@safe-global/safe-core-sdk': 3.3.5(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
+      '@safe-global/safe-ethers-adapters': 0.1.0-alpha.19(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
+      '@safe-global/safe-ethers-lib': 1.9.4(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@thirdweb-dev/chains': 0.1.120
-      '@thirdweb-dev/contracts-js': 1.3.23(ethers@5.7.2)
+      '@thirdweb-dev/contracts-js': 1.3.23(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       '@thirdweb-dev/crypto': 0.2.6
-      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
-      '@walletconnect/core': 2.18.0
-      '@walletconnect/ethereum-provider': 2.12.2(@types/react@18.3.18)(react@18.3.1)
+      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@walletconnect/core': 2.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      '@walletconnect/ethereum-provider': 2.12.2(@types/react@18.3.18)(bufferutil@4.0.9)(react@18.3.1)(utf-8-validate@5.0.10)
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/modal': 2.7.0(@types/react@18.3.18)(react@18.3.1)
       '@walletconnect/types': 2.18.0
       '@walletconnect/utils': 2.18.0
-      '@walletconnect/web3wallet': 1.16.1
+      '@walletconnect/web3wallet': 1.16.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       asn1.js: 5.4.1
       bn.js: 5.2.1
       buffer: 6.0.3
-      eth-provider: 0.13.7
+      eth-provider: 0.13.7(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       ethereumjs-util: 7.1.5
-      ethers: 5.7.2
       eventemitter3: 5.0.1
       key-encoder: 2.0.3
       magic-sdk: 13.6.2
       web3-core: 1.5.2
+    optionalDependencies:
+      bs58: 5.0.0
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      tweetnacl: 1.0.3
     transitivePeerDependencies:
       - '@aws-sdk/client-lambda'
       - '@aws-sdk/credential-providers'
@@ -9012,11 +9129,11 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@typechain/ethers-v5@10.2.1(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2)(ethers@5.7.2)(typechain@8.3.2)(typescript@4.9.5)':
+  '@typechain/ethers-v5@10.2.1(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typechain@8.3.2(typescript@4.9.5))(typescript@4.9.5)':
     dependencies:
       '@ethersproject/abi': 5.7.0
-      '@ethersproject/providers': 5.7.2
-      ethers: 5.7.2
+      '@ethersproject/providers': 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       lodash: 4.17.21
       ts-essentials: 7.0.3(typescript@4.9.5)
       typechain: 8.3.2(typescript@4.9.5)
@@ -9198,7 +9315,7 @@ snapshots:
 
   '@types/trusted-types@2.0.7': {}
 
-  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.57.1)(typescript@4.9.5)':
+  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@4.9.5))(eslint@8.57.1)(typescript@4.9.5)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@4.9.5)
@@ -9212,6 +9329,7 @@ snapshots:
       natural-compare-lite: 1.4.0
       semver: 7.7.1
       tsutils: 3.21.0(typescript@4.9.5)
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -9223,6 +9341,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
       debug: 4.4.0(supports-color@8.1.1)
       eslint: 8.57.1
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -9239,6 +9358,7 @@ snapshots:
       debug: 4.4.0(supports-color@8.1.1)
       eslint: 8.57.1
       tsutils: 3.21.0(typescript@4.9.5)
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -9254,6 +9374,7 @@ snapshots:
       is-glob: 4.0.3
       semver: 7.7.1
       tsutils: 3.21.0(typescript@4.9.5)
+    optionalDependencies:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -9280,7 +9401,7 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vitejs/plugin-react@4.3.4(vite@4.5.9)':
+  '@vitejs/plugin-react@4.3.4(vite@4.5.9(@types/node@18.19.76))':
     dependencies:
       '@babel/core': 7.26.9
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.9)
@@ -9291,13 +9412,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@walletconnect/auth-client@2.1.2':
+  '@walletconnect/auth-client@2.1.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@ethersproject/hash': 5.7.0
       '@ethersproject/transactions': 5.7.0
       '@stablelib/random': 1.0.2
       '@stablelib/sha256': 1.0.1
-      '@walletconnect/core': 2.18.0
+      '@walletconnect/core': 2.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-utils': 1.0.8
@@ -9329,13 +9450,13 @@ snapshots:
       - uploadthing
       - utf-8-validate
 
-  '@walletconnect/core@2.12.2':
+  '@walletconnect/core@2.12.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@walletconnect/heartbeat': 1.2.1
       '@walletconnect/jsonrpc-provider': 1.0.13
       '@walletconnect/jsonrpc-types': 1.0.3
       '@walletconnect/jsonrpc-utils': 1.0.8
-      '@walletconnect/jsonrpc-ws-connection': 1.0.14
+      '@walletconnect/jsonrpc-ws-connection': 1.0.14(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/keyvaluestorage': 1.1.1
       '@walletconnect/logger': 2.1.2
       '@walletconnect/relay-api': 1.0.11
@@ -9371,13 +9492,13 @@ snapshots:
       - uploadthing
       - utf-8-validate
 
-  '@walletconnect/core@2.17.1':
+  '@walletconnect/core@2.17.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
-      '@walletconnect/jsonrpc-ws-connection': 1.0.14
+      '@walletconnect/jsonrpc-ws-connection': 1.0.14(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/keyvaluestorage': 1.1.1
       '@walletconnect/logger': 2.1.2
       '@walletconnect/relay-api': 1.0.11
@@ -9412,13 +9533,13 @@ snapshots:
       - uploadthing
       - utf-8-validate
 
-  '@walletconnect/core@2.18.0':
+  '@walletconnect/core@2.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
-      '@walletconnect/jsonrpc-ws-connection': 1.0.16
+      '@walletconnect/jsonrpc-ws-connection': 1.0.16(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/keyvaluestorage': 1.1.1
       '@walletconnect/logger': 2.1.2
       '@walletconnect/relay-api': 1.0.11
@@ -9457,16 +9578,16 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  '@walletconnect/ethereum-provider@2.12.2(@types/react@18.3.18)(react@18.3.1)':
+  '@walletconnect/ethereum-provider@2.12.2(@types/react@18.3.18)(bufferutil@4.0.9)(react@18.3.1)(utf-8-validate@5.0.10)':
     dependencies:
       '@walletconnect/jsonrpc-http-connection': 1.0.8
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/modal': 2.7.0(@types/react@18.3.18)(react@18.3.1)
-      '@walletconnect/sign-client': 2.12.2
+      '@walletconnect/sign-client': 2.12.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/types': 2.12.2
-      '@walletconnect/universal-provider': 2.12.2
+      '@walletconnect/universal-provider': 2.12.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/utils': 2.12.2
       events: 3.3.0
     transitivePeerDependencies:
@@ -9548,22 +9669,22 @@ snapshots:
       '@walletconnect/jsonrpc-types': 1.0.4
       tslib: 1.14.1
 
-  '@walletconnect/jsonrpc-ws-connection@1.0.14':
+  '@walletconnect/jsonrpc-ws-connection@1.0.14(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/safe-json': 1.0.2
       events: 3.3.0
-      ws: 7.5.10
+      ws: 7.5.10(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@walletconnect/jsonrpc-ws-connection@1.0.16':
+  '@walletconnect/jsonrpc-ws-connection@1.0.16(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/safe-json': 1.0.2
       events: 3.3.0
-      ws: 7.5.10
+      ws: 7.5.10(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -9647,9 +9768,9 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  '@walletconnect/sign-client@2.12.2':
+  '@walletconnect/sign-client@2.12.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
-      '@walletconnect/core': 2.12.2
+      '@walletconnect/core': 2.12.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.1
       '@walletconnect/jsonrpc-utils': 1.0.8
@@ -9681,9 +9802,9 @@ snapshots:
       - uploadthing
       - utf-8-validate
 
-  '@walletconnect/sign-client@2.17.1':
+  '@walletconnect/sign-client@2.17.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
-      '@walletconnect/core': 2.17.1
+      '@walletconnect/core': 2.17.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-utils': 1.0.8
@@ -9714,9 +9835,9 @@ snapshots:
       - uploadthing
       - utf-8-validate
 
-  '@walletconnect/sign-client@2.18.0':
+  '@walletconnect/sign-client@2.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
-      '@walletconnect/core': 2.18.0
+      '@walletconnect/core': 2.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-utils': 1.0.8
@@ -9835,14 +9956,14 @@ snapshots:
       - ioredis
       - uploadthing
 
-  '@walletconnect/universal-provider@2.12.2':
+  '@walletconnect/universal-provider@2.12.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@walletconnect/jsonrpc-http-connection': 1.0.8
       '@walletconnect/jsonrpc-provider': 1.0.13
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/logger': 2.1.2
-      '@walletconnect/sign-client': 2.12.2
+      '@walletconnect/sign-client': 2.12.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/types': 2.12.2
       '@walletconnect/utils': 2.12.2
       events: 3.3.0
@@ -9986,14 +10107,14 @@ snapshots:
       - ioredis
       - uploadthing
 
-  '@walletconnect/web3wallet@1.16.1':
+  '@walletconnect/web3wallet@1.16.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
-      '@walletconnect/auth-client': 2.1.2
-      '@walletconnect/core': 2.17.1
+      '@walletconnect/auth-client': 2.1.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      '@walletconnect/core': 2.17.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/logger': 2.1.2
-      '@walletconnect/sign-client': 2.17.1
+      '@walletconnect/sign-client': 2.17.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/types': 2.17.1
       '@walletconnect/utils': 2.17.1
     transitivePeerDependencies:
@@ -10032,14 +10153,14 @@ snapshots:
     dependencies:
       '@web3-react/types': 6.0.7
 
-  '@web3-react/core@8.2.3(@types/react@18.3.18)(react@18.3.1)':
+  '@web3-react/core@8.2.3(@types/react@18.3.18)(bufferutil@4.0.9)(react@18.3.1)(utf-8-validate@5.0.10)':
     dependencies:
       '@web3-react/store': 8.2.3(@types/react@18.3.18)(react@18.3.1)
       '@web3-react/types': 8.2.3(@types/react@18.3.18)(react@18.3.1)
       react: 18.3.1
       zustand: 4.4.0(@types/react@18.3.18)(react@18.3.1)
     optionalDependencies:
-      '@ethersproject/providers': 5.7.2
+      '@ethersproject/providers': 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@types/react'
       - bufferutil
@@ -10083,7 +10204,7 @@ snapshots:
   abbrev@1.0.9: {}
 
   abitype@1.0.0(typescript@4.9.5)(zod@3.24.2):
-    dependencies:
+    optionalDependencies:
       typescript: 4.9.5
       zod: 3.24.2
 
@@ -10139,11 +10260,11 @@ snapshots:
       indent-string: 4.0.0
 
   ajv-formats@2.1.1(ajv@8.17.1):
-    dependencies:
+    optionalDependencies:
       ajv: 8.17.1
 
   ajv-formats@3.0.1(ajv@8.17.1):
-    dependencies:
+    optionalDependencies:
       ajv: 8.17.1
 
   ajv@6.12.6:
@@ -10178,6 +10299,8 @@ snapshots:
   ansi-regex@3.0.1: {}
 
   ansi-regex@5.0.1: {}
+
+  ansi-sequence-parser@1.1.3: {}
 
   ansi-styles@3.2.1:
     dependencies:
@@ -10831,6 +10954,7 @@ snapshots:
   debug@4.4.0(supports-color@8.1.1):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
       supports-color: 8.1.1
 
   decamelize@1.2.0: {}
@@ -10944,9 +11068,9 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  eip1193-provider@1.0.1:
+  eip1193-provider@1.0.1(bufferutil@4.0.9)(utf-8-validate@5.0.10):
     dependencies:
-      '@json-rpc-tools/provider': 1.7.6
+      '@json-rpc-tools/provider': 1.7.6(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -11198,14 +11322,14 @@ snapshots:
       idna-uts46-hx: 2.3.1
       js-sha3: 0.5.7
 
-  eth-gas-reporter@0.2.27:
+  eth-gas-reporter@0.2.27(bufferutil@4.0.9)(utf-8-validate@5.0.10):
     dependencies:
       '@solidity-parser/parser': 0.14.5
       axios: 1.7.9
       cli-table3: 0.5.1
       colors: 1.4.0
       ethereum-cryptography: 1.2.0
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       fs-readdir-recursive: 1.1.0
       lodash: 4.17.21
       markdown-table: 1.1.3
@@ -11232,13 +11356,13 @@ snapshots:
       elliptic: 6.6.1
       xhr-request-promise: 0.1.3
 
-  eth-provider@0.13.7:
+  eth-provider@0.13.7(bufferutil@4.0.9)(utf-8-validate@5.0.10):
     dependencies:
       ethereum-provider: 0.7.7
       events: 3.3.0
       oboe: 2.1.5
       uuid: 9.0.0
-      ws: 8.9.0
+      ws: 8.9.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       xhr2-cookies: 1.1.0
     transitivePeerDependencies:
       - bufferutil
@@ -11293,13 +11417,13 @@ snapshots:
     dependencies:
       events: 3.3.0
 
-  ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2)(ethers@5.7.2)(typescript@4.9.5):
+  ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5):
     dependencies:
-      '@ethereum-waffle/chai': 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2)
-      '@ethereum-waffle/compiler': 4.0.3(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2)(ethers@5.7.2)(solc@0.8.15)(typechain@8.3.2)(typescript@4.9.5)
-      '@ethereum-waffle/mock-contract': 4.0.4(ethers@5.7.2)
-      '@ethereum-waffle/provider': 4.0.5(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2)
-      ethers: 5.7.2
+      '@ethereum-waffle/chai': 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
+      '@ethereum-waffle/compiler': 4.0.3(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(solc@0.8.15)(typechain@8.3.2(typescript@4.9.5))(typescript@4.9.5)
+      '@ethereum-waffle/mock-contract': 4.0.4(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
+      '@ethereum-waffle/provider': 4.0.5(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       solc: 0.8.15
       typechain: 8.3.2(typescript@4.9.5)
     transitivePeerDependencies:
@@ -11343,7 +11467,7 @@ snapshots:
       ethereum-cryptography: 0.1.3
       rlp: 2.2.7
 
-  ethers@5.7.2:
+  ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10):
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@ethersproject/abstract-provider': 5.7.0
@@ -11363,7 +11487,7 @@ snapshots:
       '@ethersproject/networks': 5.7.1
       '@ethersproject/pbkdf2': 5.7.0
       '@ethersproject/properties': 5.7.0
-      '@ethersproject/providers': 5.7.2
+      '@ethersproject/providers': 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@ethersproject/random': 5.7.0
       '@ethersproject/rlp': 5.7.0
       '@ethersproject/sha2': 5.7.0
@@ -11495,7 +11619,7 @@ snapshots:
       reusify: 1.0.4
 
   fdir@6.4.3(picomatch@4.0.2):
-    dependencies:
+    optionalDependencies:
       picomatch: 4.0.2
 
   fetch-blob@3.2.0:
@@ -11555,7 +11679,7 @@ snapshots:
       tslib: 2.8.1
 
   follow-redirects@1.15.9(debug@4.4.0):
-    dependencies:
+    optionalDependencies:
       debug: 4.4.0(supports-color@8.1.1)
 
   for-each@0.3.5:
@@ -11593,13 +11717,13 @@ snapshots:
 
   fp-ts@1.19.3: {}
 
-  framer-motion@10.18.0(react-dom@18.3.1)(react@18.3.1):
+  framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
       tslib: 2.8.1
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   framesync@6.1.2:
     dependencies:
@@ -11862,11 +11986,11 @@ snapshots:
       ajv: 6.12.6
       har-schema: 2.0.0
 
-  hardhat-gas-reporter@1.0.10(hardhat@2.22.18):
+  hardhat-gas-reporter@1.0.10(bufferutil@4.0.9)(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10):
     dependencies:
       array-uniq: 1.0.3
-      eth-gas-reporter: 0.2.27
-      hardhat: 2.22.18(ts-node@10.9.2)(typescript@4.9.5)
+      eth-gas-reporter: 0.2.27(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
       sha1: 1.1.1
     transitivePeerDependencies:
       - '@codechecks/client'
@@ -11874,7 +11998,7 @@ snapshots:
       - debug
       - utf-8-validate
 
-  hardhat@2.22.18(ts-node@10.9.2)(typescript@4.9.5):
+  hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10):
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@metamask/eth-sig-util': 4.0.1
@@ -11916,12 +12040,13 @@ snapshots:
       source-map-support: 0.5.21
       stacktrace-parser: 0.1.10
       tinyglobby: 0.2.10
-      ts-node: 10.9.2(@types/node@18.19.76)(typescript@4.9.5)
       tsort: 0.0.1
-      typescript: 4.9.5
       undici: 5.28.5
       uuid: 8.3.2
-      ws: 7.5.10
+      ws: 7.5.10(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+    optionalDependencies:
+      ts-node: 10.9.2(@types/node@18.19.76)(typescript@4.9.5)
+      typescript: 4.9.5
     transitivePeerDependencies:
       - bufferutil
       - c-kzg
@@ -12077,7 +12202,7 @@ snapshots:
 
   ini@1.3.8: {}
 
-  input-otp@1.4.2(react-dom@18.3.1)(react@18.3.1):
+  input-otp@1.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -12176,11 +12301,28 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  isows@1.0.4(ws@8.13.0):
+  isows@1.0.4(ws@8.13.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)):
     dependencies:
-      ws: 8.13.0
+      ws: 8.13.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
 
   isstream@0.1.2: {}
+
+  istanbul@0.4.5:
+    dependencies:
+      abbrev: 1.0.9
+      async: 1.5.2
+      escodegen: 1.8.1
+      esprima: 2.7.3
+      glob: 5.0.15
+      handlebars: 4.7.8
+      js-yaml: 3.14.1
+      mkdirp: 0.5.6
+      nopt: 3.0.6
+      once: 1.4.0
+      resolve: 1.1.7
+      supports-color: 3.2.3
+      which: 1.3.1
+      wordwrap: 1.0.0
 
   js-sha3@0.5.7: {}
 
@@ -12235,6 +12377,8 @@ snapshots:
   json-stringify-safe@5.0.1: {}
 
   json5@2.2.3: {}
+
+  jsonc-parser@3.3.1: {}
 
   jsonfile@2.4.0:
     optionalDependencies:
@@ -12437,9 +12581,11 @@ snapshots:
 
   ltgt@2.2.1: {}
 
+  lunr@2.3.9: {}
+
   magic-sdk@13.6.2:
     dependencies:
-      '@magic-sdk/commons': 9.6.2(@magic-sdk/provider@13.6.2)(@magic-sdk/types@11.6.2)
+      '@magic-sdk/commons': 9.6.2(@magic-sdk/provider@13.6.2(localforage@1.10.0))(@magic-sdk/types@11.6.2)
       '@magic-sdk/provider': 13.6.2(localforage@1.10.0)
       '@magic-sdk/types': 11.6.2
       localforage: 1.10.0
@@ -12449,6 +12595,8 @@ snapshots:
   make-error@1.3.6: {}
 
   markdown-table@1.1.3: {}
+
+  marked@4.3.0: {}
 
   math-intrinsics@1.1.0: {}
 
@@ -12528,10 +12676,14 @@ snapshots:
     dependencies:
       brace-expansion: 2.0.1
 
+  minimatch@9.0.5:
+    dependencies:
+      brace-expansion: 2.0.1
+
   minimist@1.2.8: {}
 
   mipd@0.0.7(typescript@4.9.5):
-    dependencies:
+    optionalDependencies:
       typescript: 4.9.5
 
   mkdirp@0.5.6:
@@ -13061,13 +13213,14 @@ snapshots:
   react-focus-lock@2.13.6(@types/react@18.3.18)(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.9
-      '@types/react': 18.3.18
       focus-lock: 1.3.6
       prop-types: 15.8.1
       react: 18.3.1
       react-clientside-effect: 1.2.7(react@18.3.1)
       use-callback-ref: 1.3.3(@types/react@18.3.18)(react@18.3.1)
       use-sidecar: 1.1.3(@types/react@18.3.18)(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   react-icons@4.12.0(react@18.3.1):
     dependencies:
@@ -13081,32 +13234,35 @@ snapshots:
 
   react-remove-scroll-bar@2.3.8(@types/react@18.3.18)(react@18.3.1):
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
       react-style-singleton: 2.2.3(@types/react@18.3.18)(react@18.3.1)
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   react-remove-scroll@2.5.5(@types/react@18.3.18)(react@18.3.1):
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
       react-remove-scroll-bar: 2.3.8(@types/react@18.3.18)(react@18.3.1)
       react-style-singleton: 2.2.3(@types/react@18.3.18)(react@18.3.1)
       tslib: 2.8.1
       use-callback-ref: 1.3.3(@types/react@18.3.18)(react@18.3.1)
       use-sidecar: 1.1.3(@types/react@18.3.18)(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   react-remove-scroll@2.6.3(@types/react@18.3.18)(react@18.3.1):
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
       react-remove-scroll-bar: 2.3.8(@types/react@18.3.18)(react@18.3.1)
       react-style-singleton: 2.2.3(@types/react@18.3.18)(react@18.3.1)
       tslib: 2.8.1
       use-callback-ref: 1.3.3(@types/react@18.3.18)(react@18.3.1)
       use-sidecar: 1.1.3(@types/react@18.3.18)(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
 
-  react-router-dom@6.29.0(react-dom@18.3.1)(react@18.3.1):
+  react-router-dom@6.29.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@remix-run/router': 1.22.0
       react: 18.3.1
@@ -13118,22 +13274,23 @@ snapshots:
       '@remix-run/router': 1.22.0
       react: 18.3.1
 
-  react-smooth@4.0.4(react-dom@18.3.1)(react@18.3.1):
+  react-smooth@4.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       fast-equals: 5.2.2
       prop-types: 15.8.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-transition-group: 4.4.5(react-dom@18.3.1)(react@18.3.1)
+      react-transition-group: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   react-style-singleton@2.2.3(@types/react@18.3.18)(react@18.3.1):
     dependencies:
-      '@types/react': 18.3.18
       get-nonce: 1.0.1
       react: 18.3.1
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
-  react-transition-group@4.4.5(react-dom@18.3.1)(react@18.3.1):
+  react-transition-group@4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.9
       dom-helpers: 5.2.1
@@ -13187,7 +13344,7 @@ snapshots:
     dependencies:
       decimal.js-light: 2.5.1
 
-  recharts@2.15.1(react-dom@18.3.1)(react@18.3.1):
+  recharts@2.15.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       clsx: 2.1.1
       eventemitter3: 4.0.7
@@ -13195,7 +13352,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-is: 18.3.1
-      react-smooth: 4.0.4(react-dom@18.3.1)(react@18.3.1)
+      react-smooth: 4.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       recharts-scale: 0.4.5
       tiny-invariant: 1.3.3
       victory-vendor: 36.9.2
@@ -13421,6 +13578,13 @@ snapshots:
       interpret: 1.4.0
       rechoir: 0.6.2
 
+  shiki@0.14.7:
+    dependencies:
+      ansi-sequence-parser: 1.1.3
+      jsonc-parser: 3.3.1
+      vscode-oniguruma: 1.7.0
+      vscode-textmate: 8.0.0
+
   side-channel-list@1.0.0:
     dependencies:
       es-errors: 1.3.0
@@ -13493,7 +13657,9 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  solidity-coverage@0.8.14(hardhat@2.22.18):
+  solidity-ast@0.4.59: {}
+
+  solidity-coverage@0.8.14(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)):
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@solidity-parser/parser': 0.19.0
@@ -13504,7 +13670,7 @@ snapshots:
       ghost-testrpc: 0.0.2
       global-modules: 2.0.0
       globby: 10.0.2
-      hardhat: 2.22.18(ts-node@10.9.2)(typescript@4.9.5)
+      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
       jsonschema: 1.5.0
       lodash: 4.17.21
       mocha: 10.8.2
@@ -13515,6 +13681,12 @@ snapshots:
       semver: 7.7.1
       shelljs: 0.8.5
       web3-utils: 1.10.4
+
+  solidity-docgen@0.6.0-beta.36(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)):
+    dependencies:
+      handlebars: 4.7.8
+      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
+      solidity-ast: 0.4.59
 
   sonic-boom@2.8.0:
     dependencies:
@@ -13724,33 +13896,34 @@ snapshots:
       promise: 8.3.0
       qs: 6.14.0
 
-  thirdweb@5.29.6(@types/react-dom@18.3.5)(@types/react@18.3.18)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)(zod@3.24.2):
+  thirdweb@5.29.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.24.2):
     dependencies:
       '@coinbase/wallet-sdk': 4.0.3
       '@emotion/react': 11.11.4(@types/react@18.3.18)(react@18.3.1)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@18.3.18)(react@18.3.1)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@google/model-viewer': 2.1.1
       '@noble/curves': 1.4.0
       '@noble/hashes': 1.4.0
       '@passwordless-id/webauthn': 1.6.2
-      '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-focus-scope': 1.0.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-focus-scope': 1.0.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-icons': 1.3.0(react@18.3.1)
-      '@radix-ui/react-tooltip': 1.0.7(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+      '@radix-ui/react-tooltip': 1.0.7(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-query': 5.29.2(react@18.3.1)
-      '@walletconnect/ethereum-provider': 2.12.2(@types/react@18.3.18)(react@18.3.1)
-      '@walletconnect/sign-client': 2.18.0
+      '@walletconnect/ethereum-provider': 2.12.2(@types/react@18.3.18)(bufferutil@4.0.9)(react@18.3.1)(utf-8-validate@5.0.10)
+      '@walletconnect/sign-client': 2.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       abitype: 1.0.0(typescript@4.9.5)(zod@3.24.2)
-      ethers: 5.7.2
       fast-text-encoding: 1.0.6
       fuse.js: 7.0.0
-      input-otp: 1.4.2(react-dom@18.3.1)(react@18.3.1)
+      input-otp: 1.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       mipd: 0.0.7(typescript@4.9.5)
       node-libs-browser: 2.2.1
+      uqr: 0.1.2
+      viem: 2.13.7(bufferutil@4.0.9)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.24.2)
+    optionalDependencies:
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       react: 18.3.1
       typescript: 4.9.5
-      uqr: 0.1.2
-      viem: 2.13.7(typescript@4.9.5)(zod@3.24.2)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -13924,6 +14097,14 @@ snapshots:
 
   typedi@0.10.0: {}
 
+  typedoc@0.25.13(typescript@4.9.5):
+    dependencies:
+      lunr: 2.3.9
+      marked: 4.3.0
+      minimatch: 9.0.5
+      shiki: 0.14.7
+      typescript: 4.9.5
+
   typescript@4.9.5: {}
 
   typical@4.0.0: {}
@@ -13967,11 +14148,12 @@ snapshots:
       chokidar: 3.6.0
       destr: 2.0.3
       h3: 1.15.0
-      idb-keyval: 6.2.1
       lru-cache: 10.4.3
       node-fetch-native: 1.6.6
       ofetch: 1.4.1
       ufo: 1.5.4
+    optionalDependencies:
+      idb-keyval: 6.2.1
 
   update-browserslist-db@1.1.2(browserslist@4.24.4):
     dependencies:
@@ -13994,16 +14176,18 @@ snapshots:
 
   use-callback-ref@1.3.3(@types/react@18.3.18)(react@18.3.1):
     dependencies:
-      '@types/react': 18.3.18
       react: 18.3.1
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   use-sidecar@1.1.3(@types/react@18.3.18)(react@18.3.1):
     dependencies:
-      '@types/react': 18.3.18
       detect-node-es: 1.1.0
       react: 18.3.1
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 18.3.18
 
   use-sync-external-store@1.2.0(react@18.3.1):
     dependencies:
@@ -14059,10 +14243,11 @@ snapshots:
 
   valtio@1.11.2(@types/react@18.3.18)(react@18.3.1):
     dependencies:
-      '@types/react': 18.3.18
       proxy-compare: 2.5.1
-      react: 18.3.1
       use-sync-external-store: 1.2.0(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      react: 18.3.1
 
   varint@5.0.2: {}
 
@@ -14091,7 +14276,7 @@ snapshots:
       d3-time: 3.1.0
       d3-timer: 3.0.1
 
-  viem@2.13.7(typescript@4.9.5)(zod@3.24.2):
+  viem@2.13.7(bufferutil@4.0.9)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.24.2):
     dependencies:
       '@adraffy/ens-normalize': 1.10.0
       '@noble/curves': 1.2.0
@@ -14099,9 +14284,10 @@ snapshots:
       '@scure/bip32': 1.3.2
       '@scure/bip39': 1.2.1
       abitype: 1.0.0(typescript@4.9.5)(zod@3.24.2)
-      isows: 1.0.4(ws@8.13.0)
+      isows: 1.0.4(ws@8.13.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))
+      ws: 8.13.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+    optionalDependencies:
       typescript: 4.9.5
-      ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -14109,14 +14295,18 @@ snapshots:
 
   vite@4.5.9(@types/node@18.19.76):
     dependencies:
-      '@types/node': 18.19.76
       esbuild: 0.18.20
       postcss: 8.5.2
       rollup: 3.29.5
     optionalDependencies:
+      '@types/node': 18.19.76
       fsevents: 2.3.3
 
   vm-browserify@1.1.2: {}
+
+  vscode-oniguruma@1.7.0: {}
+
+  vscode-textmate@8.0.0: {}
 
   web-streams-polyfill@3.3.3: {}
 
@@ -14357,13 +14547,25 @@ snapshots:
 
   wrappy@1.0.2: {}
 
-  ws@7.4.6: {}
+  ws@7.4.6(bufferutil@4.0.9)(utf-8-validate@5.0.10):
+    optionalDependencies:
+      bufferutil: 4.0.9
+      utf-8-validate: 5.0.10
 
-  ws@7.5.10: {}
+  ws@7.5.10(bufferutil@4.0.9)(utf-8-validate@5.0.10):
+    optionalDependencies:
+      bufferutil: 4.0.9
+      utf-8-validate: 5.0.10
 
-  ws@8.13.0: {}
+  ws@8.13.0(bufferutil@4.0.9)(utf-8-validate@5.0.10):
+    optionalDependencies:
+      bufferutil: 4.0.9
+      utf-8-validate: 5.0.10
 
-  ws@8.9.0: {}
+  ws@8.9.0(bufferutil@4.0.9)(utf-8-validate@5.0.10):
+    optionalDependencies:
+      bufferutil: 4.0.9
+      utf-8-validate: 5.0.10
 
   xhr-request-promise@0.1.3:
     dependencies:
@@ -14482,9 +14684,9 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zksync-web3@0.14.4(ethers@5.7.2):
+  zksync-web3@0.14.4(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)):
     dependencies:
-      ethers: 5.7.2
+      ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
 
   zod-to-json-schema@3.24.1(zod@3.24.2):
     dependencies:
@@ -14494,6 +14696,7 @@ snapshots:
 
   zustand@4.4.0(@types/react@18.3.18)(react@18.3.1):
     dependencies:
+      use-sync-external-store: 1.2.0(react@18.3.1)
+    optionalDependencies:
       '@types/react': 18.3.18
       react: 18.3.1
-      use-sync-external-store: 1.2.0(react@18.3.1)
