@@ -31,7 +31,7 @@ jobs:
         cache: 'pnpm'
 
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      run: pnpm install
 
     - name: Validate environment configuration
       run: node scripts/validate-env.js
@@ -66,4 +66,4 @@ jobs:
         git config --local user.name "GitHub Action"
         git add .env.example deployment/config/templates/*
         git diff --quiet && git diff --staged --quiet || git commit -m "chore: update environment templates [skip ci]"
-        git push          
+        git push            

@@ -23,7 +23,7 @@ jobs:
         cache: 'pnpm'
 
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      run: pnpm install
 
     - name: Check network health
       id: health
@@ -83,7 +83,7 @@ jobs:
         cache: 'pnpm'
 
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      run: pnpm install
 
     - name: Collect metrics
       run: |
@@ -97,4 +97,4 @@ jobs:
         node scripts/monitor/update-dashboard.js
       env:
         GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
-        DASHBOARD_ID: ${{ secrets.GRAFANA_DASHBOARD_ID }}          
+        DASHBOARD_ID: ${{ secrets.GRAFANA_DASHBOARD_ID }}            

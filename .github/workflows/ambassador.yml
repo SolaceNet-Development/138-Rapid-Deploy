@@ -70,7 +70,7 @@ jobs:
         cache: 'pnpm'
 
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      run: pnpm install
 
     - name: Distribute Rewards
       run: |
@@ -122,4 +122,4 @@ jobs:
               team_slug: `ambassadors-${rank.toLowerCase()}`,
               username: user
             });
-          }          
+          }            
