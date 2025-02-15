@@ -17,12 +17,14 @@ jobs:
           node-version: '18.12.1'
       
       - name: Install pnpm
-        run: npm install -g pnpm@8.15.4
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 8.15.4
       
       - name: Check for updates
         id: ncu
         run: |
-          npm install -g npm-check-updates
+          pnpm add -g npm-check-updates
           ncu --packageFile package.json --format json > updates.json
       
       - name: Create Pull Request

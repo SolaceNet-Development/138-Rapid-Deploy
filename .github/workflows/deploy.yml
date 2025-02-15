@@ -27,7 +27,7 @@ jobs:
       run: pnpm install --frozen-lockfile
     
     - name: Deploy to testnet
-      run: npm run deploy:testnet
+      run: pnpm run deploy:testnet
       env:
         PRIVATE_KEY: ${{ secrets.TESTNET_PRIVATE_KEY }}
         INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
@@ -57,7 +57,7 @@ jobs:
     - name: Deploy to mainnet
       run: |
         echo "Deploying version ${GITHUB_REF#refs/tags/} to mainnet"
-        npm run deploy:mainnet
+        pnpm run deploy:mainnet
       env:
         PRIVATE_KEY: ${{ secrets.MAINNET_PRIVATE_KEY }}
         INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
@@ -71,4 +71,4 @@ jobs:
           artifacts/*.json
         body_path: CHANGELOG.md
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
