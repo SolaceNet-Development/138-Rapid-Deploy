@@ -131,7 +131,7 @@ class ValidatorMonitor {
         this.stakingContract.on('DelegationChanged', async (validator, delegator, amount) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
-                metrics.delegations = await this.stakingContract.getTotalDelegations(validator);
+                metrics.delegations = await (this.stakingContract as any).getTotalDelegations(validator);
                 await this.updateValidatorMetrics(validator);
             }
         });
@@ -372,7 +372,7 @@ class ValidatorMonitor {
         }
 
         try {
-            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY, {
+            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY || 'http://localhost:9091', {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain' },
                 body: metrics.join('\n')
@@ -383,4 +383,4 @@ class ValidatorMonitor {
     }
 }
 
-export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };          
+export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };            
