@@ -26,7 +26,7 @@ jobs:
 
     - name: Install pnpm
       run: |
-        curl -fsSL https://get.pnpm.io/install.sh | sh -
+        npm install -g pnpm@8.15.4
         pnpm -v
         
     - name: Setup Node.js
@@ -81,7 +81,7 @@ jobs:
 
     - name: Install pnpm
       run: |
-        curl -fsSL https://get.pnpm.io/install.sh | sh -
+        npm install -g pnpm@8.15.4
         pnpm -v
         
     - name: Setup Node.js
@@ -105,4 +105,4 @@ jobs:
         destination_dir: api
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: 'docs: update API documentation [skip ci]'      
+        commit_message: 'docs: update API documentation [skip ci]'          

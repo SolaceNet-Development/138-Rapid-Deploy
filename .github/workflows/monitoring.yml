@@ -13,7 +13,7 @@ jobs:
 
     - name: Install pnpm
       run: |
-        curl -fsSL https://get.pnpm.io/install.sh | sh -
+        npm install -g pnpm@8.15.4
         pnpm -v
         
     - name: Setup Node.js
@@ -73,7 +73,7 @@ jobs:
 
     - name: Install pnpm
       run: |
-        curl -fsSL https://get.pnpm.io/install.sh | sh -
+        npm install -g pnpm@8.15.4
         pnpm -v
         
     - name: Setup Node.js
@@ -97,4 +97,4 @@ jobs:
         node scripts/monitor/update-dashboard.js
       env:
         GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
-        DASHBOARD_ID: ${{ secrets.GRAFANA_DASHBOARD_ID }}    
+        DASHBOARD_ID: ${{ secrets.GRAFANA_DASHBOARD_ID }}        

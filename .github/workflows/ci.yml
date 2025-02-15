@@ -18,7 +18,7 @@ jobs:
     
     - name: Install pnpm
       run: |
-        curl -fsSL https://get.pnpm.io/install.sh | sh -
+        npm install -g pnpm@8.15.4
         pnpm -v
         
     - name: Use Node.js ${{ matrix.node-version }}
@@ -81,7 +81,7 @@ jobs:
     
     - name: Install pnpm
       run: |
-        curl -fsSL https://get.pnpm.io/install.sh | sh -
+        npm install -g pnpm@8.15.4
         pnpm -v
     
     - name: Install dependencies
@@ -94,4 +94,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist/                
+        path: dist/                    

@@ -21,7 +21,7 @@ jobs:
 
     - name: Install pnpm
       run: |
-        curl -fsSL https://get.pnpm.io/install.sh | sh -
+        npm install -g pnpm@8.15.4
         pnpm -v
         
     - name: Setup Node.js
@@ -66,4 +66,4 @@ jobs:
         git config --local user.name "GitHub Action"
         git add .env.example deployment/config/templates/*
         git diff --quiet && git diff --staged --quiet || git commit -m "chore: update environment templates [skip ci]"
-        git push    
+        git push        
