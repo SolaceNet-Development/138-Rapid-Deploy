@@ -1,9 +1,7 @@
 import { ethers } from 'hardhat';
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
-import { Contract, ContractFactory } from 'ethers';
 
 async function main() {
-    const [deployer]: SignerWithAddress[] = await ethers.getSigners();
+    const [deployer] = await ethers.getSigners();
     console.log("Deploying contracts with the account:", deployer.address);
 
     // Deploy GovernanceToken
@@ -48,4 +46,4 @@ main()
     .catch((error) => {
         console.error(error);
         process.exit(1);
-    });            
+    });              
