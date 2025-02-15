@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { ethers } from 'ethers';
+import { Contract, providers, BigNumber } from 'ethers';
 import { promisify } from 'util';
 const sleep = promisify(setTimeout);
 
@@ -16,8 +16,8 @@ interface ValidatorMetrics {
     slashingEvents: number;
     uptimePercentage: number;
     performance: number;
-    stake: ethers.BigNumber;
-    delegations: ethers.BigNumber;
+    stake: BigNumber;
+    delegations: BigNumber;
 }
 
 interface ValidatorConfig {
@@ -30,18 +30,18 @@ interface ValidatorConfig {
 }
 
 class ValidatorMonitor {
-    private provider: ethers.providers.Provider;
+    private provider: providers.Provider;
     private config: ValidatorConfig;
     private metrics: Map<string, ValidatorMetrics>;
-    private validatorContract: ethers.Contract;
-    private stakingContract: ethers.Contract;
-    private slashingContract: ethers.Contract;
+    private validatorContract: Contract;
+    private stakingContract: Contract;
+    private slashingContract: Contract;
 
     constructor(
-        provider: ethers.providers.Provider,
-        validatorContract: ethers.Contract,
-        stakingContract: ethers.Contract,
-        slashingContract: ethers.Contract,
+        provider: providers.Provider,
+        validatorContract: Contract,
+        stakingContract: Contract,
+        slashingContract: Contract,
         config: ValidatorConfig
     ) {
         this.provider = provider;
@@ -70,8 +70,8 @@ class ValidatorMonitor {
                 slashingEvents: 0,
                 uptimePercentage: 100,
                 performance: 100,
-                stake: ethers.BigNumber.from(0),
-                delegations: ethers.BigNumber.from(0)
+                stake: BigNumber.from(0),
+                delegations: BigNumber.from(0)
             });
         }
 
@@ -137,7 +137,8 @@ class ValidatorMonitor {
     }
 
     async monitorValidators(): Promise<void> {
-        while (true) {
+        let isRunning = true;
+        while (isRunning) {
             try {
                 await this.updateAllMetrics();
                 await this.checkValidatorAlerts();
@@ -381,4 +382,4 @@ class ValidatorMonitor {
     }
 }
 
-export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig }; 
+export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };      
