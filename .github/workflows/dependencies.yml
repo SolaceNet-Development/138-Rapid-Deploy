@@ -50,8 +50,9 @@ jobs:
         run: pnpm audit
         
       - name: Run Snyk scan
-        uses: snyk/actions/node@master
+        run: |
+          pnpm add -g snyk
+          snyk auth ${{ secrets.SNYK_TOKEN }}
+          snyk test --severity-threshold=high
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
