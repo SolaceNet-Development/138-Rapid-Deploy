@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-import { ethers } from 'ethers';
+import { providers, Contract, BigNumber, utils } from 'ethers';
 import { promisify } from 'util';
+import fetch, { RequestInit } from 'node-fetch';
 const sleep = promisify(setTimeout);
 
 interface SecurityPattern {
@@ -10,7 +11,7 @@ interface SecurityPattern {
     description: string;
     severity: 'low' | 'medium' | 'high' | 'critical';
     features: string[];
-    model: any; // TensorFlow model
+    model: unknown; // TensorFlow model
     threshold: number;
     cooldown: number;
     lastDetection: number;
@@ -22,7 +23,7 @@ interface SecurityMetrics {
         timestamp: number;
         patternId: string;
         confidence: number;
-        data: any;
+        data: Record<string, unknown>;
     }[];
     riskScore: number;
     activeThreats: number;
@@ -50,18 +51,18 @@ interface SecurityConfig {
 }
 
 class SecurityMonitor {
-    private provider: ethers.providers.Provider;
+    private provider: providers.Provider;
     private metrics: SecurityMetrics;
     private config: SecurityConfig;
     private contracts: {
-        main: ethers.Contract;
-        governance: ethers.Contract;
-        treasury: ethers.Contract;
+        main: Contract;
+        governance: Contract;
+        treasury: Contract;
     };
 
     constructor(config: SecurityConfig) {
         this.config = config;
-        this.provider = new ethers.providers.JsonRpcProvider(config.rpcUrl);
+        this.provider = new providers.JsonRpcProvider(config.rpcUrl);
         this.metrics = this.initializeMetrics();
         this.contracts = this.initializeContracts();
     }
@@ -189,7 +190,7 @@ class SecurityMonitor {
 
     private initializeContracts() {
         return {
-            main: new ethers.Contract(
+            main: new Contract(
                 this.config.contracts.main,
                 [
                     'event Transaction(address indexed from, address indexed to, uint256 value)',
@@ -198,7 +199,7 @@ class SecurityMonitor {
                 ],
                 this.provider
             ),
-            governance: new ethers.Contract(
+            governance: new Contract(
                 this.config.contracts.governance,
                 [
                     'event ProposalCreated(uint256 indexed proposalId, address proposer)',
@@ -207,7 +208,7 @@ class SecurityMonitor {
                 ],
                 this.provider
             ),
-            treasury: new ethers.Contract(
+            treasury: new Contract(
                 this.config.contracts.treasury,
                 [
                     'event Withdrawal(address indexed recipient, uint256 amount)',
@@ -232,21 +233,21 @@ class SecurityMonitor {
 
     private setupEventListeners(): void {
         // Main contract events
-        this.contracts.main.on('Transaction', async (from, to, value) => {
+        this.contracts.main.on('Transaction', async (from: string, to: string, value: BigNumber) => {
             await this.analyzeTransaction(from, to, value);
         });
 
-        this.contracts.main.on('Approval', async (owner, spender, value) => {
+        this.contracts.main.on('Approval', async (owner: string, spender: string, value: BigNumber) => {
             await this.analyzeApproval(owner, spender, value);
         });
 
         // Governance events
-        this.contracts.governance.on('ProposalCreated', async (proposalId, proposer) => {
+        this.contracts.governance.on('ProposalCreated', async (proposalId: BigNumber, proposer: string) => {
             await this.analyzeProposal(proposalId, proposer);
         });
 
         // Treasury events
-        this.contracts.treasury.on('Withdrawal', async (recipient, amount) => {
+        this.contracts.treasury.on('Withdrawal', async (recipient: string, amount: BigNumber) => {
             await this.analyzeTreasuryMovement(recipient, amount, 'withdrawal');
         });
     }
@@ -311,10 +312,10 @@ class SecurityMonitor {
         return {};
     }
 
-    private async detectPattern(pattern: SecurityPattern, features: any): Promise<{
+    private async detectPattern(pattern: SecurityPattern, features: Record<string, unknown>): Promise<{
         confidence: number;
-        data: any;
-    }> {
+        data: Record<string, unknown>;
+    }>{
         // Implementation for pattern detection using ML models
         return {
             confidence: 0,
@@ -322,7 +323,7 @@ class SecurityMonitor {
         };
     }
 
-    private async analyzeTransaction(from: string, to: string, value: ethers.BigNumber): Promise<void> {
+    private async analyzeTransaction(from: string, to: string, value: BigNumber): Promise<void> {
         // Check for suspicious transaction patterns
         const risk = await this.calculateTransactionRisk(from, to, value);
         
@@ -336,26 +337,26 @@ class SecurityMonitor {
             await this.sendAlert('High Risk Transaction', {
                 from,
                 to,
-                value: ethers.utils.formatEther(value),
+                value: value.toString(),
                 risk,
                 timestamp: new Date().toISOString()
             });
         }
     }
 
-    private async analyzeApproval(owner: string, spender: string, value: ethers.BigNumber): Promise<void> {
+    private async analyzeApproval(owner: string, spender: string, value: BigNumber): Promise<void> {
         // Check for suspicious approval patterns
         if (this.metrics.blocklist.has(spender)) {
             await this.sendAlert('Approval to Blocklisted Address', {
                 owner,
                 spender,
-                value: ethers.utils.formatEther(value),
+                value: value.toString(),
                 timestamp: new Date().toISOString()
             });
         }
     }
 
-    private async analyzeProposal(proposalId: ethers.BigNumber, proposer: string): Promise<void> {
+    private async analyzeProposal(proposalId: BigNumber, proposer: string): Promise<void> {
         // Check for suspicious governance proposals
         if (this.metrics.blocklist.has(proposer)) {
             await this.sendAlert('Proposal from Blocklisted Address', {
@@ -368,17 +369,18 @@ class SecurityMonitor {
 
     private async analyzeTreasuryMovement(
         recipient: string,
-        amount: ethers.BigNumber,
+        amount: BigNumber,
         type: 'withdrawal' | 'deposit'
     ): Promise<void> {
         // Check for suspicious treasury movements
-        const balance = await this.contracts.treasury.getBalance();
-        if (amount.mul(100).div(balance).gt(20)) { // > 20% of treasury
+        const balance = await (this.provider as any).getBalance(this.config.contracts.treasury);
+        const percentage = amount.mul(BigNumber.from(100)).div(balance);
+        if (percentage.toString() >= BigNumber.from(20).toString()) { // >= 20% of treasury
             await this.sendAlert('Large Treasury Movement', {
                 type,
                 recipient,
-                amount: ethers.utils.formatEther(amount),
-                percentageOfTreasury: amount.mul(100).div(balance).toString(),
+                amount: amount.toString(),
+                percentageOfTreasury: amount.mul(BigNumber.from(100)).div(balance).toString(),
                 timestamp: new Date().toISOString()
             });
         }
@@ -387,7 +389,7 @@ class SecurityMonitor {
     private async calculateTransactionRisk(
         from: string,
         to: string,
-        value: ethers.BigNumber
+        value: BigNumber
     ): Promise<number> {
         let risk = 0;
 
@@ -398,7 +400,8 @@ class SecurityMonitor {
 
         // Check transaction size
         const averageVolume = await this.getAverageTransactionVolume();
-        if (value.gt(averageVolume.mul(this.config.thresholds.suspiciousVolumeMultiplier))) {
+        const threshold = averageVolume.mul(BigNumber.from(this.config.thresholds.suspiciousVolumeMultiplier));
+        if (value.toString() >= threshold.toString()) {
             risk += 30;
         }
 
@@ -411,15 +414,15 @@ class SecurityMonitor {
         return Math.min(100, risk);
     }
 
-    private async getAverageTransactionVolume(): Promise<ethers.BigNumber> {
+    private async getAverageTransactionVolume(): Promise<BigNumber> {
         // Implementation to calculate average transaction volume
-        return ethers.BigNumber.from(0);
+        return BigNumber.from(0);
     }
 
     private async handleDetection(
         pattern: SecurityPattern,
-        detection: { confidence: number; data: any }
-    ): Promise<void> {
+        detection: { confidence: number; data: Record<string, unknown> }
+    ): Promise<void>{
         this.metrics.activeThreats++;
 
         await this.sendAlert(`Security Pattern Detected: ${pattern.name}`, {
@@ -438,10 +441,18 @@ class SecurityMonitor {
 
     private async handleCriticalThreat(
         pattern: SecurityPattern,
-        detection: { confidence: number; data: any }
-    ): Promise<void> {
-        // Implementation for handling critical threats
-        console.log(`Handling critical threat: ${pattern.name}`);
+        detection: { confidence: number; data: Record<string, unknown> }
+    ): Promise<void>{
+        await this.sendAlert(
+            `Critical Threat: ${pattern.name}`,
+            {
+                ...detection,
+                pattern: pattern.name,
+                description: pattern.description,
+                timestamp: new Date().toISOString()
+            },
+            'critical'
+        );
     }
 
     private async updateRiskScore(): Promise<void> {
@@ -482,14 +493,23 @@ class SecurityMonitor {
         }
     }
 
-    async sendAlert(type: string, data: unknown): Promise<void> {
+    async sendAlert(type: string, data: unknown, severity: 'critical' | 'high' | 'medium' | 'low' = 'medium'): Promise<void> {
+        // Route alerts based on severity
+        const alertChannels = {
+            critical: '#security-critical',
+            high: '#security-high',
+            medium: '#security-medium',
+            low: '#security-low'
+        };
+
         // Send to configured alert channels
         if (process.env.SLACK_WEBHOOK_URL) {
             await fetch(process.env.SLACK_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    text: `🚨 *Security Alert: ${type}*\n\`\`\`${JSON.stringify(data, null, 2)}\`\`\``
+                    text: `🚨 *Security Alert [${severity.toUpperCase()}]: ${type}*\n\`\`\`${JSON.stringify(data, null, 2)}\`\`\``,
+                    channel: alertChannels[severity]
                 })
             });
         }
@@ -499,13 +519,31 @@ class SecurityMonitor {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    content: `🚨 **Security Alert: ${type}**\n\`\`\`json\n${JSON.stringify(data, null, 2)}\n\`\`\``
+                    content: `🚨 **Security Alert [${severity.toUpperCase()}]: ${type}**\n\`\`\`json\n${JSON.stringify(data, null, 2)}\n\`\`\``,
+                    thread_name: `security-${severity}`
                 })
             });
         }
 
-        // Log alert
-        console.log(`[SECURITY ALERT] ${type}:`, data);
+        // Push critical and high severity alerts to Prometheus
+        if (['critical', 'high'].includes(severity)) {
+            const metrics = [
+                `security_alert{type="${type}",severity="${severity}"} 1`
+            ];
+            try {
+                const options: RequestInit = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: metrics.join('\n')
+                };
+                await fetch(process.env.PROMETHEUS_PUSH_GATEWAY || '', options);
+            } catch (error) {
+                console.error('Error pushing alert to Prometheus:', error);
+            }
+        }
+
+        // Log alert with severity
+        console.log(`[SECURITY ALERT][${severity.toUpperCase()}] ${type}:`, data);
     }
 
     async reportMetrics(): Promise<void> {
@@ -551,15 +589,16 @@ class SecurityMonitor {
         metrics.push(`security_high_risk_transactions ${highRiskTx}`);
 
         try {
-            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY, {
+            const options: RequestInit = {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain' },
                 body: metrics.join('\n')
-            });
+            };
+            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY || '', options);
         } catch (error) {
             console.error('Error pushing metrics to Prometheus:', error);
         }
     }
 }
 
-export { SecurityMonitor, SecurityMetrics, SecurityConfig }; 
+export { SecurityMonitor, SecurityMetrics, SecurityConfig };                                                                                

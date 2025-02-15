@@ -5,9 +5,36 @@ import "hardhat-gas-reporter";
 import "solidity-coverage";
 import * as dotenv from "dotenv";
 
+interface HardhatGasReporterConfig extends HardhatUserConfig {
+  gasReporter?: {
+    enabled?: boolean;
+    currency?: string;
+    excludeContracts?: string[];
+    src?: string;
+  };
+  coverage?: {
+    exclude?: string[];
+    watermarks?: {
+      statements: [number, number];
+      branches: [number, number];
+      functions: [number, number];
+      lines: [number, number];
+    };
+  };
+}
+
 dotenv.config();
 
-const config: HardhatUserConfig = {
+const config: HardhatGasReporterConfig = {
+  coverage: {
+    exclude: ["contracts/mocks", "contracts/test"],
+    watermarks: {
+      statements: [80, 90],
+      branches: [80, 90],
+      functions: [80, 90],
+      lines: [80, 90]
+    }
+  },
   solidity: {
     version: "0.8.19",
     settings: {
@@ -57,4 +84,4 @@ const config: HardhatUserConfig = {
   }
 };
 
-export default config; 
+export default config;    

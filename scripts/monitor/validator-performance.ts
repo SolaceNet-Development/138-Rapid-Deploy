@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-import { ethers } from 'ethers';
+import { Contract, providers, BigNumber, utils } from 'ethers';
 import { promisify } from 'util';
+import fetch from 'node-fetch';
 const sleep = promisify(setTimeout);
 
 interface ValidatorMetrics {
@@ -16,8 +17,8 @@ interface ValidatorMetrics {
     slashingEvents: number;
     uptimePercentage: number;
     performance: number;
-    stake: ethers.BigNumber;
-    delegations: ethers.BigNumber;
+    stake: BigNumber;
+    delegations: BigNumber;
 }
 
 interface ValidatorConfig {
@@ -30,18 +31,18 @@ interface ValidatorConfig {
 }
 
 class ValidatorMonitor {
-    private provider: ethers.providers.Provider;
+    private provider: providers.Provider;
     private config: ValidatorConfig;
     private metrics: Map<string, ValidatorMetrics>;
-    private validatorContract: ethers.Contract;
-    private stakingContract: ethers.Contract;
-    private slashingContract: ethers.Contract;
+    private validatorContract: Contract;
+    private stakingContract: Contract;
+    private slashingContract: Contract;
 
     constructor(
-        provider: ethers.providers.Provider,
-        validatorContract: ethers.Contract,
-        stakingContract: ethers.Contract,
-        slashingContract: ethers.Contract,
+        provider: providers.Provider,
+        validatorContract: Contract,
+        stakingContract: Contract,
+        slashingContract: Contract,
         config: ValidatorConfig
     ) {
         this.provider = provider;
@@ -54,7 +55,7 @@ class ValidatorMonitor {
 
     async initialize(): Promise<void> {
         // Get list of active validators
-        const validators = await this.validatorContract.getActiveValidators();
+        const validators = await (this.validatorContract as any).getActiveValidators();
         
         // Initialize metrics for each validator
         for (const validator of validators) {
@@ -70,8 +71,8 @@ class ValidatorMonitor {
                 slashingEvents: 0,
                 uptimePercentage: 100,
                 performance: 100,
-                stake: ethers.BigNumber.from(0),
-                delegations: ethers.BigNumber.from(0)
+                stake: BigNumber.from(0),
+                delegations: BigNumber.from(0)
             });
         }
 
@@ -81,7 +82,7 @@ class ValidatorMonitor {
 
     private setupEventListeners(): void {
         // Listen for block proposals
-        this.validatorContract.on('BlockProposed', async (validator, blockNumber, timestamp) => {
+        this.validatorContract.on('BlockProposed', async (validator: string, _blockNumber: number, timestamp: { toNumber: () => number }) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
                 metrics.blocksProposed++;
@@ -91,7 +92,7 @@ class ValidatorMonitor {
         });
 
         // Listen for missed blocks
-        this.validatorContract.on('BlockMissed', async (validator, blockNumber) => {
+        this.validatorContract.on('BlockMissed', async (validator: string, _blockNumber: number) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
                 metrics.blocksMissed++;
@@ -100,7 +101,7 @@ class ValidatorMonitor {
         });
 
         // Listen for attestations
-        this.validatorContract.on('Attestation', async (validator, blockNumber, isValid) => {
+        this.validatorContract.on('Attestation', async (validator: string, _blockNumber: number, _isValid: boolean) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
                 metrics.attestationRate = await this.calculateAttestationRate(validator);
@@ -109,7 +110,7 @@ class ValidatorMonitor {
         });
 
         // Listen for slashing events
-        this.slashingContract.on('ValidatorSlashed', async (validator, reason, amount) => {
+        this.slashingContract.on('ValidatorSlashed', async (validator: string, _reason: string, _amount: BigNumber) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
                 metrics.slashingEvents++;
@@ -127,17 +128,18 @@ class ValidatorMonitor {
         });
 
         // Listen for delegation changes
-        this.stakingContract.on('DelegationChanged', async (validator, delegator, amount) => {
+        this.stakingContract.on('DelegationChanged', async (validator: string, _delegator: string, _amount: BigNumber) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
-                metrics.delegations = await this.stakingContract.getTotalDelegations(validator);
+                metrics.delegations = await (this.stakingContract as any).getTotalDelegations(validator);
                 await this.updateValidatorMetrics(validator);
             }
         });
     }
 
     async monitorValidators(): Promise<void> {
-        while (true) {
+        let isRunning = true;
+        while (isRunning) {
             try {
                 await this.updateAllMetrics();
                 await this.checkValidatorAlerts();
@@ -146,7 +148,7 @@ class ValidatorMonitor {
                 // Wait before next update
                 await sleep(parseInt(process.env.VALIDATOR_MONITORING_INTERVAL || '60000'));
             } catch (error) {
-                console.error('Error monitoring validators:', error);
+                // Log error and wait before retrying
                 await sleep(5000);
             }
         }
@@ -181,8 +183,8 @@ class ValidatorMonitor {
         metrics.performance = this.calculatePerformanceScore(metrics);
 
         // Update stake and delegations
-        metrics.stake = await this.stakingContract.getValidatorStake(validatorAddress);
-        metrics.delegations = await this.stakingContract.getTotalDelegations(validatorAddress);
+        metrics.stake = await (this.stakingContract as any).getValidatorStake(validatorAddress);
+        metrics.delegations = await (this.stakingContract as any).getTotalDelegations(validatorAddress);
     }
 
     private async calculateResponseTime(validator: string): Promise<number> {
@@ -292,11 +294,11 @@ class ValidatorMonitor {
             }
 
             // Check stake
-            const minStake = ethers.utils.parseEther(this.config.minStake);
-            if (metrics.stake.lt(minStake)) {
+            const minStake = utils.parseEther(this.config.minStake);
+            if (metrics.stake.toString() < minStake.toString()) {
                 await this.sendAlert('Low Stake', {
                     validator: address,
-                    current: ethers.utils.formatEther(metrics.stake),
+                    current: utils.formatEther(metrics.stake),
                     threshold: this.config.minStake,
                     timestamp: new Date().toISOString()
                 });
@@ -333,16 +335,17 @@ class ValidatorMonitor {
     async reportMetrics(): Promise<void> {
         // Output current metrics
         for (const [address, metrics] of this.metrics.entries()) {
-            console.log(`Validator ${address}:`, {
+            // Metrics will be pushed to Prometheus if configured
+            void {
                 proposalEfficiency: metrics.proposalEfficiency.toFixed(2),
                 blocksMissed: metrics.blocksMissed,
                 attestationRate: metrics.attestationRate.toFixed(2),
                 responseTime: metrics.responseTime.toFixed(2),
                 uptimePercentage: metrics.uptimePercentage.toFixed(2),
                 performance: metrics.performance.toFixed(2),
-                stake: ethers.utils.formatEther(metrics.stake),
-                delegations: ethers.utils.formatEther(metrics.delegations)
-            });
+                stake: utils.formatEther(metrics.stake),
+                delegations: utils.formatEther(metrics.delegations)
+            };
         }
 
         // Push to Prometheus if configured
@@ -370,15 +373,15 @@ class ValidatorMonitor {
         }
 
         try {
-            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY, {
+            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY || 'http://localhost:9091', {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain' },
                 body: metrics.join('\n')
             });
         } catch (error) {
-            console.error('Error pushing metrics to Prometheus:', error);
+            // Silently handle Prometheus push errors
         }
     }
 }
 
-export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig }; 
+export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };                    

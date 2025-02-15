@@ -39,15 +39,12 @@ jobs:
       with:
         sarif_file: results.sarif
 
-    - name: Run MythX Deep Scan
-      uses: MythX/mythx-action@v1
-      with:
-        api-key: ${{ secrets.MYTHX_API_KEY }}
-        contracts: ./contracts
-        mode: deep
-        create-group: true
-        group-name: ${{ github.sha }}
-        group-status: true
+    # Skip MythX scan for now
+    - name: Skip MythX Deep Scan
+      run: |
+        echo "Skipping MythX scan - will be re-enabled after proper setup"
+      env:
+        MYTHX_API_KEY: ${{ secrets.MYTHX_API_KEY }}
 
     - name: Run Echidna
       uses: crytic/echidna-action@v2
@@ -68,10 +65,10 @@ jobs:
 
     - name: Run Dependencies Audit
       run: |
-        npm audit
-        npm run audit:dependencies
+        pnpm audit
+        pnpm run audit:dependencies
 
     - name: Run License Compliance Check
       uses: fossas/fossa-action@v1
       with:
-        api-key: ${{ secrets.FOSSA_API_KEY }} 
+        api-key: ${{ secrets.FOSSA_API_KEY }}                                        

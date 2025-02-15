@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# Check Node.js version
+node_version=$(node -v)
+required_version="v18.12.1"
+if [ "$node_version" != "$required_version" ]; then
+  echo "Error: Node.js version must be exactly $required_version"
+  exit 1
+fi
+
+# Run linting
+pnpm run lint

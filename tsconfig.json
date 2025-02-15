@@ -3,6 +3,10 @@
     "target": "es2020",
     "module": "commonjs",
     "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -35,4 +39,4 @@
     "./hardhat.config.ts",
     "./types/**/*.d.ts"
   ]
-} 
+}  

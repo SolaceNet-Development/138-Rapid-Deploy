@@ -1,30 +1,40 @@
 #!/usr/bin/env node
 
-import { ethers } from 'ethers';
+import { Contract, Signer } from 'ethers';
+import { formatUnits, parseUnits } from '@ethersproject/units';
+import { JsonRpcProvider, Provider } from '@ethersproject/providers';
+import { BigNumber } from '@ethersproject/bignumber';
+import fetch from 'node-fetch';
 import { promisify } from 'util';
 const sleep = promisify(setTimeout);
 
 interface ProtocolMetrics {
-    tvl: ethers.BigNumber;
+    tvl: BigNumber;
     activeUsers24h: number;
     healthScore: number;
     errorRate: number;
-    lendingMetrics: {
-        supplyVolume: Map<string, ethers.BigNumber>;
-        borrowVolume: Map<string, ethers.BigNumber>;
-        collateralizationRatio: number;
-        liquidationRisk: number[];
-    };
-    tradingMetrics: {
-        volumeByDex: Map<string, ethers.BigNumber>;
-        priceImpact: number;
-        slippage: number;
-    };
-    performanceMetrics: {
-        transactionLatency: number;
-        resourceUsage: Map<string, number>;
-        gasUsage: ethers.BigNumber;
-    };
+    lendingMetrics: LendingMetrics;
+    tradingMetrics: TradingMetrics;
+    performanceMetrics: PerformanceMetrics;
+}
+
+interface LendingMetrics {
+    supplyVolume: Map<string, BigNumber>;
+    borrowVolume: Map<string, BigNumber>;
+    collateralizationRatio: number;
+    liquidationRisk: number[];
+}
+
+interface TradingMetrics {
+    volumeByDex: Map<string, BigNumber>;
+    priceImpact: number;
+    slippage: number;
+}
+
+interface PerformanceMetrics {
+    transactionLatency: number;
+    resourceUsage: Map<string, number>;
+    gasUsage: BigNumber;
 }
 
 interface ProtocolConfig {
@@ -45,26 +55,26 @@ interface ProtocolConfig {
 }
 
 class ProtocolMonitor {
-    private provider: ethers.providers.Provider;
+    private provider: JsonRpcProvider;
     private metrics: ProtocolMetrics;
     private config: ProtocolConfig;
     private contracts: {
-        lending: ethers.Contract;
-        trading: ethers.Contract;
-        liquidation: ethers.Contract;
-        oracle: ethers.Contract;
+        lending: Contract;
+        trading: Contract;
+        liquidation: Contract;
+        oracle: Contract;
     };
 
     constructor(config: ProtocolConfig) {
         this.config = config;
-        this.provider = new ethers.providers.JsonRpcProvider(config.rpcUrl);
+        this.provider = new JsonRpcProvider(config.rpcUrl);
         this.metrics = this.initializeMetrics();
         this.contracts = this.initializeContracts();
     }
 
     private initializeMetrics(): ProtocolMetrics {
         return {
-            tvl: ethers.BigNumber.from(0),
+            tvl: BigNumber.from(0),
             activeUsers24h: 0,
             healthScore: 100,
             errorRate: 0,
@@ -82,14 +92,14 @@ class ProtocolMonitor {
             performanceMetrics: {
                 transactionLatency: 0,
                 resourceUsage: new Map(),
-                gasUsage: ethers.BigNumber.from(0)
+                gasUsage: BigNumber.from(0)
             }
         };
     }
 
     private initializeContracts() {
         return {
-            lending: new ethers.Contract(
+            lending: new Contract(
                 this.config.contracts.lending,
                 [
                     'function getTotalSupply(address token) view returns (uint256)',
@@ -100,9 +110,9 @@ class ProtocolMonitor {
                     'event Borrow(address token, address user, uint256 amount)',
                     'event Liquidation(address user, address token, uint256 amount)'
                 ],
-                this.provider
+                this.provider as any
             ),
-            trading: new ethers.Contract(
+            trading: new Contract(
                 this.config.contracts.trading,
                 [
                     'function getVolumeByDex(address dex) view returns (uint256)',
@@ -110,23 +120,23 @@ class ProtocolMonitor {
                     'function getSlippage() view returns (uint256)',
                     'event Trade(address dex, address token0, address token1, uint256 amount)'
                 ],
-                this.provider
+                this.provider as any
             ),
-            liquidation: new ethers.Contract(
+            liquidation: new Contract(
                 this.config.contracts.liquidation,
                 [
                     'function getLiquidationThreshold() view returns (uint256)',
                     'event LiquidationTriggered(address user, uint256 amount)'
                 ],
-                this.provider
+                this.provider as any
             ),
-            oracle: new ethers.Contract(
+            oracle: new Contract(
                 this.config.contracts.oracle,
                 [
                     'function getPrice(address token) view returns (uint256)',
                     'event PriceUpdate(address token, uint256 price)'
                 ],
-                this.provider
+                this.provider as any
             )
         };
     }
@@ -142,20 +152,20 @@ class ProtocolMonitor {
     private setupEventListeners(): void {
         // Lending events
         this.contracts.lending.on('Supply', async (token, user, amount) => {
-            const currentSupply = this.metrics.lendingMetrics.supplyVolume.get(token) || ethers.BigNumber.from(0);
+            const currentSupply = this.metrics.lendingMetrics.supplyVolume.get(token) || BigNumber.from(0);
             this.metrics.lendingMetrics.supplyVolume.set(token, currentSupply.add(amount));
             await this.updateMetrics();
         });
 
         this.contracts.lending.on('Borrow', async (token, user, amount) => {
-            const currentBorrow = this.metrics.lendingMetrics.borrowVolume.get(token) || ethers.BigNumber.from(0);
+            const currentBorrow = this.metrics.lendingMetrics.borrowVolume.get(token) || BigNumber.from(0);
             this.metrics.lendingMetrics.borrowVolume.set(token, currentBorrow.add(amount));
             await this.updateMetrics();
         });
 
         // Trading events
         this.contracts.trading.on('Trade', async (dex, token0, token1, amount) => {
-            const currentVolume = this.metrics.tradingMetrics.volumeByDex.get(dex) || ethers.BigNumber.from(0);
+            const currentVolume = this.metrics.tradingMetrics.volumeByDex.get(dex) || BigNumber.from(0);
             this.metrics.tradingMetrics.volumeByDex.set(dex, currentVolume.add(amount));
             await this.updateMetrics();
         });
@@ -198,15 +208,15 @@ class ProtocolMonitor {
 
         // Update lending metrics
         this.metrics.lendingMetrics.collateralizationRatio = 
-            (await this.contracts.lending.getCollateralizationRatio()).toNumber() / 100;
+            (await (this.contracts.lending as any).getCollateralizationRatio()).toNumber() / 100;
         this.metrics.lendingMetrics.liquidationRisk = 
-            await this.contracts.lending.getLiquidationRisks();
+            await (this.contracts.lending as any).getLiquidationRisks();
 
         // Update trading metrics
         this.metrics.tradingMetrics.priceImpact = 
-            (await this.contracts.trading.getPriceImpact()).toNumber() / 100;
+            (await (this.contracts.trading as any).getPriceImpact()).toNumber() / 100;
         this.metrics.tradingMetrics.slippage = 
-            (await this.contracts.trading.getSlippage()).toNumber() / 100;
+            (await (this.contracts.trading as any).getSlippage()).toNumber() / 100;
 
         // Update performance metrics
         this.metrics.performanceMetrics.transactionLatency = 
@@ -219,9 +229,9 @@ class ProtocolMonitor {
     }
 
     private async updateTVL(): Promise<void> {
-        let tvl = ethers.BigNumber.from(0);
+        let tvl = BigNumber.from(0);
         for (const [token, supply] of this.metrics.lendingMetrics.supplyVolume.entries()) {
-            const price = await this.contracts.oracle.getPrice(token);
+            const price = await (this.contracts.oracle as any).getPrice(token);
             tvl = tvl.add(supply.mul(price));
         }
         this.metrics.tvl = tvl;
@@ -238,7 +248,7 @@ class ProtocolMonitor {
     }
 
     private async checkLiquidationRisk(): Promise<void> {
-        const risks = await this.contracts.lending.getLiquidationRisks();
+        const risks = await (this.contracts.lending as any).getLiquidationRisks();
         this.metrics.lendingMetrics.liquidationRisk = risks;
 
         if (Math.max(...risks) > this.config.thresholds.maxLiquidationRisk) {
@@ -344,7 +354,7 @@ class ProtocolMonitor {
     async reportMetrics(): Promise<void> {
         // Output current metrics
         console.log('Protocol Metrics:', {
-            tvl: ethers.utils.formatEther(this.metrics.tvl),
+            tvl: formatUnits(this.metrics.tvl, 18),
             activeUsers24h: this.metrics.activeUsers24h,
             healthScore: this.metrics.healthScore.toFixed(2),
             errorRate: this.metrics.errorRate.toFixed(2),
@@ -358,7 +368,7 @@ class ProtocolMonitor {
             },
             performanceMetrics: {
                 transactionLatency: this.metrics.performanceMetrics.transactionLatency.toFixed(2),
-                gasPrice: ethers.utils.formatUnits(this.metrics.performanceMetrics.gasUsage, 'gwei')
+                gasPrice: formatUnits(this.metrics.performanceMetrics.gasUsage, 'gwei')
             }
         });
 
@@ -414,7 +424,7 @@ class ProtocolMonitor {
         }
 
         try {
-            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY, {
+            await fetch(process.env.PROMETHEUS_PUSH_GATEWAY || '', {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain' },
                 body: metrics.join('\n')
@@ -425,4 +435,4 @@ class ProtocolMonitor {
     }
 }
 
-export { ProtocolMonitor, ProtocolMetrics, ProtocolConfig }; 
+export { ProtocolMonitor, ProtocolMetrics, ProtocolConfig };                              
