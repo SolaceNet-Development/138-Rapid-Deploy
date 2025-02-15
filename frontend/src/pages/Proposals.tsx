@@ -74,7 +74,7 @@ const Proposals: React.FC = () => {
     }
   };
 
-  const filteredProposals = mockProposals.filter(proposal => {
+  const filteredProposals = mockProposals.filter((proposal) => {
     if (filter === 'all') return true;
     return proposal.status === filter;
   });
@@ -93,11 +93,7 @@ const Proposals: React.FC = () => {
       <Flex align="center" mb={8}>
         <Heading>Governance Proposals</Heading>
         <Spacer />
-        <Select
-          w="200px"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        >
+        <Select w="200px" value={filter} onChange={(e) => setFilter(e.target.value)}>
           <option value="all">All Proposals</option>
           <option value="active">Active</option>
           <option value="passed">Passed</option>
@@ -108,13 +104,7 @@ const Proposals: React.FC = () => {
 
       <VStack spacing={6} align="stretch">
         {filteredProposals.map((proposal) => (
-          <Box
-            key={proposal.id}
-            p={6}
-            bg={bgColor}
-            shadow="md"
-            rounded="lg"
-          >
+          <Box key={proposal.id} p={6} bg={bgColor} shadow="md" rounded="lg">
             <Flex align="center" mb={4}>
               <Heading size="md">{proposal.title}</Heading>
               <Spacer />
@@ -161,9 +151,7 @@ const Proposals: React.FC = () => {
                 Vote Against
               </Button>
               <Spacer />
-              <Text fontSize="sm">
-                Ends: {new Date(proposal.endTime).toLocaleDateString()}
-              </Text>
+              <Text fontSize="sm">Ends: {new Date(proposal.endTime).toLocaleDateString()}</Text>
             </HStack>
           </Box>
         ))}
@@ -172,4 +160,4 @@ const Proposals: React.FC = () => {
   );
 };
 
-export default Proposals; 
+export default Proposals;

@@ -52,25 +52,14 @@ const Home: React.FC = () => {
           <Text fontSize="xl" mb={6}>
             Participate in decentralized decision-making and shape the future of Chain 138
           </Text>
-          <Button
-            colorScheme="blue"
-            size="lg"
-            onClick={() => navigate('/proposals')}
-          >
+          <Button colorScheme="blue" size="lg" onClick={() => navigate('/proposals')}>
             View Active Proposals
           </Button>
         </Box>
 
         <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} mb={10}>
           {stats.map((stat, index) => (
-            <Stat
-              key={index}
-              px={6}
-              py={4}
-              bg={statBg}
-              shadow="base"
-              rounded="lg"
-            >
+            <Stat key={index} px={6} py={4} bg={statBg} shadow="base" rounded="lg">
               <StatLabel fontSize="md">{stat.label}</StatLabel>
               <StatNumber fontSize="3xl">{stat.number}</StatNumber>
               <StatHelpText>{stat.change}</StatHelpText>
@@ -84,8 +73,8 @@ const Home: React.FC = () => {
               Recent Activity
             </Heading>
             <Text>
-              Track the latest governance activities and proposals in real-time.
-              Stay informed about important decisions and community updates.
+              Track the latest governance activities and proposals in real-time. Stay informed about
+              important decisions and community updates.
             </Text>
             <Button
               mt={4}
@@ -102,15 +91,10 @@ const Home: React.FC = () => {
               Get Started
             </Heading>
             <Text>
-              Create proposals, cast votes, and participate in the governance
-              process. Your voice matters in shaping the future of Chain 138.
+              Create proposals, cast votes, and participate in the governance process. Your voice
+              matters in shaping the future of Chain 138.
             </Text>
-            <Button
-              mt={4}
-              colorScheme="blue"
-              variant="outline"
-              onClick={() => navigate('/create')}
-            >
+            <Button mt={4} colorScheme="blue" variant="outline" onClick={() => navigate('/create')}>
               Create Proposal
             </Button>
           </Box>
@@ -120,4 +104,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home; 
+export default Home;

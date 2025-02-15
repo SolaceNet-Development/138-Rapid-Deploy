@@ -57,7 +57,9 @@ const Profile: React.FC = () => {
     return (
       <Container maxW="container.xl" py={10}>
         <Box p={8} bg={bgColor} rounded="lg" shadow="base" textAlign="center">
-          <Heading size="lg" mb={4}>Connect Wallet</Heading>
+          <Heading size="lg" mb={4}>
+            Connect Wallet
+          </Heading>
           <Text>Please connect your wallet to view your profile</Text>
         </Box>
       </Container>
@@ -101,7 +103,9 @@ const Profile: React.FC = () => {
         </SimpleGrid>
 
         <Box p={8} bg={bgColor} rounded="lg" shadow="base">
-          <Heading size="md" mb={6}>Voting History</Heading>
+          <Heading size="md" mb={6}>
+            Voting History
+          </Heading>
           <Table variant="simple">
             <Thead>
               <Tr>
@@ -127,18 +131,12 @@ const Profile: React.FC = () => {
                   </Td>
                   <Td>{item.date}</Td>
                   <Td>
-                    <Badge
-                      colorScheme={item.status === 'Active' ? 'green' : 'blue'}
-                    >
+                    <Badge colorScheme={item.status === 'Active' ? 'green' : 'blue'}>
                       {item.status}
                     </Badge>
                   </Td>
                   <Td>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      isDisabled={item.status !== 'Active'}
-                    >
+                    <Button size="sm" variant="outline" isDisabled={item.status !== 'Active'}>
                       Change Vote
                     </Button>
                   </Td>
@@ -149,7 +147,9 @@ const Profile: React.FC = () => {
         </Box>
 
         <Box p={8} bg={bgColor} rounded="lg" shadow="base">
-          <Heading size="md" mb={6}>Delegation</Heading>
+          <Heading size="md" mb={6}>
+            Delegation
+          </Heading>
           <VStack align="start" spacing={4}>
             <Text>
               You can delegate your voting power to another address to vote on your behalf.
@@ -165,4 +165,4 @@ const Profile: React.FC = () => {
   );
 };
 
-export default Profile; 
+export default Profile;

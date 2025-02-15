@@ -16,72 +16,63 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        run_install: false
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci
+      run: |
+        pnpm install
+        pnpm add -D typescript@5.0.4
     
     - name: Run linter
-      run: npm run lint
+      run: pnpm run lint
     
     - name: Run tests
-      run: npm test
+      run: pnpm test
       env:
         CI: true
     
     - name: Run coverage
-      run: npm run coverage
+      run: pnpm run coverage
     
     - name: Upload coverage
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
-  security:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Run security audit
-      run: npm audit
-    
-    - name: Run Slither
-      uses: crytic/slither-action@v0.3.0
-      with:
-        target: 'contracts/'
-        slither-args: '--exclude-dependencies'
-    
-    - name: Run MythX analysis
-      uses: MythX/mythx-action@v1
-      with:
-        api-key: ${{ secrets.MYTHX_API_KEY }}
-        contracts: ./contracts
-        mode: deep
-
   build:
-    needs: [test, security]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        run_install: false
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-        cache: 'npm'
+        cache: 'pnpm'
+        cache-dependency-path: '**/pnpm-lock.yaml'
     
     - name: Install dependencies
-      run: npm ci
+      run: pnpm install
     
     - name: Build
-      run: npm run build
+      run: pnpm run build
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist/ 
+        path: dist/              

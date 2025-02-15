@@ -1,44 +1,58 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {ERC20Permit} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
+import {ERC20Votes} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {Votes} from "@openzeppelin/contracts/governance/utils/Votes.sol";
+import {Nonces} from "@openzeppelin/contracts/utils/Nonces.sol";
 
-contract Chain138Token is ERC20Votes, Ownable {
-    uint256 public constant INITIAL_SUPPLY = 100_000_000 * 10**18; // 100 million tokens
-    uint256 public constant MAX_SUPPLY = 1_000_000_000 * 10**18; // 1 billion tokens
-    
+contract Chain138Token is ERC20, ERC20Permit, ERC20Votes, Ownable {
+    error ExceedsMaxSupply(uint256 requested, uint256 maxSupply);
+    error EmissionPeriodNotElapsed(uint256 nextEmissionTime);
+    error ArrayLengthMismatch(uint256 recipientsLength, uint256 amountsLength);
+    error InsufficientBalance(uint256 requested, uint256 available);
+
+    uint256 public constant INITIAL_SUPPLY = 100_000_000 * 10 ** 18; // 100 million tokens
+    uint256 public constant MAX_SUPPLY = 1_000_000_000 * 10 ** 18; // 1 billion tokens
+
     // Emission rate: 2% per year
     uint256 public constant EMISSION_RATE = 2;
     uint256 public constant EMISSION_PERIOD = 365 days;
     uint256 public lastEmissionTime;
 
-    constructor()
+    constructor(
+        address initialOwner
+    )
         ERC20("Chain138 Governance Token", "C138")
         ERC20Permit("Chain138 Governance Token")
+        ERC20Votes()
+        Ownable(initialOwner)
     {
-        _mint(msg.sender, INITIAL_SUPPLY);
+        _mint(initialOwner, INITIAL_SUPPLY);
         lastEmissionTime = block.timestamp;
+        delegate(initialOwner);
     }
 
     function mint(address to, uint256 amount) external onlyOwner {
-        require(totalSupply() + amount <= MAX_SUPPLY, "Exceeds max supply");
+        if (totalSupply() + amount > MAX_SUPPLY) {
+            revert ExceedsMaxSupply(amount, MAX_SUPPLY);
+        }
         _mint(to, amount);
     }
 
     function emitTokens() external {
-        require(
-            block.timestamp >= lastEmissionTime + EMISSION_PERIOD,
-            "Emission period not elapsed"
-        );
+        if (block.timestamp < lastEmissionTime + EMISSION_PERIOD) {
+            revert EmissionPeriodNotElapsed(lastEmissionTime + EMISSION_PERIOD);
+        }
 
         uint256 currentSupply = totalSupply();
         uint256 emissionAmount = (currentSupply * EMISSION_RATE) / 100;
-        
-        require(
-            currentSupply + emissionAmount <= MAX_SUPPLY,
-            "Emission would exceed max supply"
-        );
+
+        if (currentSupply + emissionAmount > MAX_SUPPLY) {
+            revert ExceedsMaxSupply(emissionAmount, MAX_SUPPLY - currentSupply);
+        }
 
         _mint(address(this), emissionAmount);
         lastEmissionTime = block.timestamp;
@@ -48,20 +62,18 @@ contract Chain138Token is ERC20Votes, Ownable {
         address[] calldata recipients,
         uint256[] calldata amounts
     ) external onlyOwner {
-        require(
-            recipients.length == amounts.length,
-            "Arrays length mismatch"
-        );
+        if (recipients.length != amounts.length) {
+            revert ArrayLengthMismatch(recipients.length, amounts.length);
+        }
 
         uint256 totalAmount;
         for (uint256 i = 0; i < amounts.length; i++) {
             totalAmount += amounts[i];
         }
 
-        require(
-            balanceOf(address(this)) >= totalAmount,
-            "Insufficient balance for distribution"
-        );
+        if (balanceOf(address(this)) < totalAmount) {
+            revert InsufficientBalance(totalAmount, balanceOf(address(this)));
+        }
 
         for (uint256 i = 0; i < recipients.length; i++) {
             _transfer(address(this), recipients[i], amounts[i]);
@@ -69,19 +81,18 @@ contract Chain138Token is ERC20Votes, Ownable {
     }
 
     // Governance token specific functions
-    function _afterTokenTransfer(
+    function _update(
         address from,
         address to,
         uint256 amount
-    ) internal override(ERC20Votes) {
-        super._afterTokenTransfer(from, to, amount);
+    ) internal virtual override(ERC20, ERC20Votes) {
+        super._update(from, to, amount);
+        _transferVotingUnits(from, to, amount);
     }
 
-    function _mint(address to, uint256 amount) internal override(ERC20Votes) {
-        super._mint(to, amount);
+    function nonces(
+        address owner
+    ) public view virtual override(ERC20Permit, Nonces) returns (uint256) {
+        return super.nonces(owner);
     }
-
-    function _burn(address account, uint256 amount) internal override(ERC20Votes) {
-        super._burn(account, amount);
-    }
-} 
+}

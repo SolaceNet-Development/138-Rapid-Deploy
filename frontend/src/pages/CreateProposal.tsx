@@ -80,7 +80,7 @@ const CreateProposal: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }));
@@ -123,11 +123,7 @@ const CreateProposal: React.FC = () => {
 
             <FormControl isRequired>
               <FormLabel>Proposal Type</FormLabel>
-              <Select
-                name="type"
-                value={formData.type}
-                onChange={handleChange}
-              >
+              <Select name="type" value={formData.type} onChange={handleChange}>
                 <option value="general">General</option>
                 <option value="parameter">Parameter Change</option>
                 <option value="upgrade">Protocol Upgrade</option>
@@ -142,7 +138,7 @@ const CreateProposal: React.FC = () => {
                 max={30}
                 value={formData.votingPeriod}
                 onChange={(value) =>
-                  setFormData(prev => ({ ...prev, votingPeriod: Number(value) }))
+                  setFormData((prev) => ({ ...prev, votingPeriod: Number(value) }))
                 }
               >
                 <NumberInputField />
@@ -159,9 +155,7 @@ const CreateProposal: React.FC = () => {
                 min={1}
                 max={100}
                 value={formData.quorum}
-                onChange={(value) =>
-                  setFormData(prev => ({ ...prev, quorum: Number(value) }))
-                }
+                onChange={(value) => setFormData((prev) => ({ ...prev, quorum: Number(value) }))}
               >
                 <NumberInputField />
                 <NumberInputStepper>
@@ -174,12 +168,7 @@ const CreateProposal: React.FC = () => {
               </Text>
             </FormControl>
 
-            <Button
-              type="submit"
-              colorScheme="blue"
-              size="lg"
-              isDisabled={!active}
-            >
+            <Button type="submit" colorScheme="blue" size="lg" isDisabled={!active}>
               Create Proposal
             </Button>
           </VStack>
@@ -189,4 +178,4 @@ const CreateProposal: React.FC = () => {
   );
 };
 
-export default CreateProposal; 
+export default CreateProposal;
