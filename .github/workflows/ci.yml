@@ -19,12 +19,14 @@ jobs:
     - uses: pnpm/action-setup@v2
       with:
         version: 8
+        run_install: false
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+        cache-dependency-path: '**/pnpm-lock.yaml'
     
     - name: Install dependencies
       run: pnpm install
@@ -75,12 +77,14 @@ jobs:
     - uses: pnpm/action-setup@v2
       with:
         version: 8
+        run_install: false
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
         cache: 'pnpm'
+        cache-dependency-path: '**/pnpm-lock.yaml'
     
     - name: Install dependencies
       run: pnpm install
@@ -92,4 +96,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist/  
+        path: dist/    
