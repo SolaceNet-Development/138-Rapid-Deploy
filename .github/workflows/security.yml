@@ -41,7 +41,7 @@ jobs:
 
     - name: Run MythX Deep Scan
       run: |
-        npm install -g @mythx/cli
+        pnpm add -g @mythx/cli
         mythx --version
         mythx analyze ./contracts --mode=deep --create-group --group-name=${{ github.sha }} --group-status
       env:
@@ -72,4 +72,4 @@ jobs:
     - name: Run License Compliance Check
       uses: fossas/fossa-action@v1
       with:
-        api-key: ${{ secrets.FOSSA_API_KEY }}                    
+        api-key: ${{ secrets.FOSSA_API_KEY }}                      
