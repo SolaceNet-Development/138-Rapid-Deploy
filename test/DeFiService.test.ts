@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import { providers, Contract, utils, Wallet } from 'ethers';
-import { setupTestEnvironment, mockData, testConstants } from './setup';
+import { utils } from 'ethers';
+import { setupTestEnvironment } from './setup';
 import { DeFiService } from '../frontend/src/integrations/DeFiService';
 
 // Add type declarations for test environment
 declare global {
-    var describe: Function;
-    var beforeEach: Function;
-    var it: Function;
+    var describe: (name: string, fn: () => void) => void;
+    var beforeEach: (fn: () => Promise<void>) => void;
+    var it: (name: string, fn: () => Promise<void>) => void;
 }
 
 describe('DeFiService', () => {
@@ -172,7 +172,7 @@ describe('DeFiService', () => {
     });
 });
 
-async function setupTestPortfolio(env: any, defiService: DeFiService) {
+async function setupTestPortfolio(env: any, defiService: DeFiService): Promise<void> {
     // Add liquidity
     await defiService.addLiquidity(
         env.contracts.pool.address,
@@ -197,8 +197,8 @@ async function setupTestPortfolio(env: any, defiService: DeFiService) {
     );
 }
 
-async function updateTestPrices(env: any) {
+async function updateTestPrices(env: any): Promise<void> {
     await env.contracts.priceOracle.setPrice(
         utils.parseEther('1.1')
     );
-} 
+}  
