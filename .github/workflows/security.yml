@@ -40,12 +40,13 @@ jobs:
         sarif_file: results.sarif
 
     - name: Run MythX Deep Scan
-      run: |
-        pnpm add -g @mythx/cli
-        mythx --version
-        mythx analyze ./contracts --mode=deep --create-group --group-name=${{ github.sha }} --group-status
-      env:
-        MYTHX_API_KEY: ${{ secrets.MYTHX_API_KEY }}
+      uses: ConsenSys/mythx-github-action@v1
+      with:
+        api-key: ${{ secrets.MYTHX_API_KEY }}
+        mode: deep
+        create-group: true
+        group-name: ${{ github.sha }}
+        group-status: true
 
     - name: Run Echidna
       uses: crytic/echidna-action@v2
@@ -72,4 +73,4 @@ jobs:
     - name: Run License Compliance Check
       uses: fossas/fossa-action@v1
       with:
-        api-key: ${{ secrets.FOSSA_API_KEY }}                      
+        api-key: ${{ secrets.FOSSA_API_KEY }}                        

@@ -24,8 +24,8 @@ jobs:
       - name: Check for updates
         id: ncu
         run: |
-          pnpm add -g npm-check-updates
-          ncu --packageFile package.json --format json > updates.json
+          pnpm add -g @pnpm/outdated
+          pnpm outdated --format json > updates.json
       
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
