@@ -2,6 +2,9 @@
   "ignorePatterns": [
     {
       "pattern": "^http://localhost"
+    },
+    {
+      "pattern": "^https://github.com/your-org/chain-138"
     }
   ],
   "replacementPatterns": [
