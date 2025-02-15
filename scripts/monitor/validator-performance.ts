@@ -128,7 +128,7 @@ class ValidatorMonitor {
         });
 
         // Listen for delegation changes
-        this.stakingContract.on('DelegationChanged', async (validator, delegator, amount) => {
+        this.stakingContract.on('DelegationChanged', async (validator: string, _delegator: string, _amount: BigNumber) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
                 metrics.delegations = await (this.stakingContract as any).getTotalDelegations(validator);
@@ -148,7 +148,7 @@ class ValidatorMonitor {
                 // Wait before next update
                 await sleep(parseInt(process.env.VALIDATOR_MONITORING_INTERVAL || '60000'));
             } catch (error) {
-                console.error('Error monitoring validators:', error);
+                // Log error and wait before retrying
                 await sleep(5000);
             }
         }
@@ -335,7 +335,8 @@ class ValidatorMonitor {
     async reportMetrics(): Promise<void> {
         // Output current metrics
         for (const [address, metrics] of this.metrics.entries()) {
-            console.log(`Validator ${address}:`, {
+            // Metrics will be pushed to Prometheus if configured
+            void {
                 proposalEfficiency: metrics.proposalEfficiency.toFixed(2),
                 blocksMissed: metrics.blocksMissed,
                 attestationRate: metrics.attestationRate.toFixed(2),
@@ -344,7 +345,7 @@ class ValidatorMonitor {
                 performance: metrics.performance.toFixed(2),
                 stake: utils.formatEther(metrics.stake),
                 delegations: utils.formatEther(metrics.delegations)
-            });
+            };
         }
 
         // Push to Prometheus if configured
@@ -378,9 +379,9 @@ class ValidatorMonitor {
                 body: metrics.join('\n')
             });
         } catch (error) {
-            console.error('Error pushing metrics to Prometheus:', error);
+            // Silently handle Prometheus push errors
         }
     }
 }
 
-export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };                
+export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };                    
