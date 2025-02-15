@@ -51,7 +51,7 @@
     "vite": "^4.3.9",
     "typedoc": "^0.25.12",
     "solidity-docgen": "^0.6.0-beta.36",
-    "istanbul": "^0.4.5",
+    "nyc": "^15.1.0",
     "@typedoc/plugin-markdown": "^4.0.0"
   },
   "scripts": {
@@ -68,6 +68,6 @@
     "docs:api": "typedoc --out docs/api src/",
     "docs:typedoc": "typedoc --out docs/typedoc src/",
     "docs:solidity": "solidity-docgen --solc-module solc-0.8",
-    "docs:coverage": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80"
+    "docs:coverage": "nyc check-coverage --statements 80 --branches 80 --functions 80 --lines 80"
   }
 }
