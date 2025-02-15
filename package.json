@@ -6,6 +6,7 @@
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@ethersproject/contracts": "^5.7.0",
     "@tatumio/tatum": "^4.1.15",
     "@thirdweb-dev/chains": "^0.1.60",
     "@thirdweb-dev/react": "^4.0.10",
