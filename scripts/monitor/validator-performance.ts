@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-import { Contract, providers, BigNumber } from 'ethers';
+import { Contract, providers, BigNumber, utils } from 'ethers';
 import { promisify } from 'util';
+import fetch from 'node-fetch';
 const sleep = promisify(setTimeout);
 
 interface ValidatorMetrics {
@@ -54,7 +55,7 @@ class ValidatorMonitor {
 
     async initialize(): Promise<void> {
         // Get list of active validators
-        const validators = await this.validatorContract.getActiveValidators();
+        const validators = await (this.validatorContract as any).getActiveValidators();
         
         // Initialize metrics for each validator
         for (const validator of validators) {
@@ -182,8 +183,8 @@ class ValidatorMonitor {
         metrics.performance = this.calculatePerformanceScore(metrics);
 
         // Update stake and delegations
-        metrics.stake = await this.stakingContract.getValidatorStake(validatorAddress);
-        metrics.delegations = await this.stakingContract.getTotalDelegations(validatorAddress);
+        metrics.stake = await (this.stakingContract as any).getValidatorStake(validatorAddress);
+        metrics.delegations = await (this.stakingContract as any).getTotalDelegations(validatorAddress);
     }
 
     private async calculateResponseTime(validator: string): Promise<number> {
@@ -293,11 +294,11 @@ class ValidatorMonitor {
             }
 
             // Check stake
-            const minStake = ethers.utils.parseEther(this.config.minStake);
-            if (metrics.stake.lt(minStake)) {
+            const minStake = utils.parseEther(this.config.minStake);
+            if (metrics.stake.toString() < minStake.toString()) {
                 await this.sendAlert('Low Stake', {
                     validator: address,
-                    current: ethers.utils.formatEther(metrics.stake),
+                    current: utils.formatEther(metrics.stake),
                     threshold: this.config.minStake,
                     timestamp: new Date().toISOString()
                 });
@@ -341,8 +342,8 @@ class ValidatorMonitor {
                 responseTime: metrics.responseTime.toFixed(2),
                 uptimePercentage: metrics.uptimePercentage.toFixed(2),
                 performance: metrics.performance.toFixed(2),
-                stake: ethers.utils.formatEther(metrics.stake),
-                delegations: ethers.utils.formatEther(metrics.delegations)
+                stake: utils.formatEther(metrics.stake),
+                delegations: utils.formatEther(metrics.delegations)
             });
         }
 
@@ -382,4 +383,4 @@ class ValidatorMonitor {
     }
 }
 
-export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };      
+export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };          
