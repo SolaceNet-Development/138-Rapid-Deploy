@@ -28,10 +28,10 @@ importers:
         version: 0.1.120
       '@thirdweb-dev/react':
         specifier: ^4.0.10
-        version: 4.9.4(@babel/core@7.26.9)(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
+        version: 4.9.4(@babel/core@7.26.9)(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.3)(utf-8-validate@5.0.10))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)
       '@thirdweb-dev/sdk':
         specifier: ^4.0.10
-        version: 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
+        version: 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.3)(utf-8-validate@5.0.10)
       '@web3-react/core':
         specifier: ^8.2.0
         version: 8.2.3(@types/react@18.3.18)(bufferutil@4.0.9)(react@18.3.1)(utf-8-validate@5.0.10)
@@ -65,10 +65,10 @@ importers:
     devDependencies:
       '@nomiclabs/hardhat-ethers':
         specifier: ^2.2.3
-        version: 2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))
+        version: 2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10))
       '@nomiclabs/hardhat-waffle':
         specifier: ^2.0.6
-        version: 2.0.6(@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)))(@types/sinon-chai@3.2.12)(ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))
+        version: 2.0.6(@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10)))(@types/sinon-chai@3.2.12)(ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@5.7.3))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10))
       '@openzeppelin/contracts':
         specifier: ^5.2.0
         version: 5.2.0
@@ -89,10 +89,10 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.59.8
-        version: 5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.20.1)(typescript@4.9.5))(eslint@9.20.1)(typescript@4.9.5)
+        version: 5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.20.1)(typescript@5.7.3))(eslint@9.20.1)(typescript@5.7.3)
       '@typescript-eslint/parser':
         specifier: ^5.59.8
-        version: 5.62.0(eslint@9.20.1)(typescript@4.9.5)
+        version: 5.62.0(eslint@9.20.1)(typescript@5.7.3)
       '@vitejs/plugin-react':
         specifier: ^4.0.0
         version: 4.3.4(vite@4.5.9(@types/node@18.19.76))
@@ -113,13 +113,13 @@ importers:
         version: 5.2.3(eslint-config-prettier@10.0.1(eslint@9.20.1))(eslint@9.20.1)(prettier@3.5.1)
       ethereum-waffle:
         specifier: ^4.0.10
-        version: 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5)
+        version: 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@5.7.3)
       hardhat:
         specifier: ^2.22.18
-        version: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
+        version: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10)
       hardhat-gas-reporter:
         specifier: ^1.0.9
-        version: 1.0.10(bufferutil@4.0.9)(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
+        version: 1.0.10(bufferutil@4.0.9)(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       mocha:
         specifier: ^10.2.0
         version: 10.8.2
@@ -128,13 +128,13 @@ importers:
         version: 3.5.1
       solidity-coverage:
         specifier: ^0.8.4
-        version: 0.8.14(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))
+        version: 0.8.14(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10))
       ts-node:
         specifier: ^10.9.1
-        version: 10.9.2(@types/node@18.19.76)(typescript@4.9.5)
+        version: 10.9.2(@types/node@18.19.76)(typescript@5.7.3)
       typescript:
-        specifier: ^4.9.5
-        version: 4.9.5
+        specifier: ^5.0.4
+        version: 5.7.3
       vite:
         specifier: ^4.3.9
         version: 4.5.9(@types/node@18.19.76)
@@ -5831,9 +5831,9 @@ packages:
   typedi@0.10.0:
     resolution: {integrity: sha512-v3UJF8xm68BBj6AF4oQML3ikrfK2c9EmZUyLOfShpJuItAqVBHWP/KtpGinkSsIiP6EZyyb6Z3NXyW9dgS9X1w==}
 
-  typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
+  typescript@5.7.3:
+    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
+    engines: {node: '>=14.17'}
     hasBin: true
 
   typical@4.0.0:
@@ -6990,18 +6990,18 @@ snapshots:
       - '@ensdomains/resolver'
       - supports-color
 
-  '@ethereum-waffle/compiler@4.0.3(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(solc@0.8.15)(typechain@8.3.2(typescript@4.9.5))(typescript@4.9.5)':
+  '@ethereum-waffle/compiler@4.0.3(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(solc@0.8.15)(typechain@8.3.2(typescript@5.7.3))(typescript@5.7.3)':
     dependencies:
       '@resolver-engine/imports': 0.3.3
       '@resolver-engine/imports-fs': 0.3.3
-      '@typechain/ethers-v5': 10.2.1(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typechain@8.3.2(typescript@4.9.5))(typescript@4.9.5)
+      '@typechain/ethers-v5': 10.2.1(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typechain@8.3.2(typescript@5.7.3))(typescript@5.7.3)
       '@types/mkdirp': 0.5.2
       '@types/node-fetch': 2.6.12
       ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       mkdirp: 0.5.6
       node-fetch: 2.7.0
       solc: 0.8.15
-      typechain: 8.3.2(typescript@4.9.5)
+      typechain: 8.3.2(typescript@5.7.3)
     transitivePeerDependencies:
       - '@ethersproject/abi'
       - '@ethersproject/providers'
@@ -7818,18 +7818,18 @@ snapshots:
       '@nomicfoundation/solidity-analyzer-linux-x64-musl': 0.1.2
       '@nomicfoundation/solidity-analyzer-win32-x64-msvc': 0.1.2
 
-  '@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))':
+  '@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10))':
     dependencies:
       ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
+      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10)
 
-  '@nomiclabs/hardhat-waffle@2.0.6(@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)))(@types/sinon-chai@3.2.12)(ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))':
+  '@nomiclabs/hardhat-waffle@2.0.6(@nomiclabs/hardhat-ethers@2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10)))(@types/sinon-chai@3.2.12)(ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@5.7.3))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10))':
     dependencies:
-      '@nomiclabs/hardhat-ethers': 2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))
+      '@nomiclabs/hardhat-ethers': 2.2.3(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10))
       '@types/sinon-chai': 3.2.12
-      ethereum-waffle: 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5)
+      ethereum-waffle: 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@5.7.3)
       ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
+      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10)
 
   '@openzeppelin/contracts-upgradeable@4.9.6': {}
 
@@ -8708,10 +8708,10 @@ snapshots:
       reflect-metadata: 0.1.14
       typedi: 0.10.0
 
-  '@thirdweb-dev/auth@4.1.97(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)':
+  '@thirdweb-dev/auth@4.1.97(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)':
     dependencies:
       '@fastify/cookie': 9.4.0
-      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)
       cookie: 0.6.0
       fastify-type-provider-zod: 1.2.0(fastify@4.29.0)(zod@3.24.2)
       uuid: 9.0.1
@@ -8806,15 +8806,15 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@thirdweb-dev/react-core@4.9.4(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)':
+  '@thirdweb-dev/react-core@4.9.4(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)':
     dependencies:
       '@tanstack/react-query': 4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@thirdweb-dev/auth': 4.1.97(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/auth': 4.1.97(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)
       '@thirdweb-dev/chains': 0.1.120
       '@thirdweb-dev/generated-abis': 0.0.2
-      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.3)(utf-8-validate@5.0.10)
       '@thirdweb-dev/storage': 2.0.15
-      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)
       ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       mime: 3.0.0
       react: 18.3.1
@@ -8873,7 +8873,7 @@ snapshots:
       - utf-8-validate
       - zksync-ethers
 
-  '@thirdweb-dev/react@4.9.4(@babel/core@7.26.9)(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)':
+  '@thirdweb-dev/react@4.9.4(@babel/core@7.26.9)(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.3)(utf-8-validate@5.0.10))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)':
     dependencies:
       '@emotion/css': 11.10.5(@babel/core@7.26.9)
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
@@ -8890,9 +8890,9 @@ snapshots:
       '@tanstack/react-query': 4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@thirdweb-dev/chains': 0.1.120
       '@thirdweb-dev/payments': 1.0.5(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      '@thirdweb-dev/react-core': 4.9.4(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
-      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
-      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/react-core': 4.9.4(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(fastify@4.29.0)(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.3)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/wallets': 2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)
       buffer: 6.0.3
       copy-to-clipboard: 3.3.3
       detect-browser: 5.3.0
@@ -8957,7 +8957,7 @@ snapshots:
       - utf-8-validate
       - zksync-ethers
 
-  '@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)':
+  '@thirdweb-dev/sdk@4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.3)(utf-8-validate@5.0.10)':
     dependencies:
       '@eth-optimism/sdk': 3.3.2(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       '@thirdweb-dev/chains': 0.1.120
@@ -8966,14 +8966,14 @@ snapshots:
       '@thirdweb-dev/generated-abis': 0.0.2
       '@thirdweb-dev/merkletree': 0.2.6
       '@thirdweb-dev/storage': 2.0.15
-      abitype: 1.0.0(typescript@4.9.5)(zod@3.24.2)
+      abitype: 1.0.0(typescript@5.7.3)(zod@3.24.2)
       bn.js: 5.2.1
       bs58: 5.0.0
       buffer: 6.0.3
       ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       eventemitter3: 5.0.1
       fast-deep-equal: 3.1.3
-      thirdweb: 5.29.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.24.2)
+      thirdweb: 5.29.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.3)(utf-8-validate@5.0.10)(zod@3.24.2)
       tiny-invariant: 1.3.3
       tweetnacl: 1.0.3
       uuid: 9.0.1
@@ -9024,7 +9024,7 @@ snapshots:
       form-data: 4.0.1
       uuid: 9.0.1
 
-  '@thirdweb-dev/wallets@2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@4.9.5)(utf-8-validate@5.0.10)':
+  '@thirdweb-dev/wallets@2.5.39(@ethersproject/abstract-provider@5.7.0)(@ethersproject/abstract-signer@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/properties@5.7.0)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(localforage@1.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tweetnacl@1.0.3)(typescript@5.7.3)(utf-8-validate@5.0.10)':
     dependencies:
       '@account-abstraction/contracts': 0.5.0
       '@blocto/sdk': 0.10.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -9042,7 +9042,7 @@ snapshots:
       '@thirdweb-dev/chains': 0.1.120
       '@thirdweb-dev/contracts-js': 1.3.23(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       '@thirdweb-dev/crypto': 0.2.6
-      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@thirdweb-dev/sdk': 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.3)(utf-8-validate@5.0.10)
       '@walletconnect/core': 2.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@walletconnect/ethereum-provider': 2.12.2(@types/react@18.3.18)(bufferutil@4.0.9)(react@18.3.1)(utf-8-validate@5.0.10)
       '@walletconnect/jsonrpc-utils': 1.0.8
@@ -9124,15 +9124,15 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@typechain/ethers-v5@10.2.1(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typechain@8.3.2(typescript@4.9.5))(typescript@4.9.5)':
+  '@typechain/ethers-v5@10.2.1(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typechain@8.3.2(typescript@5.7.3))(typescript@5.7.3)':
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@ethersproject/providers': 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       lodash: 4.17.21
-      ts-essentials: 7.0.3(typescript@4.9.5)
-      typechain: 8.3.2(typescript@4.9.5)
-      typescript: 4.9.5
+      ts-essentials: 7.0.3(typescript@5.7.3)
+      typechain: 8.3.2(typescript@5.7.3)
+      typescript: 5.7.3
 
   '@types/abstract-leveldown@7.2.5': {}
 
@@ -9312,34 +9312,34 @@ snapshots:
 
   '@types/trusted-types@2.0.7': {}
 
-  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.20.1)(typescript@4.9.5))(eslint@9.20.1)(typescript@4.9.5)':
+  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.20.1)(typescript@5.7.3))(eslint@9.20.1)(typescript@5.7.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
-      '@typescript-eslint/parser': 5.62.0(eslint@9.20.1)(typescript@4.9.5)
+      '@typescript-eslint/parser': 5.62.0(eslint@9.20.1)(typescript@5.7.3)
       '@typescript-eslint/scope-manager': 5.62.0
-      '@typescript-eslint/type-utils': 5.62.0(eslint@9.20.1)(typescript@4.9.5)
-      '@typescript-eslint/utils': 5.62.0(eslint@9.20.1)(typescript@4.9.5)
+      '@typescript-eslint/type-utils': 5.62.0(eslint@9.20.1)(typescript@5.7.3)
+      '@typescript-eslint/utils': 5.62.0(eslint@9.20.1)(typescript@5.7.3)
       debug: 4.4.0(supports-color@8.1.1)
       eslint: 9.20.1
       graphemer: 1.4.0
       ignore: 5.3.2
       natural-compare-lite: 1.4.0
       semver: 7.7.1
-      tsutils: 3.21.0(typescript@4.9.5)
+      tsutils: 3.21.0(typescript@5.7.3)
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@5.62.0(eslint@9.20.1)(typescript@4.9.5)':
+  '@typescript-eslint/parser@5.62.0(eslint@9.20.1)(typescript@5.7.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/types': 5.62.0
-      '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
+      '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.7.3)
       debug: 4.4.0(supports-color@8.1.1)
       eslint: 9.20.1
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
 
@@ -9348,21 +9348,21 @@ snapshots:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
 
-  '@typescript-eslint/type-utils@5.62.0(eslint@9.20.1)(typescript@4.9.5)':
+  '@typescript-eslint/type-utils@5.62.0(eslint@9.20.1)(typescript@5.7.3)':
     dependencies:
-      '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
-      '@typescript-eslint/utils': 5.62.0(eslint@9.20.1)(typescript@4.9.5)
+      '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.7.3)
+      '@typescript-eslint/utils': 5.62.0(eslint@9.20.1)(typescript@5.7.3)
       debug: 4.4.0(supports-color@8.1.1)
       eslint: 9.20.1
-      tsutils: 3.21.0(typescript@4.9.5)
+      tsutils: 3.21.0(typescript@5.7.3)
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
 
   '@typescript-eslint/types@5.62.0': {}
 
-  '@typescript-eslint/typescript-estree@5.62.0(typescript@4.9.5)':
+  '@typescript-eslint/typescript-estree@5.62.0(typescript@5.7.3)':
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
@@ -9370,20 +9370,20 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.7.1
-      tsutils: 3.21.0(typescript@4.9.5)
+      tsutils: 3.21.0(typescript@5.7.3)
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@5.62.0(eslint@9.20.1)(typescript@4.9.5)':
+  '@typescript-eslint/utils@5.62.0(eslint@9.20.1)(typescript@5.7.3)':
     dependencies:
       '@eslint-community/eslint-utils': 4.4.1(eslint@9.20.1)
       '@types/json-schema': 7.0.15
       '@types/semver': 7.5.8
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/types': 5.62.0
-      '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
+      '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.7.3)
       eslint: 9.20.1
       eslint-scope: 5.1.1
       semver: 7.7.1
@@ -10198,9 +10198,9 @@ snapshots:
 
   abbrev@1.0.9: {}
 
-  abitype@1.0.0(typescript@4.9.5)(zod@3.24.2):
+  abitype@1.0.0(typescript@5.7.3)(zod@3.24.2):
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.7.3
       zod: 3.24.2
 
   abort-controller@3.0.0:
@@ -11408,15 +11408,15 @@ snapshots:
     dependencies:
       events: 3.3.0
 
-  ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@4.9.5):
+  ethereum-waffle@4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typescript@5.7.3):
     dependencies:
       '@ethereum-waffle/chai': 4.0.10(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
-      '@ethereum-waffle/compiler': 4.0.3(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(solc@0.8.15)(typechain@8.3.2(typescript@4.9.5))(typescript@4.9.5)
+      '@ethereum-waffle/compiler': 4.0.3(@ethersproject/abi@5.7.0)(@ethersproject/providers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(solc@0.8.15)(typechain@8.3.2(typescript@5.7.3))(typescript@5.7.3)
       '@ethereum-waffle/mock-contract': 4.0.4(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       '@ethereum-waffle/provider': 4.0.5(@ensdomains/ens@0.4.5)(@ensdomains/resolver@0.2.4)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       solc: 0.8.15
-      typechain: 8.3.2(typescript@4.9.5)
+      typechain: 8.3.2(typescript@5.7.3)
     transitivePeerDependencies:
       - '@ensdomains/ens'
       - '@ensdomains/resolver'
@@ -11965,11 +11965,11 @@ snapshots:
       ajv: 6.12.6
       har-schema: 2.0.0
 
-  hardhat-gas-reporter@1.0.10(bufferutil@4.0.9)(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10):
+  hardhat-gas-reporter@1.0.10(bufferutil@4.0.9)(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10):
     dependencies:
       array-uniq: 1.0.3
       eth-gas-reporter: 0.2.27(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
+      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10)
       sha1: 1.1.1
     transitivePeerDependencies:
       - '@codechecks/client'
@@ -11977,7 +11977,7 @@ snapshots:
       - debug
       - utf-8-validate
 
-  hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10):
+  hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10):
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@metamask/eth-sig-util': 4.0.1
@@ -12024,8 +12024,8 @@ snapshots:
       uuid: 8.3.2
       ws: 7.5.10(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     optionalDependencies:
-      ts-node: 10.9.2(@types/node@18.19.76)(typescript@4.9.5)
-      typescript: 4.9.5
+      ts-node: 10.9.2(@types/node@18.19.76)(typescript@5.7.3)
+      typescript: 5.7.3
     transitivePeerDependencies:
       - bufferutil
       - c-kzg
@@ -12630,9 +12630,9 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  mipd@0.0.7(typescript@4.9.5):
+  mipd@0.0.7(typescript@5.7.3):
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.7.3
 
   mkdirp@0.5.6:
     dependencies:
@@ -13592,7 +13592,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  solidity-coverage@0.8.14(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)):
+  solidity-coverage@0.8.14(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10)):
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@solidity-parser/parser': 0.19.0
@@ -13603,7 +13603,7 @@ snapshots:
       ghost-testrpc: 0.0.2
       global-modules: 2.0.0
       globby: 10.0.2
-      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5))(typescript@4.9.5)(utf-8-validate@5.0.10)
+      hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3))(typescript@5.7.3)(utf-8-validate@5.0.10)
       jsonschema: 1.5.0
       lodash: 4.17.21
       mocha: 10.8.2
@@ -13826,7 +13826,7 @@ snapshots:
       promise: 8.3.0
       qs: 6.14.0
 
-  thirdweb@5.29.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.24.2):
+  thirdweb@5.29.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.3)(utf-8-validate@5.0.10)(zod@3.24.2):
     dependencies:
       '@coinbase/wallet-sdk': 4.0.3
       '@emotion/react': 11.11.4(@types/react@18.3.18)(react@18.3.1)
@@ -13842,18 +13842,18 @@ snapshots:
       '@tanstack/react-query': 5.29.2(react@18.3.1)
       '@walletconnect/ethereum-provider': 2.12.2(@types/react@18.3.18)(bufferutil@4.0.9)(react@18.3.1)(utf-8-validate@5.0.10)
       '@walletconnect/sign-client': 2.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      abitype: 1.0.0(typescript@4.9.5)(zod@3.24.2)
+      abitype: 1.0.0(typescript@5.7.3)(zod@3.24.2)
       fast-text-encoding: 1.0.6
       fuse.js: 7.0.0
       input-otp: 1.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      mipd: 0.0.7(typescript@4.9.5)
+      mipd: 0.0.7(typescript@5.7.3)
       node-libs-browser: 2.2.1
       uqr: 0.1.2
-      viem: 2.13.7(bufferutil@4.0.9)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.24.2)
+      viem: 2.13.7(bufferutil@4.0.9)(typescript@5.7.3)(utf-8-validate@5.0.10)(zod@3.24.2)
     optionalDependencies:
       ethers: 5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       react: 18.3.1
-      typescript: 4.9.5
+      typescript: 5.7.3
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -13938,11 +13938,11 @@ snapshots:
       command-line-usage: 6.1.3
       string-format: 2.0.0
 
-  ts-essentials@7.0.3(typescript@4.9.5):
+  ts-essentials@7.0.3(typescript@5.7.3):
     dependencies:
-      typescript: 4.9.5
+      typescript: 5.7.3
 
-  ts-node@10.9.2(@types/node@18.19.76)(typescript@4.9.5):
+  ts-node@10.9.2(@types/node@18.19.76)(typescript@5.7.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
@@ -13956,7 +13956,7 @@ snapshots:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 4.9.5
+      typescript: 5.7.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
@@ -13968,10 +13968,10 @@ snapshots:
 
   tsort@0.0.1: {}
 
-  tsutils@3.21.0(typescript@4.9.5):
+  tsutils@3.21.0(typescript@5.7.3):
     dependencies:
       tslib: 1.14.1
-      typescript: 4.9.5
+      typescript: 5.7.3
 
   tty-browserify@0.0.0: {}
 
@@ -14003,7 +14003,7 @@ snapshots:
 
   type@2.7.3: {}
 
-  typechain@8.3.2(typescript@4.9.5):
+  typechain@8.3.2(typescript@5.7.3):
     dependencies:
       '@types/prettier': 2.7.3
       debug: 4.4.0(supports-color@8.1.1)
@@ -14014,8 +14014,8 @@ snapshots:
       mkdirp: 1.0.4
       prettier: 2.8.8
       ts-command-line-args: 2.5.1
-      ts-essentials: 7.0.3(typescript@4.9.5)
-      typescript: 4.9.5
+      ts-essentials: 7.0.3(typescript@5.7.3)
+      typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
 
@@ -14027,7 +14027,7 @@ snapshots:
 
   typedi@0.10.0: {}
 
-  typescript@4.9.5: {}
+  typescript@5.7.3: {}
 
   typical@4.0.0: {}
 
@@ -14198,18 +14198,18 @@ snapshots:
       d3-time: 3.1.0
       d3-timer: 3.0.1
 
-  viem@2.13.7(bufferutil@4.0.9)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.24.2):
+  viem@2.13.7(bufferutil@4.0.9)(typescript@5.7.3)(utf-8-validate@5.0.10)(zod@3.24.2):
     dependencies:
       '@adraffy/ens-normalize': 1.10.0
       '@noble/curves': 1.2.0
       '@noble/hashes': 1.3.2
       '@scure/bip32': 1.3.2
       '@scure/bip39': 1.2.1
-      abitype: 1.0.0(typescript@4.9.5)(zod@3.24.2)
+      abitype: 1.0.0(typescript@5.7.3)(zod@3.24.2)
       isows: 1.0.4(ws@8.13.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       ws: 8.13.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.7.3
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
