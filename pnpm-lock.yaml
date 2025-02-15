@@ -38,9 +38,6 @@ importers:
       '@thirdweb-dev/sdk':
         specifier: ^4.0.10
         version: 4.0.99(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(bufferutil@4.0.9)(ethers@5.7.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
-      '@types/node-fetch':
-        specifier: ^2.6.12
-        version: 2.6.12
       '@web3-react/core':
         specifier: ^8.2.0
         version: 8.2.3(@types/react@18.3.18)(bufferutil@4.0.9)(react@18.3.1)(utf-8-validate@5.0.10)
@@ -90,6 +87,9 @@ importers:
       '@types/node':
         specifier: ^18.19.76
         version: 18.19.76
+      '@types/node-fetch':
+        specifier: ^2.6.12
+        version: 2.6.12
       '@types/react':
         specifier: ^18.2.8
         version: 18.3.18
@@ -112,7 +112,7 @@ importers:
         specifier: ^16.0.3
         version: 16.4.7
       eslint:
-        specifier: ^8.57.0
+        specifier: ^8.56.0
         version: 8.57.1
       ethereum-waffle:
         specifier: ^4.0.10
@@ -144,6 +144,9 @@ importers:
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@4.9.5)
+      typedoc-plugin-markdown:
+        specifier: ^4.4.2
+        version: 4.4.2(typedoc@0.25.13(typescript@4.9.5))
       typescript:
         specifier: ^4.9.5
         version: 4.9.5
@@ -5984,6 +5987,12 @@ packages:
 
   typedi@0.10.0:
     resolution: {integrity: sha512-v3UJF8xm68BBj6AF4oQML3ikrfK2c9EmZUyLOfShpJuItAqVBHWP/KtpGinkSsIiP6EZyyb6Z3NXyW9dgS9X1w==}
+
+  typedoc-plugin-markdown@4.4.2:
+    resolution: {integrity: sha512-kJVkU2Wd+AXQpyL6DlYXXRrfNrHrEIUgiABWH8Z+2Lz5Sq6an4dQ/hfvP75bbokjNDUskOdFlEEm/0fSVyC7eg==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      typedoc: 0.27.x
 
   typedoc@0.25.13:
     resolution: {integrity: sha512-pQqiwiJ+Z4pigfOnnysObszLiU3mVLWAExSPf+Mu06G/qsc3wzbuM56SZQvONhHLncLUhYzOVkjFFpFfL5AzhQ==}
@@ -14410,6 +14419,10 @@ snapshots:
   typedarray@0.0.6: {}
 
   typedi@0.10.0: {}
+
+  typedoc-plugin-markdown@4.4.2(typedoc@0.25.13(typescript@4.9.5)):
+    dependencies:
+      typedoc: 0.25.13(typescript@4.9.5)
 
   typedoc@0.25.13(typescript@4.9.5):
     dependencies:
