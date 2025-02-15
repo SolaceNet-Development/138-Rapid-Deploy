@@ -1,5 +1,7 @@
 import { ethers } from 'hardhat';
 import { Contract } from 'ethers';
+import * as fs from 'fs';
+import * as path from 'path';
 
 interface DeploymentConfig {
     environments: {
@@ -59,17 +61,23 @@ async function main() {
     const [deployer] = await ethers.getSigners();
     console.log("Deploying contracts with the account:", deployer.address);
 
+    // Load configuration
+    const configPath = path.join(__dirname, '../deployment/config.json');
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    const env = process.env.DEPLOYMENT_ENV || 'development';
+    const envConfig = config.environments[env];
+
     // Deploy GovernanceToken
     console.log("\nDeploying Chain138Token...");
     const GovernanceToken = await ethers.getContractFactory("Chain138Token");
-    const governanceToken: Contract = await GovernanceToken.deploy(process.env.PROTOCOL_ADMIN);
+    const governanceToken = await GovernanceToken.deploy(process.env.PROTOCOL_ADMIN);
     await governanceToken.deployed();
     console.log("Chain138Token deployed to:", governanceToken.address);
 
     // Deploy TimelockController
     console.log("\nDeploying TimelockController...");
     const TimelockController = await ethers.getContractFactory("TimelockController");
-    const timelock: Contract = await TimelockController.deploy(
+    const timelock = await TimelockController.deploy(
         process.env.GOVERNANCE_TIMELOCK_DELAY,
         [process.env.PROTOCOL_ADMIN],
         [process.env.PROTOCOL_GUARDIAN],
@@ -81,7 +89,7 @@ async function main() {
     // Deploy Governance
     console.log("\nDeploying Chain138Governance...");
     const Governance = await ethers.getContractFactory("Chain138Governance");
-    const governance: Contract = await Governance.deploy(
+    const governance = await Governance.deploy(
         governanceToken.address,
         timelock.address,
         process.env.GOVERNANCE_VOTING_DELAY,
@@ -91,6 +99,18 @@ async function main() {
     );
     await governance.deployed();
     console.log("Chain138Governance deployed to:", governance.address);
+
+    // Update config with deployed addresses
+    envConfig.contracts = {
+        ...envConfig.contracts,
+        Chain138Token: governanceToken.address,
+        TimelockController: timelock.address,
+        Chain138Governance: governance.address
+    };
+
+    // Save updated config
+    fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
+    console.log('\nDeployment complete! Updated addresses saved to config.');
 
     // Update config with deployed addresses
     envConfig.contracts = {
@@ -169,4 +189,4 @@ main()
     .catch((error) => {
         console.error(error);
         process.exit(1);
-    });    
+    });      
