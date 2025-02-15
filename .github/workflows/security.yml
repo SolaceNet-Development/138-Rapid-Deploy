@@ -39,11 +39,13 @@ jobs:
       with:
         sarif_file: results.sarif
 
-    # Temporarily skip MythX scan until we can resolve the authentication issues
-    - name: Skip MythX Deep Scan
+    # Run MythX scan using armlet
+    - name: Run MythX Deep Scan
       run: |
-        echo "Skipping MythX scan temporarily"
-        echo "TODO: Re-enable once authentication issues are resolved"
+        pnpm add -g armlet
+        armlet analyze ./contracts --mode=deep --timeout=1800 --format=json
+      env:
+        MYTHX_API_KEY: ${{ secrets.MYTHX_API_KEY }}
 
     - name: Run Echidna
       uses: crytic/echidna-action@v2
@@ -70,4 +72,4 @@ jobs:
     - name: Run License Compliance Check
       uses: fossas/fossa-action@v1
       with:
-        api-key: ${{ secrets.FOSSA_API_KEY }}                                    
+        api-key: ${{ secrets.FOSSA_API_KEY }}                                      
