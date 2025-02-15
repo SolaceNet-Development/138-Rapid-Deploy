@@ -41,39 +41,23 @@ contract Chain138Governance is
     {}
 
     // Override required functions
-    function votingDelay()
-        public
-        view
-        override(Governor, GovernorSettings)
-        returns (uint256)
-    {
+    function votingDelay() public view override(Governor, GovernorSettings) returns (uint256) {
         return super.votingDelay();
     }
 
-    function votingPeriod()
-        public
-        view
-        override(Governor, GovernorSettings)
-        returns (uint256)
-    {
+    function votingPeriod() public view override(Governor, GovernorSettings) returns (uint256) {
         return super.votingPeriod();
     }
 
-    function quorum(uint256 blockNumber)
-        public
-        view
-        override(Governor, GovernorVotesQuorumFraction)
-        returns (uint256)
-    {
+    function quorum(
+        uint256 blockNumber
+    ) public view override(Governor, GovernorVotesQuorumFraction) returns (uint256) {
         return super.quorum(blockNumber);
     }
 
-    function state(uint256 proposalId)
-        public
-        view
-        override(Governor, GovernorTimelockControl)
-        returns (ProposalState)
-    {
+    function state(
+        uint256 proposalId
+    ) public view override(Governor, GovernorTimelockControl) returns (ProposalState) {
         return super.state(proposalId);
     }
 
@@ -82,11 +66,7 @@ contract Chain138Governance is
         uint256[] memory values,
         bytes[] memory calldatas,
         string memory description
-    )
-        public
-        override(Governor)
-        returns (uint256)
-    {
+    ) public override(Governor) returns (uint256) {
         return super.propose(targets, values, calldatas, description);
     }
 
@@ -105,15 +85,14 @@ contract Chain138Governance is
         uint256[] memory values,
         bytes[] memory calldatas,
         bytes32 descriptionHash
-    )
-        internal
-        virtual
-    {
+    ) internal virtual {
         if (proposalNeedsQueuing(proposalId)) {
             _executeOperations(proposalId, targets, values, calldatas, descriptionHash);
         } else {
             for (uint256 i = 0; i < targets.length; ++i) {
-                (bool success, bytes memory returndata) = targets[i].call{value: values[i]}(calldatas[i]);
+                (bool success, bytes memory returndata) = targets[i].call{value: values[i]}(
+                    calldatas[i]
+                );
                 Address.verifyCallResult(success, returndata);
             }
         }
@@ -139,11 +118,9 @@ contract Chain138Governance is
         return super._queueOperations(proposalId, targets, values, calldatas, descriptionHash);
     }
 
-    function proposalNeedsQueuing(uint256 proposalId) 
-        public view virtual 
-        override(Governor, GovernorTimelockControl) 
-        returns (bool) 
-    {
+    function proposalNeedsQueuing(
+        uint256 proposalId
+    ) public view virtual override(Governor, GovernorTimelockControl) returns (bool) {
         return super.proposalNeedsQueuing(proposalId);
     }
 
@@ -152,11 +129,7 @@ contract Chain138Governance is
         uint256[] memory values,
         bytes[] memory calldatas,
         bytes32 descriptionHash
-    )
-        internal
-        override(Governor, GovernorTimelockControl)
-        returns (uint256)
-    {
+    ) internal override(Governor, GovernorTimelockControl) returns (uint256) {
         return super._cancel(targets, values, calldatas, descriptionHash);
     }
 
@@ -169,15 +142,12 @@ contract Chain138Governance is
         return super._executor();
     }
 
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override(Governor)
-        returns (bool)
-    {
-        return interfaceId == type(IGovernor).interfaceId ||
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view virtual override(Governor) returns (bool) {
+        return
+            interfaceId == type(IGovernor).interfaceId ||
             interfaceId == type(IERC1155Receiver).interfaceId ||
             super.supportsInterface(interfaceId);
     }
-}                                                
+}

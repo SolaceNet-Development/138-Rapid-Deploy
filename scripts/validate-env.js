@@ -28,7 +28,7 @@ const ENV_RULES = {
     validate: (value) => !isNaN(value) && parseInt(value) > 0,
     error: 'Invalid chain ID'
   },
-  
+
   // Contract deployment
   PRIVATE_KEY: {
     required: true,
@@ -51,7 +51,7 @@ const ENV_RULES = {
     validate: (value) => ethers.utils.isAddress(value),
     error: 'Invalid deployer address'
   },
-  
+
   // Bridge configuration
   BRIDGE_TOKEN_ADDRESS: {
     required: true,
@@ -73,14 +73,14 @@ const ENV_RULES = {
     validate: (value) => {
       try {
         const addresses = JSON.parse(value);
-        return Array.isArray(addresses) && addresses.every(addr => ethers.utils.isAddress(addr));
+        return Array.isArray(addresses) && addresses.every((addr) => ethers.utils.isAddress(addr));
       } catch {
         return false;
       }
     },
     error: 'Invalid validator addresses array'
   },
-  
+
   // Security
   MIN_TRANSFER_AMOUNT: {
     required: true,
@@ -102,7 +102,7 @@ const ENV_RULES = {
     validate: (value) => !isNaN(value) && parseInt(value) >= 3600,
     error: 'Timelock delay must be at least 1 hour'
   },
-  
+
   // Monitoring
   ALERT_WEBHOOK_URL: {
     required: false,
@@ -129,7 +129,7 @@ const ENV_RULES = {
     validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
     error: 'Invalid email format'
   },
-  
+
   // Performance & Scaling
   MAX_GAS_PRICE: {
     required: true,
@@ -151,7 +151,7 @@ const ENV_RULES = {
     validate: (value) => !isNaN(value) && parseInt(value) > 0,
     error: 'Invalid rate limit'
   },
-  
+
   // Database & Storage
   DATABASE_URL: {
     required: true,
@@ -168,7 +168,7 @@ const ENV_RULES = {
     validate: (value) => value.startsWith('http') || value.startsWith('ipfs://'),
     error: 'Invalid IPFS node URL'
   },
-  
+
   // API & External Services
   ALCHEMY_API_KEY: {
     required: false,
@@ -266,7 +266,7 @@ const ENV_RULES = {
     validate: (value) => {
       try {
         const levels = JSON.parse(value);
-        return Array.isArray(levels) && levels.every(l => typeof l === 'string');
+        return Array.isArray(levels) && levels.every((l) => typeof l === 'string');
       } catch {
         return false;
       }
@@ -317,7 +317,10 @@ const ENV_RULES = {
     validate: (value) => {
       try {
         const ips = JSON.parse(value);
-        return Array.isArray(ips) && ips.every(ip => /^(?:\d{1,3}\.){3}\d{1,3}(?:\/\d{1,2})?$/.test(ip));
+        return (
+          Array.isArray(ips) &&
+          ips.every((ip) => /^(?:\d{1,3}\.){3}\d{1,3}(?:\/\d{1,2})?$/.test(ip))
+        );
       } catch {
         return false;
       }
@@ -388,7 +391,7 @@ const ENV_RULES = {
     validate: (value) => {
       try {
         const endpoints = JSON.parse(value);
-        return Array.isArray(endpoints) && endpoints.every(url => url.startsWith('http'));
+        return Array.isArray(endpoints) && endpoints.every((url) => url.startsWith('http'));
       } catch {
         return false;
       }
@@ -400,7 +403,7 @@ const ENV_RULES = {
     validate: (value) => !isNaN(value) && parseInt(value) >= 15,
     error: 'Resource monitoring interval must be at least 15 seconds'
   },
-  
+
   // System Metrics
   SYSTEM_METRICS_ENABLED: {
     required: false,
@@ -552,16 +555,16 @@ class EnvironmentValidator {
     const gasPriceBuffer = parseInt(process.env.GAS_PRICE_BUFFER);
     if (maxGasPrice && gasPriceBuffer) {
       const effectiveMaxGas = maxGasPrice * (gasPriceBuffer / 100);
-      if (effectiveMaxGas > 500e9) { // 500 Gwei
+      if (effectiveMaxGas > 500e9) {
+        // 500 Gwei
         this.warnings.push('Effective max gas price is very high');
       }
     }
 
     // Validate monitoring configuration
     if (process.env.NETWORK_ID === '1') {
-      const hasAlerts = process.env.SLACK_WEBHOOK_URL || 
-                       process.env.DISCORD_WEBHOOK_URL || 
-                       process.env.ALERT_EMAIL;
+      const hasAlerts =
+        process.env.SLACK_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || process.env.ALERT_EMAIL;
       if (!hasAlerts) {
         this.warnings.push('No alert channels configured for mainnet');
       }
@@ -592,13 +595,13 @@ class EnvironmentValidator {
 
     if (this.errors.length > 0) {
       console.error('❌ Environment validation failed:');
-      this.errors.forEach(error => console.error(`  - ${error}`));
+      this.errors.forEach((error) => console.error(`  - ${error}`));
       process.exit(1);
     }
 
     if (this.warnings.length > 0) {
       console.warn('⚠️ Environment validation warnings:');
-      this.warnings.forEach(warning => console.warn(`  - ${warning}`));
+      this.warnings.forEach((warning) => console.warn(`  - ${warning}`));
     }
 
     console.log('✅ Environment validation passed');
@@ -610,10 +613,10 @@ class EnvironmentValidator {
 if (require.main === module) {
   const validator = new EnvironmentValidator();
   validator.validateAndReport();
-  
+
   // Generate template if it doesn't exist
   if (!fs.existsSync('.env.example')) {
     validator.generateEnvTemplate();
     console.log('📝 Generated .env.example template file');
   }
-} 
+}

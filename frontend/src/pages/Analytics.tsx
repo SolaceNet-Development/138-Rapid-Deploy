@@ -91,7 +91,9 @@ const Analytics: React.FC = () => {
 
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8}>
         <Box bg={bgColor} p={6} rounded="lg" shadow="base">
-          <Heading size="md" mb={4}>Voting History</Heading>
+          <Heading size="md" mb={4}>
+            Voting History
+          </Heading>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={votingHistory}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -119,7 +121,9 @@ const Analytics: React.FC = () => {
         </Box>
 
         <Box bg={bgColor} p={6} rounded="lg" shadow="base">
-          <Heading size="md" mb={4}>Proposal Types Distribution</Heading>
+          <Heading size="md" mb={4}>
+            Proposal Types Distribution
+          </Heading>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -142,7 +146,9 @@ const Analytics: React.FC = () => {
         </Box>
 
         <Box bg={bgColor} p={6} rounded="lg" shadow="base">
-          <Heading size="md" mb={4}>Monthly Participation</Heading>
+          <Heading size="md" mb={4}>
+            Monthly Participation
+          </Heading>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={votingHistory}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -156,7 +162,9 @@ const Analytics: React.FC = () => {
         </Box>
 
         <Box bg={bgColor} p={6} rounded="lg" shadow="base">
-          <Heading size="md" mb={4}>Proposal Activity</Heading>
+          <Heading size="md" mb={4}>
+            Proposal Activity
+          </Heading>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={votingHistory}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -173,4 +181,4 @@ const Analytics: React.FC = () => {
   );
 };
 
-export default Analytics; 
+export default Analytics;

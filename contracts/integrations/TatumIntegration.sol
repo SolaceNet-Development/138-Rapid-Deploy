@@ -3,4 +3,4 @@ pragma solidity ^0.8.20;
 
 contract TatumIntegration {
     // TODO: Implement Tatum integration
-}  
+}

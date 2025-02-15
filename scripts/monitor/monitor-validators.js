@@ -18,11 +18,7 @@ const VALIDATOR_ABI = [
 class ValidatorMonitor {
   constructor(provider, validatorContractAddress) {
     this.provider = provider;
-    this.validatorContract = new ethers.Contract(
-      validatorContractAddress,
-      VALIDATOR_ABI,
-      provider
-    );
+    this.validatorContract = new ethers.Contract(validatorContractAddress, VALIDATOR_ABI, provider);
     this.metrics = {
       totalValidators: 0,
       activeValidators: 0,
@@ -37,7 +33,7 @@ class ValidatorMonitor {
     // Get initial validator set
     const validators = await this.validatorContract.getValidators();
     this.metrics.totalValidators = validators.length;
-    
+
     // Initialize validator metrics
     for (const validator of validators) {
       const info = await this.validatorContract.getValidatorInfo(validator);
@@ -88,7 +84,7 @@ class ValidatorMonitor {
     this.validatorContract.on('BlockProduced', (validator, blockNumber) => {
       const blocks = this.blockProduction.get(validator) || 0;
       this.blockProduction.set(validator, blocks + 1);
-      
+
       const performance = this.metrics.validatorPerformance.get(validator);
       if (performance) {
         performance.lastBlock = blockNumber.toNumber();
@@ -100,7 +96,7 @@ class ValidatorMonitor {
     this.validatorContract.on('BlockMissed', async (validator, blockNumber) => {
       const missed = this.missedBlocks.get(validator) || 0;
       this.missedBlocks.set(validator, missed + 1);
-      
+
       const performance = this.metrics.validatorPerformance.get(validator);
       if (performance) {
         performance.missedBlocks++;
@@ -125,7 +121,7 @@ class ValidatorMonitor {
         await this.updateMetrics();
         await this.checkValidatorAlerts();
         await this.reportMetrics();
-        
+
         // Wait before next check
         await sleep(parseInt(process.env.VALIDATOR_MONITORING_INTERVAL) * 1000 || 60000);
       } catch (error) {
@@ -138,7 +134,7 @@ class ValidatorMonitor {
   async updateMetrics() {
     // Get current validator set
     const validators = await this.validatorContract.getValidators();
-    
+
     // Update metrics for each validator
     for (const validator of validators) {
       const info = await this.validatorContract.getValidatorInfo(validator);
@@ -255,11 +251,11 @@ class ValidatorMonitor {
 
   async pushMetricsToPrometheus(aggregateMetrics) {
     const metrics = {
-      'validator_total_count': aggregateMetrics.totalValidators,
-      'validator_active_count': aggregateMetrics.activeValidators,
-      'validator_inactive_count': aggregateMetrics.inactiveValidators,
-      'validator_average_performance': aggregateMetrics.averagePerformance,
-      'validator_total_missed_blocks': aggregateMetrics.totalMissedBlocks
+      validator_total_count: aggregateMetrics.totalValidators,
+      validator_active_count: aggregateMetrics.activeValidators,
+      validator_inactive_count: aggregateMetrics.inactiveValidators,
+      validator_average_performance: aggregateMetrics.averagePerformance,
+      validator_total_missed_blocks: aggregateMetrics.totalMissedBlocks
     };
 
     // Add individual validator metrics
@@ -287,18 +283,15 @@ class ValidatorMonitor {
 async function main() {
   // Initialize provider
   const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
-  
+
   // Initialize monitor
-  const monitor = new ValidatorMonitor(
-    provider,
-    process.env.VALIDATOR_CONTRACT_ADDRESS
-  );
+  const monitor = new ValidatorMonitor(provider, process.env.VALIDATOR_CONTRACT_ADDRESS);
   await monitor.initialize();
-  
+
   // Start monitoring
   await monitor.monitorValidators();
 }
 
 if (require.main === module) {
   main().catch(console.error);
-} 
+}

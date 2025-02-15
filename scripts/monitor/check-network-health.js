@@ -26,7 +26,7 @@ class NetworkHealthMonitor {
     // Get initial metrics
     const [blockNumber, peerCount] = await Promise.all([
       this.provider.getBlockNumber(),
-      this.provider.send('net_peerCount', []).then(hex => parseInt(hex, 16))
+      this.provider.send('net_peerCount', []).then((hex) => parseInt(hex, 16))
     ]);
 
     this.metrics.blockHeight = blockNumber;
@@ -45,7 +45,7 @@ class NetworkHealthMonitor {
         await this.updateMetrics();
         await this.checkHealthAlerts();
         await this.reportMetrics();
-        
+
         // Wait before next check
         await sleep(parseInt(process.env.NETWORK_MONITORING_INTERVAL) * 1000 || 30000);
       } catch (error) {
@@ -57,27 +57,26 @@ class NetworkHealthMonitor {
 
   async updateMetrics() {
     const startTime = Date.now();
-    
+
     try {
       // Get current block and sync status
-      const [
-        block,
-        syncStatus,
-        peerCount,
-        pendingTx
-      ] = await Promise.all([
+      const [block, syncStatus, peerCount, pendingTx] = await Promise.all([
         this.provider.getBlock('latest'),
         this.provider.send('eth_syncing', []),
-        this.provider.send('net_peerCount', []).then(hex => parseInt(hex, 16)),
-        this.provider.send('txpool_status', []).then(status => 
-          parseInt(status.pending || '0x0', 16) + parseInt(status.queued || '0x0', 16)
-        ).catch(() => 0)
+        this.provider.send('net_peerCount', []).then((hex) => parseInt(hex, 16)),
+        this.provider
+          .send('txpool_status', [])
+          .then(
+            (status) => parseInt(status.pending || '0x0', 16) + parseInt(status.queued || '0x0', 16)
+          )
+          .catch(() => 0)
       ]);
 
       // Update metrics
       this.metrics.blockHeight = block.number;
       this.metrics.lastBlockTimestamp = block.timestamp;
-      this.metrics.blockTime = block.timestamp - (await this.provider.getBlock(block.number - 1)).timestamp;
+      this.metrics.blockTime =
+        block.timestamp - (await this.provider.getBlock(block.number - 1)).timestamp;
       this.metrics.syncStatus = !syncStatus;
       this.metrics.peerCount = peerCount;
       this.metrics.pendingTransactions = pendingTx;
@@ -86,7 +85,7 @@ class NetworkHealthMonitor {
 
       // Store block for reorg detection
       this.blockHistory.set(block.number, block.hash);
-      
+
       // Keep only last 100 blocks
       const oldestBlock = block.number - 100;
       if (this.blockHistory.has(oldestBlock)) {
@@ -102,15 +101,14 @@ class NetworkHealthMonitor {
     try {
       const block = await this.provider.getBlock(blockNumber);
       const previousBlock = await this.provider.getBlock(blockNumber - 1);
-      
+
       // Check for missed blocks
       if (blockNumber > previousBlock.number + 1) {
         this.metrics.missedBlocks += blockNumber - previousBlock.number - 1;
       }
-      
+
       // Check for reorgs
-      if (this.blockHistory.has(blockNumber) && 
-          this.blockHistory.get(blockNumber) !== block.hash) {
+      if (this.blockHistory.has(blockNumber) && this.blockHistory.get(blockNumber) !== block.hash) {
         this.metrics.chainReorgs++;
         await this.sendAlert('Chain Reorganization', {
           blockNumber,
@@ -119,7 +117,7 @@ class NetworkHealthMonitor {
           timestamp: new Date().toISOString()
         });
       }
-      
+
       // Update block history
       this.blockHistory.set(blockNumber, block.hash);
     } catch (error) {
@@ -225,14 +223,14 @@ class NetworkHealthMonitor {
 
   async pushMetricsToPrometheus() {
     const metrics = {
-      'network_block_height': this.metrics.blockHeight,
-      'network_block_time': this.metrics.blockTime,
-      'network_peer_count': this.metrics.peerCount,
-      'network_sync_status': this.metrics.syncStatus ? 1 : 0,
-      'network_latency': this.metrics.networkLatency,
-      'network_pending_transactions': this.metrics.pendingTransactions,
-      'network_chain_reorgs': this.metrics.chainReorgs,
-      'network_missed_blocks': this.metrics.missedBlocks
+      network_block_height: this.metrics.blockHeight,
+      network_block_time: this.metrics.blockTime,
+      network_peer_count: this.metrics.peerCount,
+      network_sync_status: this.metrics.syncStatus ? 1 : 0,
+      network_latency: this.metrics.networkLatency,
+      network_pending_transactions: this.metrics.pendingTransactions,
+      network_chain_reorgs: this.metrics.chainReorgs,
+      network_missed_blocks: this.metrics.missedBlocks
     };
 
     try {
@@ -252,15 +250,15 @@ class NetworkHealthMonitor {
 async function main() {
   // Initialize provider
   const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
-  
+
   // Initialize monitor
   const monitor = new NetworkHealthMonitor(provider);
   await monitor.initialize();
-  
+
   // Start monitoring
   await monitor.monitorNetwork();
 }
 
 if (require.main === module) {
   main().catch(console.error);
-} 
+}

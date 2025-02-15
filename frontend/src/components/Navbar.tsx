@@ -2,16 +2,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useWeb3React } from '@web3-react/core';
 import { injected } from '../utils/connectors';
-import {
-  Box,
-  Flex,
-  Button,
-  Link,
-  Text,
-  useColorMode,
-  IconButton,
-  HStack
-} from '@chakra-ui/react';
+import { Box, Flex, Button, Link, Text, useColorMode, IconButton, HStack } from '@chakra-ui/react';
 import { FiSun, FiMoon } from 'react-icons/fi';
 
 const Navbar: React.FC = () => {
@@ -42,10 +33,18 @@ const Navbar: React.FC = () => {
             Chain 138 Governance
           </Text>
           <HStack spacing={4}>
-            <Link as={RouterLink} to="/">Home</Link>
-            <Link as={RouterLink} to="/proposals">Proposals</Link>
-            <Link as={RouterLink} to="/create">Create</Link>
-            <Link as={RouterLink} to="/analytics">Analytics</Link>
+            <Link as={RouterLink} to="/">
+              Home
+            </Link>
+            <Link as={RouterLink} to="/proposals">
+              Proposals
+            </Link>
+            <Link as={RouterLink} to="/create">
+              Create
+            </Link>
+            <Link as={RouterLink} to="/analytics">
+              Analytics
+            </Link>
           </HStack>
         </HStack>
 
@@ -55,7 +54,7 @@ const Navbar: React.FC = () => {
             icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
             onClick={toggleColorMode}
           />
-          
+
           {active ? (
             <HStack>
               <Text>
@@ -76,4 +75,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

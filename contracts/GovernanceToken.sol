@@ -9,21 +9,22 @@ import {Votes} from "@openzeppelin/contracts/governance/utils/Votes.sol";
 import {Nonces} from "@openzeppelin/contracts/utils/Nonces.sol";
 
 contract Chain138Token is ERC20, ERC20Permit, ERC20Votes, Ownable {
-    
     error ExceedsMaxSupply(uint256 requested, uint256 maxSupply);
     error EmissionPeriodNotElapsed(uint256 nextEmissionTime);
     error ArrayLengthMismatch(uint256 recipientsLength, uint256 amountsLength);
     error InsufficientBalance(uint256 requested, uint256 available);
 
-    uint256 public constant INITIAL_SUPPLY = 100_000_000 * 10**18; // 100 million tokens
-    uint256 public constant MAX_SUPPLY = 1_000_000_000 * 10**18; // 1 billion tokens
-    
+    uint256 public constant INITIAL_SUPPLY = 100_000_000 * 10 ** 18; // 100 million tokens
+    uint256 public constant MAX_SUPPLY = 1_000_000_000 * 10 ** 18; // 1 billion tokens
+
     // Emission rate: 2% per year
     uint256 public constant EMISSION_RATE = 2;
     uint256 public constant EMISSION_PERIOD = 365 days;
     uint256 public lastEmissionTime;
 
-    constructor(address initialOwner)
+    constructor(
+        address initialOwner
+    )
         ERC20("Chain138 Governance Token", "C138")
         ERC20Permit("Chain138 Governance Token")
         ERC20Votes()
@@ -48,7 +49,7 @@ contract Chain138Token is ERC20, ERC20Permit, ERC20Votes, Ownable {
 
         uint256 currentSupply = totalSupply();
         uint256 emissionAmount = (currentSupply * EMISSION_RATE) / 100;
-        
+
         if (currentSupply + emissionAmount > MAX_SUPPLY) {
             revert ExceedsMaxSupply(emissionAmount, MAX_SUPPLY - currentSupply);
         }
@@ -80,12 +81,18 @@ contract Chain138Token is ERC20, ERC20Permit, ERC20Votes, Ownable {
     }
 
     // Governance token specific functions
-    function _update(address from, address to, uint256 amount) internal virtual override(ERC20, ERC20Votes) {
+    function _update(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual override(ERC20, ERC20Votes) {
         super._update(from, to, amount);
         _transferVotingUnits(from, to, amount);
     }
 
-    function nonces(address owner) public view virtual override(ERC20Permit, Nonces) returns (uint256) {
+    function nonces(
+        address owner
+    ) public view virtual override(ERC20Permit, Nonces) returns (uint256) {
         return super.nonces(owner);
     }
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+}
