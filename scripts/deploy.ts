@@ -1,6 +1,5 @@
 import { ethers } from 'hardhat';
-import * as fs from 'fs';
-import * as path from 'path';
+import { Contract } from 'ethers';
 
 interface DeploymentConfig {
     environments: {
@@ -57,55 +56,41 @@ interface DeploymentConfig {
 }
 
 async function main() {
-    // Load configuration
-    const configPath = path.join(__dirname, '../deployment/config.json');
-    const config: DeploymentConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    const [deployer] = await ethers.getSigners();
+    console.log("Deploying contracts with the account:", deployer.address);
 
-    // Get environment from command line or default to development
-    const env = process.env.DEPLOYMENT_ENV || 'development';
-    const envConfig = config.environments[env];
+    // Deploy GovernanceToken
+    console.log("\nDeploying Chain138Token...");
+    const GovernanceToken = await ethers.getContractFactory("Chain138Token");
+    const governanceToken: Contract = await GovernanceToken.deploy(process.env.PROTOCOL_ADMIN);
+    await governanceToken.deployed();
+    console.log("Chain138Token deployed to:", governanceToken.address);
 
-    if (!envConfig) {
-        throw new Error(`Environment ${env} not found in config`);
-    }
+    // Deploy TimelockController
+    console.log("\nDeploying TimelockController...");
+    const TimelockController = await ethers.getContractFactory("TimelockController");
+    const timelock: Contract = await TimelockController.deploy(
+        process.env.GOVERNANCE_TIMELOCK_DELAY,
+        [process.env.PROTOCOL_ADMIN],
+        [process.env.PROTOCOL_GUARDIAN],
+        process.env.ADMIN_MULTISIG
+    );
+    await timelock.deployed();
+    console.log("TimelockController deployed to:", timelock.address);
 
-    console.log(`Deploying to ${env} environment...`);
-
-    // Deploy contracts in order
-    const deployedContracts: { [key: string]: string } = {};
-
-    for (const contractName of config.deployment.order) {
-        console.log(`\nDeploying ${contractName}...`);
-        
-        try {
-            // Get the script path
-            const scriptPath = config.deployment.scripts[contractName];
-            if (!scriptPath) {
-                throw new Error(`Deployment script not found for ${contractName}`);
-            }
-
-            // Deploy the contract
-            const Contract = await ethers.getContractFactory(contractName);
-            const contract = await Contract.deploy();
-            await contract.deployed();
-
-            deployedContracts[contractName] = contract.address;
-            console.log(`${contractName} deployed to:`, contract.address);
-
-            // Verify contract if enabled
-            if (config.deployment.verification.enabled) {
-                console.log(`Verifying ${contractName}...`);
-                try {
-                    await verifyContract(contract.address, []);
-                } catch (error) {
-                    console.error(`Error verifying ${contractName}:`, error);
-                }
-            }
-        } catch (error) {
-            console.error(`Error deploying ${contractName}:`, error);
-            throw error;
-        }
-    }
+    // Deploy Governance
+    console.log("\nDeploying Chain138Governance...");
+    const Governance = await ethers.getContractFactory("Chain138Governance");
+    const governance: Contract = await Governance.deploy(
+        governanceToken.address,
+        timelock.address,
+        process.env.GOVERNANCE_VOTING_DELAY,
+        process.env.GOVERNANCE_VOTING_PERIOD,
+        process.env.GOVERNANCE_PROPOSAL_THRESHOLD,
+        4 // 4% quorum
+    );
+    await governance.deployed();
+    console.log("Chain138Governance deployed to:", governance.address);
 
     // Update config with deployed addresses
     envConfig.contracts = {
@@ -184,4 +169,4 @@ main()
     .catch((error) => {
         console.error(error);
         process.exit(1);
-    }); 
+    });    

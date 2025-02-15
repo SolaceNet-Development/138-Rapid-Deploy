@@ -1,12 +1,17 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/governance/Governor.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorSettings.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorCountingSimple.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
+import {Governor, IGovernor} from "@openzeppelin/contracts/governance/Governor.sol";
+import {IERC1155Receiver} from "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
+import {Address} from "@openzeppelin/contracts/utils/Address.sol";
+import {ERC165} from "@openzeppelin/contracts/utils/introspection/ERC165.sol";
+import {SafeCast} from "@openzeppelin/contracts/utils/math/SafeCast.sol";
+import {GovernorSettings} from "@openzeppelin/contracts/governance/extensions/GovernorSettings.sol";
+import {GovernorCountingSimple} from "@openzeppelin/contracts/governance/extensions/GovernorCountingSimple.sol";
+import {GovernorVotes, IVotes} from "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
+import {GovernorVotesQuorumFraction} from "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
+import {GovernorTimelockControl, TimelockController} from "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
+import {SafeCast} from "@openzeppelin/contracts/utils/math/SafeCast.sol";
 
 contract Chain138Governance is
     Governor,
@@ -26,8 +31,8 @@ contract Chain138Governance is
     )
         Governor("Chain138 Governance")
         GovernorSettings(
-            _votingDelay, // blocks before voting starts
-            _votingPeriod, // blocks voting is open
+            SafeCast.toUint48(_votingDelay), // blocks before voting starts
+            SafeCast.toUint32(_votingPeriod), // blocks voting is open
             _proposalThreshold // minimum tokens needed to propose
         )
         GovernorVotes(_token)
@@ -39,7 +44,7 @@ contract Chain138Governance is
     function votingDelay()
         public
         view
-        override(IGovernor, GovernorSettings)
+        override(Governor, GovernorSettings)
         returns (uint256)
     {
         return super.votingDelay();
@@ -48,7 +53,7 @@ contract Chain138Governance is
     function votingPeriod()
         public
         view
-        override(IGovernor, GovernorSettings)
+        override(Governor, GovernorSettings)
         returns (uint256)
     {
         return super.votingPeriod();
@@ -57,7 +62,7 @@ contract Chain138Governance is
     function quorum(uint256 blockNumber)
         public
         view
-        override(IGovernor, GovernorVotesQuorumFraction)
+        override(Governor, GovernorVotesQuorumFraction)
         returns (uint256)
     {
         return super.quorum(blockNumber);
@@ -79,7 +84,7 @@ contract Chain138Governance is
         string memory description
     )
         public
-        override(Governor, IGovernor)
+        override(Governor)
         returns (uint256)
     {
         return super.propose(targets, values, calldatas, description);
@@ -102,9 +107,44 @@ contract Chain138Governance is
         bytes32 descriptionHash
     )
         internal
-        override(Governor, GovernorTimelockControl)
+        virtual
     {
-        super._execute(proposalId, targets, values, calldatas, descriptionHash);
+        if (proposalNeedsQueuing(proposalId)) {
+            _executeOperations(proposalId, targets, values, calldatas, descriptionHash);
+        } else {
+            for (uint256 i = 0; i < targets.length; ++i) {
+                (bool success, bytes memory returndata) = targets[i].call{value: values[i]}(calldatas[i]);
+                Address.verifyCallResult(success, returndata);
+            }
+        }
+    }
+
+    function _executeOperations(
+        uint256 proposalId,
+        address[] memory targets,
+        uint256[] memory values,
+        bytes[] memory calldatas,
+        bytes32 descriptionHash
+    ) internal virtual override(Governor, GovernorTimelockControl) {
+        super._executeOperations(proposalId, targets, values, calldatas, descriptionHash);
+    }
+
+    function _queueOperations(
+        uint256 proposalId,
+        address[] memory targets,
+        uint256[] memory values,
+        bytes[] memory calldatas,
+        bytes32 descriptionHash
+    ) internal virtual override(Governor, GovernorTimelockControl) returns (uint48) {
+        return super._queueOperations(proposalId, targets, values, calldatas, descriptionHash);
+    }
+
+    function proposalNeedsQueuing(uint256 proposalId) 
+        public view virtual 
+        override(Governor, GovernorTimelockControl) 
+        returns (bool) 
+    {
+        return super.proposalNeedsQueuing(proposalId);
     }
 
     function _cancel(
@@ -132,9 +172,12 @@ contract Chain138Governance is
     function supportsInterface(bytes4 interfaceId)
         public
         view
-        override(Governor, GovernorTimelockControl)
+        virtual
+        override(Governor)
         returns (bool)
     {
-        return super.supportsInterface(interfaceId);
+        return interfaceId == type(IGovernor).interfaceId ||
+            interfaceId == type(IERC1155Receiver).interfaceId ||
+            super.supportsInterface(interfaceId);
     }
-} 
+}                                                

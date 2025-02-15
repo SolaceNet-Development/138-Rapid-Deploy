@@ -352,36 +352,14 @@
     },
     "deployment": {
         "scripts": {
-            "perpetualMarket": "scripts/deploy-perpetual.ts",
-            "marginPool": "scripts/deploy-margin.ts",
-            "strategyFactory": "scripts/deploy-strategies.ts",
-            "priceOracle": "scripts/deploy-oracle.ts",
-            "monitoring": "scripts/deploy-monitoring.ts",
-            "security": "scripts/deploy-security.ts",
-            "accessControl": "scripts/deploy-access-control.ts",
-            "antiMEV": "scripts/deploy-anti-mev.ts",
-            "rateLimit": "scripts/deploy-rate-limit.ts",
-            "fraudPrevention": "scripts/deploy-fraud-prevention.ts",
-            "multiSig": "scripts/deploy-multisig.ts",
-            "mlSecurity": "scripts/deploy-ml-security.ts",
-            "zkProofs": "scripts/deploy-zk-proofs.ts",
-            "mlMonitoring": "scripts/deploy-ml-monitoring.ts"
+            "Chain138Token": "scripts/deploy.ts",
+            "TimelockController": "scripts/deploy.ts",
+            "Chain138Governance": "scripts/deploy.ts"
         },
         "order": [
-            "security",
-            "multiSig",
-            "accessControl",
-            "antiMEV",
-            "rateLimit",
-            "zkProofs",
-            "mlSecurity",
-            "priceOracle",
-            "perpetualMarket",
-            "marginPool",
-            "strategyFactory",
-            "monitoring",
-            "mlMonitoring",
-            "fraudPrevention"
+            "Chain138Token",
+            "TimelockController",
+            "Chain138Governance"
         ],
         "verification": {
             "enabled": true,
@@ -402,4 +380,4 @@
             "slither": true
         }
     }
-} 
+}  
