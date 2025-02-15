@@ -39,7 +39,7 @@
     "@vitejs/plugin-react": "^4.0.0",
     "chai": "^4.3.7",
     "dotenv": "^16.0.3",
-    "eslint": "^8.57.0",
+    "eslint": "^8.56.0",
     "ethereum-waffle": "^4.0.10",
     "hardhat": "^2.22.18",
     "hardhat-gas-reporter": "^1.0.9",
@@ -51,8 +51,7 @@
     "vite": "^4.3.9",
     "typedoc": "^0.25.12",
     "solidity-docgen": "^0.6.0-beta.36",
-    "nyc": "^15.1.0",
-    "eslint": "^8.56.0"
+    "nyc": "^15.1.0"
   },
   "scripts": {
     "dev": "vite",

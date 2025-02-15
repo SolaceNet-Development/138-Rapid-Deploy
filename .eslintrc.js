@@ -7,7 +7,12 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/no-explicit-any': 'warn',
-    'no-console': 'warn'
+    'no-console': 'off',
+    '@typescript-eslint/ban-types': ['error', {
+      'types': {
+        'Function': false
+      }
+    }]
   },
   parserOptions: {
     ecmaVersion: 2020,
