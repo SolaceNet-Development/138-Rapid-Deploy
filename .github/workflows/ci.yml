@@ -29,7 +29,9 @@ jobs:
         cache-dependency-path: '**/pnpm-lock.yaml'
     
     - name: Install dependencies
-      run: pnpm install
+      run: |
+        pnpm install
+        pnpm add -D typescript@5.0.4
     
     - name: Run linter
       run: pnpm run lint
@@ -96,4 +98,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist/    
+        path: dist/      
