@@ -5,5 +5,5 @@
   "excludeProtected": true,
   "excludeExternals": true,
   "theme": "default",
-  "plugin": []
+  "plugin": ["typedoc-plugin-markdown"]
 }

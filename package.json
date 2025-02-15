@@ -64,8 +64,8 @@
     "gas-report": "REPORT_GAS=true hardhat test",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
-    "docs:api": "typedoc",
-    "docs:typedoc": "typedoc --tsconfig tsconfig.json",
+    "docs:api": "typedoc --options ./typedoc.json",
+    "docs:typedoc": "typedoc --options ./typedoc.json",
     "docs:solidity": "solidity-docgen --solc-module solc-0.8",
     "docs:coverage": "nyc check-coverage --statements 80 --branches 80 --functions 80 --lines 80"
   }
