@@ -16,10 +16,10 @@ jobs:
         with:
           node-version: '18.12.1'
       
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
+      - uses: pnpm/action-setup@v2
         with:
           version: 8.15.4
+          run_install: false
       
       - name: Check for updates
         id: ncu
