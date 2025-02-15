@@ -1,14 +1,8 @@
+import { describe, beforeEach, it } from 'mocha';
 import { expect } from 'chai';
 import { utils } from 'ethers';
 import { setupTestEnvironment } from './setup';
 import { DeFiService } from '../frontend/src/integrations/DeFiService';
-
-// Add type declarations for test environment
-declare global {
-    var describe: (name: string, fn: () => void) => void;
-    var beforeEach: (fn: () => Promise<void>) => void;
-    var it: (name: string, fn: () => Promise<void>) => void;
-}
 
 describe('DeFiService', () => {
     let defiService: DeFiService;
@@ -81,7 +75,7 @@ describe('DeFiService', () => {
                     env.contracts.token1.address,
                     '1'
                 )
-            ).to.be.rejectedWith('Insufficient collateral');
+            ).to.be.revertedWith('Insufficient collateral');
         });
     });
 
@@ -201,4 +195,4 @@ async function updateTestPrices(env: any): Promise<void> {
     await env.contracts.priceOracle.setPrice(
         utils.parseEther('1.1')
     );
-}  
+}      
