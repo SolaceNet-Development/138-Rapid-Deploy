@@ -9,7 +9,7 @@ declare module 'hardhat' {
 }
 
 declare module 'chai' {
-  export const expect: Function;
+  export const expect: <T>(value: T) => Chai.Assertion;
 }
 
 declare module '@nomiclabs/hardhat-ethers' {
@@ -17,5 +17,5 @@ declare module '@nomiclabs/hardhat-ethers' {
 }
 
 declare module '@nomiclabs/hardhat-waffle' {
-  export const expect: Function;
+  export const expect: <T>(value: T) => Chai.Assertion;
 }
