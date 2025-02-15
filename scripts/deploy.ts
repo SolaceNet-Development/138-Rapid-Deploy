@@ -1,6 +1,6 @@
 import { ethers } from 'hardhat';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
-import { Contract } from '@ethersproject/contracts';
+import { Contract, ContractFactory } from 'ethers';
 
 async function main() {
     const [deployer]: SignerWithAddress[] = await ethers.getSigners();
@@ -48,4 +48,4 @@ main()
     .catch((error) => {
         console.error(error);
         process.exit(1);
-    });          
+    });            
