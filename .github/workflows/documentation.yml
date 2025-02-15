@@ -25,9 +25,9 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Install pnpm
-      uses: pnpm/action-setup@v2.2.4
-      with:
-        version: 8.15.4
+      run: |
+        curl -fsSL https://get.pnpm.io/install.sh | sh -
+        pnpm -v
         
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -80,9 +80,9 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Install pnpm
-      uses: pnpm/action-setup@v2.2.4
-      with:
-        version: 8.15.4
+      run: |
+        curl -fsSL https://get.pnpm.io/install.sh | sh -
+        pnpm -v
         
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -105,4 +105,4 @@ jobs:
         destination_dir: api
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: 'docs: update API documentation [skip ci]'    
+        commit_message: 'docs: update API documentation [skip ci]'      
