@@ -82,7 +82,7 @@ class ValidatorMonitor {
 
     private setupEventListeners(): void {
         // Listen for block proposals
-        this.validatorContract.on('BlockProposed', async (validator, blockNumber, timestamp) => {
+        this.validatorContract.on('BlockProposed', async (validator: string, _blockNumber: number, timestamp: { toNumber: () => number }) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
                 metrics.blocksProposed++;
@@ -92,7 +92,7 @@ class ValidatorMonitor {
         });
 
         // Listen for missed blocks
-        this.validatorContract.on('BlockMissed', async (validator, blockNumber) => {
+        this.validatorContract.on('BlockMissed', async (validator: string, _blockNumber: number) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
                 metrics.blocksMissed++;
@@ -101,7 +101,7 @@ class ValidatorMonitor {
         });
 
         // Listen for attestations
-        this.validatorContract.on('Attestation', async (validator, blockNumber, isValid) => {
+        this.validatorContract.on('Attestation', async (validator: string, _blockNumber: number, _isValid: boolean) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
                 metrics.attestationRate = await this.calculateAttestationRate(validator);
@@ -110,7 +110,7 @@ class ValidatorMonitor {
         });
 
         // Listen for slashing events
-        this.slashingContract.on('ValidatorSlashed', async (validator, reason, amount) => {
+        this.slashingContract.on('ValidatorSlashed', async (validator: string, _reason: string, _amount: BigNumber) => {
             const metrics = this.metrics.get(validator);
             if (metrics) {
                 metrics.slashingEvents++;
@@ -383,4 +383,4 @@ class ValidatorMonitor {
     }
 }
 
-export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };            
+export { ValidatorMonitor, ValidatorMetrics, ValidatorConfig };                
