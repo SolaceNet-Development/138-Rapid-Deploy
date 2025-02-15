@@ -45,20 +45,20 @@ jobs:
         config-file: '.github/markdown-link-check.json'
 
     - name: Generate TypeDoc documentation
-      run: npm run docs:typedoc
+      run: pnpm run docs:typedoc
 
     - name: Generate Solidity documentation
-      run: npm run docs:solidity
+      run: pnpm run docs:solidity
 
     - name: Build documentation site
       run: |
         cd docs
-        npm install
-        npm run build
+        pnpm install --frozen-lockfile
+        pnpm run build
 
     - name: Check documentation coverage
       run: |
-        npm run docs:coverage
+        pnpm run docs:coverage
         if [ $? -ne 0 ]; then
           echo "Documentation coverage below threshold"
           exit 1
@@ -94,7 +94,7 @@ jobs:
       run: pnpm install --frozen-lockfile
 
     - name: Generate OpenAPI documentation
-      run: npm run docs:api
+      run: pnpm run docs:api
 
     - name: Deploy API documentation
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -105,4 +105,4 @@ jobs:
         destination_dir: api
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: 'docs: update API documentation [skip ci]'  
+        commit_message: 'docs: update API documentation [skip ci]'    
