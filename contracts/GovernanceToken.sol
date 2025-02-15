@@ -2,6 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Chain138Token is ERC20Votes, Ownable {
@@ -84,4 +85,4 @@ contract Chain138Token is ERC20Votes, Ownable {
     function _burn(address account, uint256 amount) internal override(ERC20Votes) {
         super._burn(account, amount);
     }
-} 
+}  
