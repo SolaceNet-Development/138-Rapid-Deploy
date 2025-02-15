@@ -16,10 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Install pnpm
-      run: |
-        npm install -g pnpm@8.15.4
-        pnpm -v
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8.15.4
+        run_install: false
         
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -79,10 +79,10 @@ jobs:
         node-version: '18.x'
         cache: 'pnpm'
     
-    - name: Install pnpm
-      run: |
-        npm install -g pnpm@8.15.4
-        pnpm -v
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8.15.4
+        run_install: false
     
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
@@ -94,4 +94,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist/                    
+        path: dist/                      

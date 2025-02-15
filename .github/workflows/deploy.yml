@@ -12,10 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Install pnpm
-      run: |
-        npm install -g pnpm@8.15.4
-        pnpm -v
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8.15.4
+        run_install: false
         
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -40,10 +40,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Install pnpm
-      run: |
-        npm install -g pnpm@8.15.4
-        pnpm -v
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8.15.4
+        run_install: false
         
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -71,4 +71,4 @@ jobs:
           artifacts/*.json
         body_path: CHANGELOG.md
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}            
