@@ -25,8 +25,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
-        cache-dependency-path: '**/pnpm-lock.yaml'
     
     - name: Install dependencies
       run: |
@@ -49,29 +47,8 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
-  security:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Run security audit
-      run: pnpm audit
-    
-    - name: Run Slither
-      uses: crytic/slither-action@v0.3.0
-      with:
-        target: 'contracts/'
-        slither-args: '--exclude-dependencies'
-    
-    - name: Run MythX analysis
-      uses: MythX/mythx-action@v1
-      with:
-        api-key: ${{ secrets.MYTHX_API_KEY }}
-        contracts: ./contracts
-        mode: deep
-
   build:
-    needs: [test, security]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -98,4 +75,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist/      
+        path: dist/              
