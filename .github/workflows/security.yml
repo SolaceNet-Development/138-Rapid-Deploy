@@ -68,10 +68,10 @@ jobs:
 
     - name: Run Dependencies Audit
       run: |
-        npm audit
-        npm run audit:dependencies
+        pnpm audit
+        pnpm run audit:dependencies
 
     - name: Run License Compliance Check
       uses: fossas/fossa-action@v1
       with:
-        api-key: ${{ secrets.FOSSA_API_KEY }} 
+        api-key: ${{ secrets.FOSSA_API_KEY }}  

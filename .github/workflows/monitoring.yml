@@ -11,14 +11,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.14.2
+    
+    - name: Use Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-        cache: 'npm'
+        cache: 'pnpm'
 
     - name: Install dependencies
-      run: npm ci
+      run: pnpm install
 
     - name: Check network health
       id: health
@@ -66,14 +71,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.14.2
+    
+    - name: Use Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-        cache: 'npm'
+        cache: 'pnpm'
 
     - name: Install dependencies
-      run: npm ci
+      run: pnpm install
 
     - name: Collect metrics
       run: |
@@ -87,4 +97,4 @@ jobs:
         node scripts/monitor/update-dashboard.js
       env:
         GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
-        DASHBOARD_ID: ${{ secrets.GRAFANA_DASHBOARD_ID }} 
+        DASHBOARD_ID: ${{ secrets.GRAFANA_DASHBOARD_ID }}  
