@@ -58,13 +58,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.14.2
+    
+    - name: Use Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
+        cache: 'pnpm'
 
     - name: Install dependencies
-      run: npm ci
+      run: pnpm install
 
     - name: Distribute Rewards
       run: |
@@ -116,4 +122,4 @@ jobs:
               team_slug: `ambassadors-${rank.toLowerCase()}`,
               username: user
             });
-          } 
+          }  

@@ -12,17 +12,22 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Setup Node.js
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.14.2
+    
+    - name: Use Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-        cache: 'npm'
+        cache: 'pnpm'
     
     - name: Install dependencies
-      run: npm ci
+      run: pnpm install
     
     - name: Deploy to testnet
-      run: npm run deploy:testnet
+      run: pnpm run deploy:testnet
       env:
         PRIVATE_KEY: ${{ secrets.TESTNET_PRIVATE_KEY }}
         INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
@@ -35,19 +40,24 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Setup Node.js
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.14.2
+    
+    - name: Use Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-        cache: 'npm'
+        cache: 'pnpm'
     
     - name: Install dependencies
-      run: npm ci
+      run: pnpm install
     
     - name: Deploy to mainnet
       run: |
         echo "Deploying version ${GITHUB_REF#refs/tags/} to mainnet"
-        npm run deploy:mainnet
+        pnpm run deploy:mainnet
       env:
         PRIVATE_KEY: ${{ secrets.MAINNET_PRIVATE_KEY }}
         INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
@@ -61,4 +71,4 @@ jobs:
           artifacts/*.json
         body_path: CHANGELOG.md
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
