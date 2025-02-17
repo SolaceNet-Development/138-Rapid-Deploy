@@ -51,6 +51,7 @@
     "test": "hardhat test",
     "test:coverage": "hardhat coverage",
     "test:watch": "hardhat test --watch",
-    "gas-report": "REPORT_GAS=true hardhat test"
+    "gas-report": "REPORT_GAS=true hardhat test",
+    "lint": "eslint . --ext .ts,.tsx"
   }
 }
